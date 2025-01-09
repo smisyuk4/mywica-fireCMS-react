@@ -45,6 +45,8 @@ import {
   useCollectionEditorPlugin,
 } from '@firecms/collection_editor';
 import logo from '../public/logo.png';
+import { Route } from 'react-router';
+import InvoicesPage from './pages/invoices';
 
 export function App() {
   const title = 'Mywica CMS';
@@ -235,7 +237,16 @@ export function App() {
                   <Scaffold logo={logo} autoOpenDrawer={false}>
                     <AppBar title={title} />
                     <Drawer />
-                    <NavigationRoutes />
+                    {/*<p>/invoices</p>
+                    </Drawer>*/}
+
+                    <NavigationRoutes>
+                      <Route
+                        key={'navigation_admin_' + 'invoices'}
+                        path='invoices'
+                        element={<InvoicesPage />}
+                      />
+                    </NavigationRoutes>
                     <SideDialogs />
                   </Scaffold>
                 );
