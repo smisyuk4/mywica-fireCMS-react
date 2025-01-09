@@ -71,3 +71,5 @@ When you get your API key, you can set it in the `.env` file.
 
 - [NavigationRoutes](https://firecms.co/docs/self/main_components#props-3)
 - [Advanced permissions](https://firecms.co/docs/collections/permissions#advanced-permissions)
+- [google icons](https://fonts.google.com/icons)
+- [firecms icons](https://firecms.co/docs/icons)

@@ -38,15 +38,13 @@ import {
 } from '@firecms/user_management';
 import { useImportPlugin } from '@firecms/data_import';
 import { useExportPlugin } from '@firecms/data_export';
-import { ExampleCMSView } from './views/ExampleCMSView';
 import { useFirestoreCollectionsConfigController } from '@firecms/collection_editor_firebase';
 import {
   mergeCollections,
   useCollectionEditorPlugin,
 } from '@firecms/collection_editor';
 import logo from '../public/logo.png';
-import { Route } from 'react-router';
-import InvoicesPage from './pages/invoices';
+import { customViews } from './views';
 
 export function App() {
   const title = 'Mywica CMS';
@@ -92,16 +90,7 @@ export function App() {
   }, [collectionConfigController.collections]);
 
   // Here you define your custom top-level views
-  const views: CMSView[] = useMemo(
-    () => [
-      {
-        path: 'example',
-        name: 'Example CMS view',
-        view: <ExampleCMSView />,
-      },
-    ],
-    []
-  );
+  const views: CMSView[] = useMemo(() => customViews, []);
 
   const signInOptions: FirebaseSignInProvider[] = ['google.com', 'password'];
 
@@ -237,16 +226,7 @@ export function App() {
                   <Scaffold logo={logo} autoOpenDrawer={false}>
                     <AppBar title={title} />
                     <Drawer />
-                    {/*<p>/invoices</p>
-                    </Drawer>*/}
-
-                    <NavigationRoutes>
-                      <Route
-                        key={'navigation_admin_' + 'invoices'}
-                        path='invoices'
-                        element={<InvoicesPage />}
-                      />
-                    </NavigationRoutes>
+                    <NavigationRoutes />
                     <SideDialogs />
                   </Scaffold>
                 );

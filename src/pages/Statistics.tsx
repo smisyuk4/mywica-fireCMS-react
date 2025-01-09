@@ -8,10 +8,10 @@ import {
   TableRow,
 } from '@firecms/ui';
 
-const InvoicesPage = () => {
+export const StatisticsPage = () => {
   return (
     <div className='bg-[--fcms-primary-bg] h-full'>
-      <h1 className='text-2xl text-center'>invoices custom page</h1>
+      <h1 className='text-2xl text-center'>statistics custom page</h1>
 
       <SearchBar onTextSearch={(text) => console.log('Search:', text)} />
 
@@ -22,28 +22,15 @@ const InvoicesPage = () => {
           <TableCell header scope='col'>
             Name
           </TableCell>
-          <TableCell header scope='col'>
-            Age
-          </TableCell>
-          <TableCell header scope='col'>
-            City
-          </TableCell>
         </TableHeader>
         <TableBody>
           <TableRow>
-            <TableCell>John Doe</TableCell>
-            <TableCell>30</TableCell>
-            <TableCell>New York</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Jane Smith</TableCell>
-            <TableCell>25</TableCell>
-            <TableCell>San Francisco</TableCell>
+            <TableCell>Микола</TableCell>
+            <TableCell>300000</TableCell>
+            <TableCell>Харків</TableCell>
           </TableRow>
         </TableBody>
       </Table>
     </div>
   );
 };
-
-export default InvoicesPage;
