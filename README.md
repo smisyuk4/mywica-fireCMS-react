@@ -18,6 +18,7 @@ yarn
 ```
 
 And run the project locally:
+
 ```bash
 yarn dev
 ```
@@ -66,6 +67,7 @@ In order to deploy the project, you need to have a valid FireCMS PRO license.
 You can create one in the [FireCMS subscriptions](https://app.firecms.co/subscriptions).
 When you get your API key, you can set it in the `.env` file.
 
+## documents
 
-
-# mywica-fireCMS-react
+- [NavigationRoutes](https://firecms.co/docs/self/main_components#props-3)
+- [Advanced permissions](https://firecms.co/docs/collections/permissions#advanced-permissions)

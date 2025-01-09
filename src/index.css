@@ -5,9 +5,9 @@
 @tailwind utilities;
 
 :root {
-    --fcms-primary: #0070F4;
-    --fcms-primary-bg: #0061e610;
-    --fcms-secondary: #FF5B79;
+    --fcms-primary: #008a7b;
+    --fcms-primary-bg: #8BFFE866;
+    --fcms-secondary: #5fc363;
 }
 
 body {
