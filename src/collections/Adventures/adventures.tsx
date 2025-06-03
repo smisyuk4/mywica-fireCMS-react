@@ -1,5 +1,7 @@
 import { buildCollection } from '@firecms/core';
 import { setsSubCollection } from './sets';
+import { navigationSubCollection } from './navigation';
+import { cardsSubCollection } from './cards';
 
 export const adventuresCollection = buildCollection({
 	name: 'Adventures',
@@ -7,7 +9,7 @@ export const adventuresCollection = buildCollection({
 	id: 'adventures',
 	path: 'adventures',
 	group: 'Main content',
-	description: 'adventures: basic cards, navigation, sets',
+	description: 'Bg for adventures, basic cards, navigation, sets',
 	textSearchEnabled: true,
 	// Here you can override the user permissions
 	// permissions: ({ authController }) => ({
@@ -16,7 +18,7 @@ export const adventuresCollection = buildCollection({
 	//     create: true,
 	//     delete: true
 	// }),
-	subcollections: [setsSubCollection],
+	subcollections: [setsSubCollection, navigationSubCollection, cardsSubCollection],
 	entityViews: [
 		//{
 		//  key: 'preview',
@@ -40,12 +42,17 @@ export const adventuresCollection = buildCollection({
 			validation: { required: true },
 			dataType: 'map',
 			properties: {
-				'2xl': {
-					name: '2xl',
+				mobile: {
+					name: 'mobile',
 					validation: { required: true },
 					dataType: 'string',
 				},
-				'lg': {
+				sm: {
+					name: 'sm',
+					validation: { required: true },
+					dataType: 'string',
+				},
+				lg: {
 					name: 'lg',
 					validation: { required: true },
 					dataType: 'string',
@@ -55,18 +62,13 @@ export const adventuresCollection = buildCollection({
 					validation: { required: true },
 					dataType: 'string',
 				},
-				'mobile': {
-					name: 'mobile',
-					validation: { required: true },
-					dataType: 'string',
-				},
-				'sm': {
-					name: 'sm',
-					validation: { required: true },
-					dataType: 'string',
-				},
 				'xl-h': {
 					name: 'xl-h',
+					validation: { required: true },
+					dataType: 'string',
+				},
+				'2xl': {
+					name: '2xl',
 					validation: { required: true },
 					dataType: 'string',
 				},
