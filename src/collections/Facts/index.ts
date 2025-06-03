@@ -1,0 +1,1 @@
+export { factsCollection } from './facts';

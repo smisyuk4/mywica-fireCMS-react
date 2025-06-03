@@ -1,0 +1,1 @@
+export { pagesCollection } from './pages' 
