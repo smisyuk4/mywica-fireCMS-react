@@ -1,17 +1,5 @@
-import { buildCollection, buildEnumValues } from '@firecms/core';
-
-const variants = buildEnumValues({
-	'other': 'other',
-	'asian': 'asian',
-	'african': 'african',
-	'european': 'european',
-});
-
-const sexVariants = buildEnumValues({
-	'boy': 'boy',
-	'girl': 'girl',
-	'other': 'other',
-});
+import { buildCollection } from '@firecms/core';
+import { avatarVariants, sexVariants } from '../../customEnums';
 
 export const avatarsCollection = buildCollection({
 	name: 'Avatars',
@@ -41,7 +29,7 @@ export const avatarsCollection = buildCollection({
 			name: 'avatarVariant',
 			validation: { required: true },
 			dataType: 'string',
-			enumValues: variants,
+			enumValues: avatarVariants,
 		},
 		sex: {
 			name: 'sex',

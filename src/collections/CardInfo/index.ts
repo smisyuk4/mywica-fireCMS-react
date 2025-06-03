@@ -1,0 +1,1 @@
+export { cardInfoCollection } from './cardInfo';

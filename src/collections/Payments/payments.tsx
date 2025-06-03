@@ -1,11 +1,7 @@
-import { buildCollection, buildEnumValues } from '@firecms/core';
+import { buildCollection } from '@firecms/core';
 import { reviewsSubCollection } from './reviews';
 import { ordersSubCollection } from './orders';
-
-const types = buildEnumValues({
-	'subscription': 'subscription',
-	'souvenir': 'souvenir',
-});
+import { paymentTypes } from '../../customEnums';
 
 export const paymentsCollection = buildCollection({
 	name: 'Payments',
@@ -35,7 +31,7 @@ export const paymentsCollection = buildCollection({
 			name: 'type',
 			validation: { required: true },
 			dataType: 'string',
-			enumValues: types
+			enumValues: paymentTypes
 		},
 		sum: {
 			name: 'sum',

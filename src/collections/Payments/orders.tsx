@@ -1,9 +1,5 @@
-import { buildCollection, buildEnumValues } from '@firecms/core';
-
-const companies = buildEnumValues({
-	'nova post': 'nova post',
-	'ukrposhta': 'ukrposhta',
-});
+import { buildCollection } from '@firecms/core';
+import { deliveryСompanies } from '../../customEnums';
 
 export const ordersSubCollection = buildCollection({
 	id: 'orders',
@@ -49,7 +45,7 @@ export const ordersSubCollection = buildCollection({
 					name: 'company',
 					validation: { required: true },
 					dataType: 'string',
-					enumValues: companies
+					enumValues: deliveryСompanies
 				},
 				address: {
 					name: 'address',

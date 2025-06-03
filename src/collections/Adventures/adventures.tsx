@@ -9,6 +9,7 @@ export const adventuresCollection = buildCollection({
 	id: 'adventures',
 	path: 'adventures',
 	group: 'Main content',
+	customId: true,
 	description: 'Bg for adventures, basic cards, navigation, sets',
 	textSearchEnabled: true,
 	// Here you can override the user permissions

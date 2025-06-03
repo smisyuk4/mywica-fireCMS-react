@@ -1,11 +1,7 @@
-import { buildCollection, buildEnumValues } from '@firecms/core';
+import { buildCollection } from '@firecms/core';
 import { messagesSubCollection } from './messages';
+import { locales } from '../../customEnums';
 
-const languages = buildEnumValues({
-	'uk': 'uk',
-	'en': 'en',
-	'he': 'he',
-});
 
 export const feedbackCollection = buildCollection({
 	name: 'Feedback',
@@ -45,7 +41,7 @@ export const feedbackCollection = buildCollection({
 			name: 'lang',
 			validation: { required: true },
 			dataType: 'string',
-			enumValues: languages,
+			enumValues: locales,
 		},
 		id: {
 			name: 'id',
