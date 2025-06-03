@@ -45,7 +45,8 @@ import {
 } from '@firecms/collection_editor';
 import logo from '../public/logo.png';
 import { customViews } from './views';
-import { testCollection } from './collections/test';
+//import { testCollection } from './collections/test';
+import { pagesCollection } from './collections/Pages/pages';
 
 export function App() {
   const title = 'Mywica CMS';
@@ -81,7 +82,8 @@ export function App() {
     // Here we define a sample collection in code.
     const collections = [
       productsCollection,
-      testCollection,
+      //testCollection,
+			pagesCollection
       // Your collections here
     ];
     // You can merge collections defined in the collection editor (UI) with your own collections
@@ -202,11 +204,11 @@ export function App() {
           storageSource={storageSource}
           plugins={
             [
-              //dataEnhancementPlugin,
-              //importPlugin,
-              //exportPlugin,
-              //userManagementPlugin,
-              //collectionEditorPlugin,
+              dataEnhancementPlugin,
+              importPlugin,
+              exportPlugin,
+              userManagementPlugin,
+              collectionEditorPlugin,
             ]
           }
         >
