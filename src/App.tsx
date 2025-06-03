@@ -50,6 +50,7 @@ import { pagesCollection } from './collections/Pages';
 import { factsCollection } from './collections/Facts';
 import { feedbackCollection } from './collections/Feedback';
 import { subscriptionsCollection } from './collections/Subscriptions';
+import { promocodesCollection } from './collections/Promocodes';
 
 export function App() {
   const title = 'Mywica CMS';
@@ -89,7 +90,8 @@ export function App() {
 			pagesCollection,
 			factsCollection,
 			feedbackCollection,
-			subscriptionsCollection
+			subscriptionsCollection,
+			promocodesCollection
       // Your collections here
     ];
     // You can merge collections defined in the collection editor (UI) with your own collections
