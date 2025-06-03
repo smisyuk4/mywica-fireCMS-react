@@ -1,9 +1,9 @@
 import { buildCollection, buildEnumValues } from '@firecms/core';
 
 const locales = buildEnumValues({
-  'en-US': 'English (United States)',
-  'es-ES': 'Spanish (Spain)',
-  'de-DE': 'German',
+	'en-US': 'English (United States)',
+	'es-ES': 'Spanish (Spain)',
+	'de-DE': 'German',
 });
 
 export const localeCollection = buildCollection({

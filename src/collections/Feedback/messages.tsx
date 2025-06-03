@@ -1,9 +1,16 @@
-import { buildCollection } from '@firecms/core';
+import { buildCollection, buildEnumValues } from '@firecms/core';
+
+const roles = buildEnumValues({
+  'adult': 'adult',
+  'support': 'support',
+  'admin': 'admin',
+});
 
 export const messagesSubCollection = buildCollection({
 	id: 'messages',
 	path: 'messages',
 	name: 'messages',
+	  //customId: roles,
 	singularName: 'messages',
 	properties: {
 		message: {
@@ -32,7 +39,8 @@ export const messagesSubCollection = buildCollection({
 		role: {
 			name: 'role',
 			validation: { required: true },
-			dataType: 'string', // cпробувати випадаючий список зробити
+			dataType: 'string', 
+			enumValues: roles,
 		},
 		createdAt: {
 			name: 'createdAt',
