@@ -1,16 +1,8 @@
-import { buildCollection, buildEnumValues } from '@firecms/core';
-
-//const locales = buildEnumValues({
-//	'en-US': 'English (United States)',
-//	'es-ES': 'Spanish (Spain)',
-//	'de-DE': 'German',
-//});
+import { buildCollection } from '@firecms/core';
 
 export const metadataSubCollection = buildCollection({
 	id: 'metadata',
 	path: 'metadata',
-	//customId: locales,
-	//customId: true, // If you want to use custom ids
 	name: 'Metadata',
 	singularName: 'Metadata',
 	properties: {
@@ -27,17 +19,14 @@ export const metadataSubCollection = buildCollection({
 		createdAt: {
 			name: 'createdAt',
 			validation: { required: true },
-			dataType: 'string',
+			dataType: 'date',
+			autoValue: "on_create"
 		},
 		updatedAt: {
 			name: 'updatedAt',
 			validation: { required: true },
-			dataType: 'string',
+			dataType: 'date',
+			autoValue: "on_update"
 		},
-		//selectable: {
-		//	name: 'Selectable',
-		//	description: 'Is this locale selectable',
-		//	dataType: 'boolean',
-		//},
 	},
 });

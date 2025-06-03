@@ -26,7 +26,3 @@ export type Locale = {
   selectable?: boolean;
   video: string;
 };
-
-export type Test = {
-  name: string;
-};

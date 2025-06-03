@@ -45,8 +45,8 @@ import {
 } from '@firecms/collection_editor';
 import logo from '../public/logo.png';
 import { customViews } from './views';
-import { testCollection } from './collections/test';
-import { pagesCollection } from './collections/pages';
+//import { testCollection } from './collections/test';
+import { pagesCollection } from './collections/Pages/pages';
 
 export function App() {
   const title = 'Mywica CMS';
@@ -82,7 +82,7 @@ export function App() {
     // Here we define a sample collection in code.
     const collections = [
       productsCollection,
-      testCollection,
+      //testCollection,
 			pagesCollection
       // Your collections here
     ];
