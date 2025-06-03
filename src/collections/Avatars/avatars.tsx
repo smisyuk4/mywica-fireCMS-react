@@ -18,6 +18,7 @@ export const avatarsCollection = buildCollection({
 	singularName: 'Avatars',
 	id: 'avatars',
 	path: 'avatars',
+	group: 'Users',
 	description: 'avatars for children',
 	textSearchEnabled: true,
 	// Here you can override the user permissions
