@@ -12,6 +12,7 @@ export const feedbackCollection = buildCollection({
 	singularName: 'Pages',
 	id: 'feedback',
 	path: 'feedback',
+	group: 'Users',
 	description: 'messages by adults and support',
 	textSearchEnabled: true,
 	// Here you can override the user permissions
