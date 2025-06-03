@@ -1,0 +1,1 @@
+export { paymentsCollection } from './payments';

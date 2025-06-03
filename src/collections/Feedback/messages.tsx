@@ -10,7 +10,6 @@ export const messagesSubCollection = buildCollection({
 	id: 'messages',
 	path: 'messages',
 	name: 'messages',
-	  //customId: roles,
 	singularName: 'messages',
 	properties: {
 		message: {
@@ -23,8 +22,8 @@ export const messagesSubCollection = buildCollection({
 			validation: { required: false },
 			dataType: 'array',
 			of: {
-					dataType: "string",
-					},
+				dataType: "string",
+			},
 		},
 		id: {
 			name: 'id',

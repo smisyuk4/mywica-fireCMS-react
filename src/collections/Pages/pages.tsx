@@ -9,7 +9,8 @@ export const pagesCollection = buildCollection({
   singularName: 'Pages',
   id: 'pages',
   path: 'pages',
-  description: 'metadata, dataUk, dataEn, dataHe',
+	group: 'Derby Facts',
+  //description: 'metadata, dataUk, dataEn, dataHe',
   textSearchEnabled: true,
   // Here you can override the user permissions
   // permissions: ({ authController }) => ({
