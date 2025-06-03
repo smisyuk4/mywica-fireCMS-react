@@ -9,13 +9,13 @@ export const customViews: CMSView[] = [
     icon: 'monetization_on',
     description: 'orders description',
   },
-  {
-    path: 'feedback',
-    name: 'feedback label',
-    view: <FeedbackPage />,
-    icon: 'forum',
-    description: 'feedback description',
-  },
+  //{
+  //  path: 'feedback',
+  //  name: 'feedback label',
+  //  view: <FeedbackPage />,
+  //  icon: 'forum',
+  //  description: 'feedback description',
+  //},
   {
     path: 'statistics',
     name: 'statistics label',
