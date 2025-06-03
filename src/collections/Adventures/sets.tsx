@@ -1,10 +1,6 @@
-import { buildCollection, buildEnumValues } from '@firecms/core';
+import { buildCollection } from '@firecms/core';
+import { locales } from '../../customEnums';
 
-const locales = buildEnumValues({
-	'uk': 'uk',
-	'en': 'en',
-	'he': 'he',
-});
 
 export const setsSubCollection = buildCollection({
 	id: 'sets',

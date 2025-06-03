@@ -1,10 +1,5 @@
-import { buildCollection, buildEnumValues } from '@firecms/core';
-
-const status = buildEnumValues({
-	'active': 'active',
-	'inactive': 'inactive',
-	'failed': 'failed',
-});
+import { buildCollection } from '@firecms/core';
+import { subscriptionStatus } from '../../customEnums';
 
 export const subscriptionsCollection = buildCollection({
 	name: 'Subscriptions',
@@ -34,7 +29,7 @@ export const subscriptionsCollection = buildCollection({
 			name: 'status',
 			validation: { required: true },
 			dataType: 'string',
-			enumValues: status
+			enumValues: subscriptionStatus
 		},
 		amount: {
 			name: 'amount',

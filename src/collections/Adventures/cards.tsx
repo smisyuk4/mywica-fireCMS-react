@@ -1,15 +1,5 @@
-import { buildCollection, buildEnumValues } from '@firecms/core';
-
-const guilds = buildEnumValues({
-	'warrior': 'warrior',
-	'defender': 'defender',
-	'wizard': 'wizard',
-	'exile': 'exile',
-});
-
-const customIds = buildEnumValues({
-	'mywica': 'mywica',
-});
+import { buildCollection } from '@firecms/core';
+import { customBasicCardId, guilds } from '../../customEnums';
 
 export const cardsSubCollection = buildCollection({
 	id: 'cards',
@@ -37,7 +27,7 @@ export const cardsSubCollection = buildCollection({
 			name: 'userId',
 			validation: { required: true },
 			dataType: 'string',
-			enumValues: customIds
+			enumValues: customBasicCardId
 		},
 		adventureId: {
 			name: 'adventureId',

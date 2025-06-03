@@ -1,10 +1,5 @@
-import { buildCollection, buildEnumValues } from '@firecms/core';
-
-const roles = buildEnumValues({
-  'adult': 'adult',
-  'support': 'support',
-  'admin': 'admin',
-});
+import { buildCollection } from '@firecms/core';
+import { roles } from '../../customEnums';
 
 export const messagesSubCollection = buildCollection({
 	id: 'messages',
