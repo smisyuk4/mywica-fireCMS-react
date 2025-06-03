@@ -1,0 +1,1 @@
+export { feedbackCollection } from './feedback';

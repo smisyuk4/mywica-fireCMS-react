@@ -48,6 +48,7 @@ import { customViews } from './views';
 //import { testCollection } from './collections/test';
 import { pagesCollection } from './collections/Pages';
 import { factsCollection } from './collections/Facts';
+import { feedbackCollection } from './collections/Feedback';
 
 export function App() {
   const title = 'Mywica CMS';
@@ -85,7 +86,8 @@ export function App() {
       productsCollection,
       //testCollection,
 			pagesCollection,
-			factsCollection
+			factsCollection,
+			feedbackCollection
       // Your collections here
     ];
     // You can merge collections defined in the collection editor (UI) with your own collections
