@@ -9,6 +9,7 @@ export const pagesCollection = buildCollection({
   singularName: 'Pages',
   id: 'pages',
   path: 'pages',
+	group: 'Pages',
   description: 'metadata, dataUk, dataEn, dataHe',
   textSearchEnabled: true,
   // Here you can override the user permissions

@@ -9,6 +9,7 @@ export const factsCollection = buildCollection({
   singularName: 'Facts',
   id: 'facts',
   path: 'facts',
+	group: 'Pages',
   description: 'data: uk, en, he',
   textSearchEnabled: true,
   // Here you can override the user permissions

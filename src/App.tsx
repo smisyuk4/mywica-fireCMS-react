@@ -29,7 +29,7 @@ import {
 } from '@firecms/firebase';
 
 import { firebaseConfig } from './firebase_config';
-import { productsCollection } from './collections/products';
+//import { productsCollection } from './collections/products';
 import { useDataEnhancementPlugin } from '@firecms/data_enhancement';
 import {
   useBuildUserManagement,
@@ -49,6 +49,9 @@ import { customViews } from './views';
 import { pagesCollection } from './collections/Pages';
 import { factsCollection } from './collections/Facts';
 import { feedbackCollection } from './collections/Feedback';
+import { subscriptionsCollection } from './collections/Subscriptions';
+import { promocodesCollection } from './collections/Promocodes';
+import { paymentsCollection } from './collections/Payments';
 
 export function App() {
   const title = 'Mywica CMS';
@@ -83,11 +86,14 @@ export function App() {
   const collectionsBuilder = useCallback(() => {
     // Here we define a sample collection in code.
     const collections = [
-      productsCollection,
+      //productsCollection,
       //testCollection,
 			pagesCollection,
 			factsCollection,
-			feedbackCollection
+			feedbackCollection,
+			subscriptionsCollection,
+			promocodesCollection,
+			paymentsCollection
       // Your collections here
     ];
     // You can merge collections defined in the collection editor (UI) with your own collections

@@ -1,0 +1,1 @@
+export { subscriptionsCollection } from './subscriptions';
