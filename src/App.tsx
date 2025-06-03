@@ -46,6 +46,7 @@ import {
 import logo from '../public/logo.png';
 import { customViews } from './views';
 import { testCollection } from './collections/test';
+import { pagesCollection } from './collections/pages';
 
 export function App() {
   const title = 'Mywica CMS';
@@ -82,6 +83,7 @@ export function App() {
     const collections = [
       productsCollection,
       testCollection,
+			pagesCollection
       // Your collections here
     ];
     // You can merge collections defined in the collection editor (UI) with your own collections
@@ -202,11 +204,11 @@ export function App() {
           storageSource={storageSource}
           plugins={
             [
-              //dataEnhancementPlugin,
-              //importPlugin,
-              //exportPlugin,
-              //userManagementPlugin,
-              //collectionEditorPlugin,
+              dataEnhancementPlugin,
+              importPlugin,
+              exportPlugin,
+              userManagementPlugin,
+              collectionEditorPlugin,
             ]
           }
         >
