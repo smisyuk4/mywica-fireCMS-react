@@ -1,0 +1,1 @@
+export { avatarsCollection } from './avatars';
