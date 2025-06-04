@@ -47,8 +47,7 @@ export const messagesSubCollection = buildCollection({
 			},
 		},
 		role: {
-			name: 'role', // якщо можливо то враховуючи роль авторизованого користувача - підставляти ролі автоматично
-			//validation: { required: true },
+			name: 'role',
 			dataType: 'string', 
 			enumValues: roles,
 			readOnly: true,

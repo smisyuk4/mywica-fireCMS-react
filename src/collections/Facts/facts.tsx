@@ -10,22 +10,15 @@ export const factsCollection = buildCollection({
   id: 'facts',
   path: 'facts',
 	group: 'Pages',
+	icon:'fact_check',
   description: 'data: uk, en, he',
   textSearchEnabled: true,
-  // Here you can override the user permissions
-  // permissions: ({ authController }) => ({
-  //     read: true,
-  //     edit: true,
-  //     create: true,
-  //     delete: true
-  // }),
+	permissions: ({ authController }) => ({
+			read: true,
+			edit: false,
+			create: false,
+			delete: false
+	}),
   subcollections: [ukSubCollection, enSubCollection, heSubCollection],
-  entityViews: [
-    //{
-    //  key: 'preview',
-    //  name: 'Sample preview',
-    //  Builder: ProductDetailPreview,
-    //},
-  ],
   properties: {},
 });

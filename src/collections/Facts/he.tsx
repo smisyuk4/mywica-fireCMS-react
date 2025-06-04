@@ -5,6 +5,7 @@ export const heSubCollection = buildCollection({
 	path: 'he',
 	name: 'he',
 	singularName: 'he',
+	initialSort: ['id', "desc"],
 	properties: {
 		id: {
 			name: 'id',
@@ -21,20 +22,30 @@ export const heSubCollection = buildCollection({
 			validation: { required: true },
 			dataType: 'string',
 		},
-		image: {
+	image: {
 			name: 'image',
 			validation: { required: true },
 			dataType: 'string',
+			storage: {
+				storagePath: () => "facts/",
+        fileName: (context) => {
+            return context.file.name;
+        },
+				acceptedFiles: ["image/webp"],
+				metadata: {
+						cacheControl: "max-age=1000000"
+				},
+				storeUrl: true,
+				maxSize: 150 * 1024 // 🔺 Обмеження: 150 КБ
+			}
 		},
 		createdAt: {
 			name: 'createdAt',
-			validation: { required: true },
 			dataType: 'date',
 			autoValue: "on_create"
 		},
 		updatedAt: {
 			name: 'updatedAt',
-			validation: { required: true },
 			dataType: 'date',
 			autoValue: "on_update"
 		},

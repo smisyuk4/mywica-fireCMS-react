@@ -12,13 +12,6 @@ export const avatarsCollection = buildCollection({
 	icon: 'Person_pin',
 	description: 'avatars for children',
 	textSearchEnabled: true,
-	// Here you can override the user permissions
-	// permissions: ({ authController }) => ({
-	//     read: true,
-	//     edit: true,
-	//     create: true,
-	//     delete: true
-	// }),
 	callbacks: reuseIdCallbacks,
 	initialSort: ['avatarVariant', "asc"],
 	properties: {
