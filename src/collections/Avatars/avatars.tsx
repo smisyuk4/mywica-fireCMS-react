@@ -1,5 +1,7 @@
 import { buildCollection } from '@firecms/core';
 import { avatarVariants, sexVariants } from '../../customEnums';
+import { reuseIdCallbacks } from '../../customCallbacks';
+import { description } from '../../customProperties';
 
 export const avatarsCollection = buildCollection({
 	name: 'Avatars',
@@ -17,18 +19,39 @@ export const avatarsCollection = buildCollection({
 	//     delete: true
 	// }),
 	subcollections: [],
-	entityViews: [
-		//{
-		//  key: 'preview',
-		//  name: 'Sample preview',
-		//  Builder: ProductDetailPreview,
-		//},
-	],
+	entityViews: [],
+	callbacks: reuseIdCallbacks,
 	properties: {
-		avatarVariant: {
-			name: 'avatarVariant',
+		collectionKey: {
+			name: 'collectionKey',
 			validation: { required: true },
 			dataType: 'string',
+		},
+		link: {
+			name: "link",
+			validation: { required: true },
+			dataType: "string",
+			storage: {
+				storagePath: (context) => {
+						if (context.values.collectionKey)
+						return `avatars/${context.values.collectionKey}/`;
+
+						return "avatars/";
+        },
+        fileName: (context) => {
+            return context.file.name;
+        },
+				acceptedFiles: ["image/webp"],
+				metadata: {
+						cacheControl: "max-age=1000000"
+				},
+				storeUrl: true
+			}
+		},
+		avatarVariant: {
+			name: 'avatarVariant',
+			dataType: 'string',
+			validation: { required: true },
 			enumValues: avatarVariants,
 		},
 		sex: {
@@ -37,20 +60,12 @@ export const avatarsCollection = buildCollection({
 			dataType: 'string',
 			enumValues: sexVariants,
 		},
-		description: {
-			name: 'description',
-			validation: { required: true },
-			dataType: 'string',
-		},
-		link: {
-			name: 'link',
-			validation: { required: true },
-			dataType: 'string',
-		},
+		description,
 		id: {
 			name: 'id',
-			validation: { required: true },
 			dataType: 'string',
+			readOnly: true,
+			hideFromCollection: true
 		},
 		createdAt: {
 			name: 'createdAt',
