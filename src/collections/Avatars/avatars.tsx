@@ -1,6 +1,7 @@
-import { buildCollection, EntityCallbacks } from '@firecms/core';
+import { buildCollection } from '@firecms/core';
 import { avatarVariants, sexVariants } from '../../customEnums';
 import { reuseIdCallbacks } from '../../customCallbacks';
+import { description } from '../../customProperties';
 
 export const avatarsCollection = buildCollection({
 	name: 'Avatars',
@@ -21,42 +22,10 @@ export const avatarsCollection = buildCollection({
 	entityViews: [],
 	callbacks: reuseIdCallbacks,
 	properties: {
-		avatarVariant: {
-			name: 'avatarVariant',
+		collectionKey: {
+			name: 'collectionKey',
 			validation: { required: true },
 			dataType: 'string',
-			enumValues: avatarVariants,
-		},
-		sex: {
-			name: 'sex',
-			validation: { required: true },
-			dataType: 'string',
-			enumValues: sexVariants,
-		},
-		description: {
-			name: 'description',
-			validation: { required: true },
-			dataType: 'array',
-			of: {
-				dataType: 'map',
-				properties: {
-					uk: {
-						name: 'uk',
-						validation: { required: true },
-						dataType: 'string',
-					},
-					en: {
-						name: 'en',
-						validation: { required: true },
-						dataType: 'string',
-					},
-					he: {
-						name: 'he',
-						validation: { required: true },
-						dataType: 'string',
-					},
-				}
-			}
 		},
 		link: {
 			name: "link",
@@ -64,9 +33,10 @@ export const avatarsCollection = buildCollection({
 			dataType: "string",
 			storage: {
 				storagePath: (context) => {
-					console.log('context storagePath', context);
-				
-						return "avatars";
+						if (context.values.collectionKey)
+						return `avatars/${context.values.collectionKey}/`;
+
+						return "avatars/";
         },
         fileName: (context) => {
             return context.file.name;
@@ -78,10 +48,24 @@ export const avatarsCollection = buildCollection({
 				storeUrl: true
 			}
 		},
+		avatarVariant: {
+			name: 'avatarVariant',
+			dataType: 'string',
+			validation: { required: true },
+			enumValues: avatarVariants,
+		},
+		sex: {
+			name: 'sex',
+			validation: { required: true },
+			dataType: 'string',
+			enumValues: sexVariants,
+		},
+		description,
 		id: {
 			name: 'id',
 			dataType: 'string',
 			readOnly: true,
+			hideFromCollection: true
 		},
 		createdAt: {
 			name: 'createdAt',
