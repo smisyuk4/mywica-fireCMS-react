@@ -8,16 +8,16 @@ export const feedbackCollection = buildCollection({
 	id: 'feedback',
 	path: 'feedback',
 	group: 'Users',
+	icon: 'question_answer',
 	description: 'messages by adults and support',
 	textSearchEnabled: true,
 	initialSort: ['updatedAt', "desc"],
-	// Here you can override the user permissions
-	// permissions: ({ authController }) => ({
-	//     read: true,
-	//     edit: true,
-	//     create: true,
-	//     delete: true
-	// }),
+	 permissions: ({ authController }) => ({
+	     read: true,
+	     edit: true,
+	     create: false,
+	     delete: false
+	 }),
 	subcollections: [messagesSubCollection],
 	properties: {
 		isClosed: {
@@ -40,22 +40,22 @@ export const feedbackCollection = buildCollection({
 			name: 'id',
 			dataType: 'string',
 			hideFromCollection: true,
-			readOnly: true
+			readOnly: true,
 		},
 		userId: {
 			name: 'userId',
 			dataType: 'string',
-			readOnly: true
+			readOnly: true,
 		},
 		createdAt: {
 			name: 'createdAt',
 			dataType: 'date',
-			autoValue: "on_create"
+			autoValue: "on_create",
 		},
 		updatedAt: {
 			name: 'updatedAt',
 			dataType: 'date',
-			autoValue: "on_update"
+			autoValue: "on_update",
 		},
 	},
 });

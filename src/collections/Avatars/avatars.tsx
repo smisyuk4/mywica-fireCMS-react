@@ -45,7 +45,8 @@ export const avatarsCollection = buildCollection({
 				metadata: {
 						cacheControl: "max-age=1000000"
 				},
-				storeUrl: true
+				storeUrl: true,
+				maxSize: 150 * 1024 // 🔺 Обмеження: 150 КБ
 			}
 		},
 		avatarVariant: {

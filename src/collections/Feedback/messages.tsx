@@ -1,13 +1,13 @@
 import { buildCollection } from '@firecms/core';
 import { roles } from '../../customEnums';
-import { reuseIdAndUserIdCallbacks } from '../../customCallbacks';
+import { feedbackCallbacks } from '../../customCallbacks';
 
 export const messagesSubCollection = buildCollection({
 	id: 'messages',
 	path: 'messages',
 	name: 'messages',
 	singularName: 'messages',
-	callbacks: reuseIdAndUserIdCallbacks,
+	callbacks: feedbackCallbacks,
 	initialSort: ['updatedAt', "desc"],
 	properties: {
 		message: {
@@ -17,40 +17,41 @@ export const messagesSubCollection = buildCollection({
 		},
 		photos: {
 			name: 'photos',
-			validation: { required: false },
 			dataType: 'array',
+			  validation: {
+				max: 3 // 🔺 максимум 3 файли
+			},
 			of: {
 				dataType: "string",
 				storage: {
 				storagePath: (context) => {
-					console.log('context.path ', context.path);
-							console.log('context ', context);
-					
-						//if (context.values.collectionKey)
-						//return `avatars/${context.values.collectionKey}/`;
+						if (context.path){
+							const dataBasePath = context.path.split('/');
+							const ticketId = dataBasePath[1];
+							const messageId = context.entityId;
+							return `feedback/${ticketId}/${messageId}/`;
+						}
 
-						//return "feedback/userId/feedbackId/messageId/file.img";
-						// userId = jrKVIW5HblVtbGHQ2OLxjTeLcJl1
-						// 
-						//feedback/U0o4RgbhrzwRErbmmZFB/messages/WFkHKqqbfJ2oceD0fFZ7
 						return "feedback/";
         },
         fileName: (context) => {
             return context.file.name;
         },
-				acceptedFiles: ["image/*"],
+				acceptedFiles: ["image/webp"],
 				metadata: {
 						cacheControl: "max-age=1000000"
 				},
-				storeUrl: true
+				storeUrl: true,
+				maxSize: 250 * 1024 // 🔺 Обмеження: 250 КБ
 			}
 			},
 		},
 		role: {
 			name: 'role', // якщо можливо то враховуючи роль авторизованого користувача - підставляти ролі автоматично
-			validation: { required: true },
+			//validation: { required: true },
 			dataType: 'string', 
 			enumValues: roles,
+			readOnly: true,
 		},
 		id: {
 			name: 'id',
