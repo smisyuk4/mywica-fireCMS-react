@@ -1,5 +1,6 @@
-import { buildCollection } from '@firecms/core';
+import { buildCollection, EntityCallbacks } from '@firecms/core';
 import { avatarVariants, sexVariants } from '../../customEnums';
+import { reuseIdCallbacks } from '../../customCallbacks';
 
 export const avatarsCollection = buildCollection({
 	name: 'Avatars',
@@ -17,13 +18,8 @@ export const avatarsCollection = buildCollection({
 	//     delete: true
 	// }),
 	subcollections: [],
-	entityViews: [
-		//{
-		//  key: 'preview',
-		//  name: 'Sample preview',
-		//  Builder: ProductDetailPreview,
-		//},
-	],
+	entityViews: [],
+	callbacks: reuseIdCallbacks,
 	properties: {
 		avatarVariant: {
 			name: 'avatarVariant',
@@ -40,17 +36,52 @@ export const avatarsCollection = buildCollection({
 		description: {
 			name: 'description',
 			validation: { required: true },
-			dataType: 'string',
+			dataType: 'array',
+			of: {
+				dataType: 'map',
+				properties: {
+					uk: {
+						name: 'uk',
+						validation: { required: true },
+						dataType: 'string',
+					},
+					en: {
+						name: 'en',
+						validation: { required: true },
+						dataType: 'string',
+					},
+					he: {
+						name: 'he',
+						validation: { required: true },
+						dataType: 'string',
+					},
+				}
+			}
 		},
 		link: {
-			name: 'link',
+			name: "link",
 			validation: { required: true },
-			dataType: 'string',
+			dataType: "string",
+			storage: {
+				storagePath: (context) => {
+					console.log('context storagePath', context);
+				
+						return "avatars";
+        },
+        fileName: (context) => {
+            return context.file.name;
+        },
+				acceptedFiles: ["image/webp"],
+				metadata: {
+						cacheControl: "max-age=1000000"
+				},
+				storeUrl: true
+			}
 		},
 		id: {
 			name: 'id',
-			validation: { required: true },
 			dataType: 'string',
+			readOnly: true,
 		},
 		createdAt: {
 			name: 'createdAt',
