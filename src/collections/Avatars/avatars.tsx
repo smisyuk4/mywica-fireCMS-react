@@ -20,6 +20,7 @@ export const avatarsCollection = buildCollection({
 	//     delete: true
 	// }),
 	callbacks: reuseIdCallbacks,
+	initialSort: ['avatarVariant', "asc"],
 	properties: {
 		collectionKey: {
 			name: 'collectionKey',

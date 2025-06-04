@@ -1,13 +1,13 @@
 import { buildCollection } from '@firecms/core';
 import { roles } from '../../customEnums';
-import { reuseIdCallbacks } from '../../customCallbacks';
+import { reuseIdAndUserIdCallbacks } from '../../customCallbacks';
 
 export const messagesSubCollection = buildCollection({
 	id: 'messages',
 	path: 'messages',
 	name: 'messages',
 	singularName: 'messages',
-	callbacks: reuseIdCallbacks,
+	callbacks: reuseIdAndUserIdCallbacks,
 	initialSort: ['updatedAt', "desc"],
 	properties: {
 		message: {
