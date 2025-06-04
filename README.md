@@ -8,6 +8,7 @@
 - [selects](https://firecms.co/docs/properties/fields/selects)
 - [block](https://firecms.co/docs/properties/fields/block)
 - [filters](https://firecms.co/docs/collections#filters)
+- [customising-the-colors](https://firecms.co/docs/properties/fields/selects#customising-the-colors)
 
 
 

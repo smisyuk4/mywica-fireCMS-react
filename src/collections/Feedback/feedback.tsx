@@ -10,6 +10,7 @@ export const feedbackCollection = buildCollection({
 	group: 'Users',
 	description: 'messages by adults and support',
 	textSearchEnabled: true,
+	initialSort: ['updatedAt', "desc"],
 	// Here you can override the user permissions
 	// permissions: ({ authController }) => ({
 	//     read: true,

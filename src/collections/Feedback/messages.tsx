@@ -23,12 +23,16 @@ export const messagesSubCollection = buildCollection({
 				dataType: "string",
 				storage: {
 				storagePath: (context) => {
-					console.log(context.path);
+					console.log('context.path ', context.path);
+							console.log('context ', context);
 					
 						//if (context.values.collectionKey)
 						//return `avatars/${context.values.collectionKey}/`;
 
 						//return "feedback/userId/feedbackId/messageId/file.img";
+						// userId = jrKVIW5HblVtbGHQ2OLxjTeLcJl1
+						// 
+						//feedback/U0o4RgbhrzwRErbmmZFB/messages/WFkHKqqbfJ2oceD0fFZ7
 						return "feedback/";
         },
         fileName: (context) => {
@@ -43,7 +47,7 @@ export const messagesSubCollection = buildCollection({
 			},
 		},
 		role: {
-			name: 'role',
+			name: 'role', // якщо можливо то враховуючи роль авторизованого користувача - підставляти ролі автоматично
 			validation: { required: true },
 			dataType: 'string', 
 			enumValues: roles,

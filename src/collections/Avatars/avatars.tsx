@@ -9,6 +9,7 @@ export const avatarsCollection = buildCollection({
 	id: 'avatars',
 	path: 'avatars',
 	group: 'Users',
+	icon: 'Person_pin',
 	description: 'avatars for children',
 	textSearchEnabled: true,
 	// Here you can override the user permissions
@@ -18,8 +19,6 @@ export const avatarsCollection = buildCollection({
 	//     create: true,
 	//     delete: true
 	// }),
-	subcollections: [],
-	entityViews: [],
 	callbacks: reuseIdCallbacks,
 	properties: {
 		collectionKey: {
