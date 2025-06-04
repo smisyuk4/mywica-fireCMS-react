@@ -25,3 +25,12 @@ export const reuseIdCallbacks: EntityCallbacks<any> = {
     };
   },
 };
+
+export const factsCallbacks: EntityCallbacks<any> = {
+  onPreSave: async ({ values, entityId }) => {			
+    return {
+      ...values,
+      id: entityId ? Number(entityId) : values.id,
+    };
+  },
+};

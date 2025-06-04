@@ -1,4 +1,5 @@
 import { buildCollection } from '@firecms/core';
+import { factsCallbacks } from '../../customCallbacks';
 
 export const enSubCollection = buildCollection({
 	id: 'en',
@@ -6,12 +7,9 @@ export const enSubCollection = buildCollection({
 	name: 'en',
 	singularName: 'en',
 	initialSort: ['id', "desc"],
+	customId: true,
+	callbacks: factsCallbacks,
 	properties: {
-		id: {
-			name: 'id',
-			validation: { required: true },
-			dataType: 'number',
-		},
 		title: {
 			name: 'title',
 			validation: { required: true },
@@ -38,6 +36,11 @@ export const enSubCollection = buildCollection({
 				storeUrl: true,
 				maxSize: 150 * 1024 // 🔺 Обмеження: 150 КБ
 			}
+		},
+		id: {
+			name: 'id',
+			dataType: 'number',
+			readOnly: true
 		},
 		createdAt: {
 			name: 'createdAt',
