@@ -2,7 +2,6 @@ import { buildCollection } from '@firecms/core';
 import { messagesSubCollection } from './messages';
 import { locales } from '../../customEnums';
 
-
 export const feedbackCollection = buildCollection({
 	name: 'Feedback',
 	singularName: 'Pages',
@@ -19,13 +18,6 @@ export const feedbackCollection = buildCollection({
 	//     delete: true
 	// }),
 	subcollections: [messagesSubCollection],
-	entityViews: [
-		//{
-		//  key: 'preview',
-		//  name: 'Sample preview',
-		//  Builder: ProductDetailPreview,
-		//},
-	],
 	properties: {
 		isClosed: {
 			name: 'isClosed',
@@ -45,23 +37,22 @@ export const feedbackCollection = buildCollection({
 		},
 		id: {
 			name: 'id',
-			validation: { required: true },
 			dataType: 'string',
+			hideFromCollection: true,
+			readOnly: true
 		},
 		userId: {
 			name: 'userId',
-			validation: { required: true },
 			dataType: 'string',
+			readOnly: true
 		},
 		createdAt: {
 			name: 'createdAt',
-			validation: { required: true },
 			dataType: 'date',
 			autoValue: "on_create"
 		},
 		updatedAt: {
 			name: 'updatedAt',
-			validation: { required: true },
 			dataType: 'date',
 			autoValue: "on_update"
 		},
