@@ -7,6 +7,7 @@
 - [example_next](https://github.com/firecmsco/firecms/blob/61c5737585c7126aadfb189c4f0c113943d001b0/examples/example_next/src/app/cms/collections/blog.tsx#L34)
 - [selects](https://firecms.co/docs/properties/fields/selects)
 - [block](https://firecms.co/docs/properties/fields/block)
+- [filters](https://firecms.co/docs/collections#filters)
 
 
 
