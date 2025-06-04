@@ -38,16 +38,44 @@ export const deliveryСompanies = buildEnumValues({
 });
 
 export const avatarVariants = buildEnumValues({
-	'other': 'other',
-	'asian': 'asian',
-	'african': 'african',
-	'european': 'european',
+	'other':  {
+				id: "other",
+				label: "other",
+				color: 'purpleLight'
+		},
+	'asian':  {
+				id: "asian",
+				label: "asian",
+				color: 'orangeLight'
+		},
+	'african':  {
+				id: "african",
+				label: "african",
+				color: 'greenLight'
+		},
+	'european':  {
+				id: "european",
+				label: "european",
+				color: 'yellowLight'
+		},
 });
 
 export const sexVariants = buildEnumValues({
-	'boy': 'boy',
-	'girl': 'girl',
-	'other': 'other',
+	'boy':  {
+				id: "boy",
+				label: "boy",
+				color: 'blueLight'
+		},
+	'girl':  {
+				id: "girl",
+				label: "girl",
+				color: 'pinkLight'
+		},
+	'other':  {
+				id: "other",
+				label: "other",
+				color: 'orangeLight'
+		},
 });
 
 export const guilds = buildEnumValues({

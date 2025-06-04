@@ -1,16 +1,15 @@
 import { buildCollection } from '@firecms/core';
+import { factsCallbacks } from '../../customCallbacks';
 
 export const ukSubCollection = buildCollection({
 	id: 'uk',
 	path: 'uk',
 	name: 'uk',
 	singularName: 'uk',
+	initialSort: ['id', "desc"],
+	customId: true,
+	callbacks: factsCallbacks,
 	properties: {
-		id: {
-			name: 'id',
-			validation: { required: true },
-			dataType: 'number',
-		},
 		title: {
 			name: 'title',
 			validation: { required: true },
@@ -25,16 +24,31 @@ export const ukSubCollection = buildCollection({
 			name: 'image',
 			validation: { required: true },
 			dataType: 'string',
+			storage: {
+				storagePath: () => "facts/",
+        fileName: (context) => {
+            return context.file.name;
+        },
+				acceptedFiles: ["image/webp"],
+				metadata: {
+						cacheControl: "max-age=1000000"
+				},
+				storeUrl: true,
+				maxSize: 150 * 1024 // 🔺 Обмеження: 150 КБ
+			}
+		},
+		id: {
+			name: 'id',
+			dataType: 'number',
+			readOnly: true
 		},
 		createdAt: {
 			name: 'createdAt',
-			validation: { required: true },
 			dataType: 'date',
 			autoValue: "on_create"
 		},
 		updatedAt: {
 			name: 'updatedAt',
-			validation: { required: true },
 			dataType: 'date',
 			autoValue: "on_update"
 		},

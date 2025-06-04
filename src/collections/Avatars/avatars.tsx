@@ -9,18 +9,11 @@ export const avatarsCollection = buildCollection({
 	id: 'avatars',
 	path: 'avatars',
 	group: 'Users',
+	icon: 'Person_pin',
 	description: 'avatars for children',
 	textSearchEnabled: true,
-	// Here you can override the user permissions
-	// permissions: ({ authController }) => ({
-	//     read: true,
-	//     edit: true,
-	//     create: true,
-	//     delete: true
-	// }),
-	subcollections: [],
-	entityViews: [],
 	callbacks: reuseIdCallbacks,
+	initialSort: ['avatarVariant', "asc"],
 	properties: {
 		collectionKey: {
 			name: 'collectionKey',
@@ -45,7 +38,8 @@ export const avatarsCollection = buildCollection({
 				metadata: {
 						cacheControl: "max-age=1000000"
 				},
-				storeUrl: true
+				storeUrl: true,
+				maxSize: 150 * 1024 // 🔺 Обмеження: 150 КБ
 			}
 		},
 		avatarVariant: {
@@ -69,13 +63,11 @@ export const avatarsCollection = buildCollection({
 		},
 		createdAt: {
 			name: 'createdAt',
-			validation: { required: true },
 			dataType: 'date',
 			autoValue: "on_create"
 		},
 		updatedAt: {
 			name: 'updatedAt',
-			validation: { required: true },
 			dataType: 'date',
 			autoValue: "on_update"
 		},
