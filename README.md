@@ -8,8 +8,11 @@
 - [selects](https://firecms.co/docs/properties/fields/selects)
 - [block](https://firecms.co/docs/properties/fields/block)
 - [filters](https://firecms.co/docs/collections#filters)
+- [styling_firecms](https://firecms.co/docs/self/styling_firecms)
 - [customising-the-colors](https://firecms.co/docs/properties/fields/selects#customising-the-colors)
+- [collections](https://firecms.co/docs/collections)
 - [documents_as_subcollections](https://firecms.co/docs/recipes/documents_as_subcollections)
+- [entity_history](https://firecms.co/docs/pro/entity_history)
 
 
 

@@ -1,10 +1,12 @@
 import { buildCollection } from '@firecms/core';
 
-export const metadataSubCollection = buildCollection({
-	id: 'metadata',
-	path: 'metadata',
-	name: 'Metadata',
-	singularName: 'Metadata',
+export const buildMetadataCollection = (basePath: string, groupName: string) => buildCollection({
+	name: 'metadata',
+	singularName: 'Pages',
+	id: `${basePath}/metadata`,
+	path: `${basePath}/metadata`,
+	group: groupName,
+	icon: 'menu_book',
 	permissions: ({ authController }) => ({
 		read: true,
 		edit: true,

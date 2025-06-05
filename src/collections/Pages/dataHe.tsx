@@ -1,11 +1,12 @@
 import { buildCollection } from '@firecms/core';
 import { reuseIdCallbacks } from '../../customCallbacks';
 
-export const dataHeSubCollection = buildCollection({
-	id: 'dataHe',
-	path: 'dataHe',
-	name: 'He',
-	singularName: 'He',
+export const buildDataHeCollection = (basePath: string, groupName: string) => buildCollection({
+	name: 'dataHe',
+	singularName: 'Pages',
+	id: `${basePath}/dataHe`,
+	path: `${basePath}/dataHe`,
+	group: groupName,
 	customId: true,
 	callbacks: reuseIdCallbacks,
 	permissions: ({ authController }) => ({

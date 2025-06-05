@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 import 'typeface-rubik';
 import '@fontsource/jetbrains-mono';
@@ -43,7 +43,7 @@ import {
   useCollectionEditorPlugin,
 } from '@firecms/collection_editor';
 import logo from '../public/logo.png';
-import { customViews } from './views';
+//import { customViews } from './views';
 import { factsCollection } from './collections/Facts';
 import { feedbackCollection } from './collections/Feedback';
 import { subscriptionsCollection } from './collections/Subscriptions';
@@ -52,6 +52,15 @@ import { paymentsCollection } from './collections/Payments';
 import { avatarsCollection } from './collections/Avatars';
 import { adventuresCollection } from './collections/Adventures';
 import { cardInfoCollection } from './collections/CardInfo';
+import { buildDataEnCollection, buildDataHeCollection, buildDataUkCollection, buildMetadataCollection } from './collections/Pages';
+
+const PAGES_WITHOUT_DATA = [
+	'home',
+	'video',
+	'playerСhats',
+	'adventures',
+	'collection',
+]
 
 export function App() {
   const title = 'Mywica CMS';
@@ -107,7 +116,7 @@ export function App() {
   //}, [collectionConfigController.collections]);
 
   // Here you define your custom top-level views
-  const views: CMSView[] = useMemo(() => customViews, []);
+  //const views: CMSView[] = useMemo(() => customViews, []);
 
   const signInOptions: FirebaseSignInProvider[] = ['google.com', 'password'];
 
@@ -171,250 +180,19 @@ export function App() {
        
 				const pagesCollections = pages.flatMap(page => {
 					const basePath = `pages/${page.id}`;
-					const groupName = page.id
+					const groupName = `${page.id} page`;
+
+					if (PAGES_WITHOUT_DATA.includes(page.id)) {
+						return [
+							buildMetadataCollection(basePath, groupName),
+						];
+					}
 
 					return [
-							buildCollection({
-							name: 'metadata',
-							singularName: 'Pages',
-							id: `${basePath}/metadata`,
-							path: `pages/${page.id}/metadata`,
-							group: groupName,
-							//description: 'metadata, dataUk, dataEn, dataHe',
-							icon: 'menu_book',
-							properties: {
-							title: {
-								name: 'title',
-								validation: { required: true },
-								dataType: 'string',
-							},
-							description: {
-								name: 'description',
-								validation: { required: true },
-								dataType: 'string',
-							},
-							createdAt: {
-								name: 'createdAt',
-								dataType: 'date',
-								autoValue: "on_create"
-							},
-							updatedAt: {
-								name: 'updatedAt',
-								dataType: 'date',
-								autoValue: "on_update"
-							},
-						},
-						}),
-						buildCollection({
-							name: 'dataUk',
-							singularName: 'Pages',
-							id: `${basePath}/dataUk`,
-							path: `pages/${page.id}/dataUk`,
-							group: groupName,
-							icon: 'menu_book',
-							properties: {
-								title: {
-									name: 'page title',
-									dataType: 'string',
-								},
-								text: {
-									name: 'page text',
-									dataType: 'string',
-									markdown: true
-								},
-								avatar: {
-									name: 'avatar',
-									dataType: 'string',
-									storage: {
-										storagePath: (context) => `avatars/aboutUs/`,
-										fileName: (context) => {
-												return context.file.name;
-										},
-										acceptedFiles: ["image/webp"],
-										metadata: {
-												cacheControl: "max-age=1000000"
-										},
-										storeUrl: true,
-										maxSize: 150 * 1024 // 🔺 Обмеження: 150 КБ
-									}
-								},
-								name: {
-									name: 'name',
-									dataType: 'string',
-								},
-								role: {
-									name: 'role',
-									dataType: 'string',
-								},
-								socialLink: {
-									name: 'socialLink',
-									dataType: 'string',
-										validation: {
-										matches: /^https?:\/\/.+$/i,
-										matchesMessage: "Link must start with http:// or https://",
-									}
-								},
-								orderProperty: {
-									name: 'orderProperty',
-									dataType: 'number',
-								},
-								id: {
-									name: 'id',
-									dataType: 'string',
-									readOnly: true
-								},	
-								createdAt: {
-									name: 'createdAt',
-									dataType: 'date',
-									autoValue: "on_create"
-								},
-								updatedAt: {
-									name: 'updatedAt',
-									dataType: 'date',
-									autoValue: "on_update"
-								},
-							},
-						}),
-						buildCollection({
-							name: 'dataEn',
-							singularName: 'Pages',
-							id: `${basePath}/dataEn`,
-							path: `pages/${page.id}/dataEn`,
-							group: groupName,
-							icon: 'menu_book',
-							properties: {
-								title: {
-									name: 'page title',
-									dataType: 'string',
-								},
-								text: {
-									name: 'page text',
-									dataType: 'string',
-									markdown: true
-								},
-								avatar: {
-									name: 'avatar',
-									dataType: 'string',
-									storage: {
-										storagePath: (context) => `avatars/aboutUs/`,
-										fileName: (context) => {
-												return context.file.name;
-										},
-										acceptedFiles: ["image/webp"],
-										metadata: {
-												cacheControl: "max-age=1000000"
-										},
-										storeUrl: true,
-										maxSize: 150 * 1024 // 🔺 Обмеження: 150 КБ
-									}
-								},
-								name: {
-									name: 'name',
-									dataType: 'string',
-								},
-								role: {
-									name: 'role',
-									dataType: 'string',
-								},
-								socialLink: {
-									name: 'socialLink',
-									dataType: 'string',
-										validation: {
-										matches: /^https?:\/\/.+$/i,
-										matchesMessage: "Link must start with http:// or https://",
-									}
-								},
-								orderProperty: {
-									name: 'orderProperty',
-									dataType: 'number',
-								},
-								id: {
-									name: 'id',
-									dataType: 'string',
-									readOnly: true
-								},	
-								createdAt: {
-									name: 'createdAt',
-									dataType: 'date',
-									autoValue: "on_create"
-								},
-								updatedAt: {
-									name: 'updatedAt',
-									dataType: 'date',
-									autoValue: "on_update"
-								},
-							},
-						}),
-						buildCollection({
-							name: 'dataHe',
-							singularName: 'Pages',
-							id: `${basePath}/dataHe`,
-							path: `pages/${page.id}/dataHe`,
-							group: groupName,
-							icon: 'menu_book',
-							properties: {
-								title: {
-									name: 'page title',
-									dataType: 'string',
-								},
-								text: {
-									name: 'page text',
-									dataType: 'string',
-									markdown: true
-								},
-								avatar: {
-									name: 'avatar',
-									dataType: 'string',
-									storage: {
-										storagePath: (context) => `avatars/aboutUs/`,
-										fileName: (context) => {
-												return context.file.name;
-										},
-										acceptedFiles: ["image/webp"],
-										metadata: {
-												cacheControl: "max-age=1000000"
-										},
-										storeUrl: true,
-										maxSize: 150 * 1024 // 🔺 Обмеження: 150 КБ
-									}
-								},
-								name: {
-									name: 'name',
-									dataType: 'string',
-								},
-								role: {
-									name: 'role',
-									dataType: 'string',
-								},
-								socialLink: {
-									name: 'socialLink',
-									dataType: 'string',
-										validation: {
-										matches: /^https?:\/\/.+$/i,
-										matchesMessage: "Link must start with http:// or https://",
-									}
-								},
-								orderProperty: {
-									name: 'orderProperty',
-									dataType: 'number',
-								},
-								id: {
-									name: 'id',
-									dataType: 'string',
-									readOnly: true
-								},	
-								createdAt: {
-									name: 'createdAt',
-									dataType: 'date',
-									autoValue: "on_create"
-								},
-								updatedAt: {
-									name: 'updatedAt',
-									dataType: 'date',
-									autoValue: "on_update"
-								},
-							},
-						}),
+						buildMetadataCollection(basePath, groupName),
+						buildDataUkCollection(basePath, groupName),
+						buildDataEnCollection(basePath, groupName),
+						buildDataHeCollection(basePath, groupName),
 					]
 				});
 
@@ -431,7 +209,7 @@ export function App() {
         ]
     },
     collectionPermissions: userManagement.collectionPermissions,
-    views,
+    //views,
     adminViews: userManagementAdminViews,
     authController,
     dataSourceDelegate: firestoreDelegate,

@@ -9,7 +9,7 @@ export const factsCollection = buildCollection({
   singularName: 'Facts',
   id: 'facts',
   path: 'facts',
-	group: 'Pages',
+	group: 'Secondary content',
 	icon:'fact_check',
   description: 'data: uk, en, he',
   textSearchEnabled: true,
