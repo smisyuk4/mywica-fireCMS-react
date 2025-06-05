@@ -30,7 +30,6 @@ import {
 } from '@firecms/firebase';
 
 import { firebaseConfig } from './firebase_config';
-//import { productsCollection } from './collections/products';
 import { useDataEnhancementPlugin } from '@firecms/data_enhancement';
 import {
   useBuildUserManagement,
@@ -41,13 +40,10 @@ import { useImportPlugin } from '@firecms/data_import';
 import { useExportPlugin } from '@firecms/data_export';
 import { useFirestoreCollectionsConfigController } from '@firecms/collection_editor_firebase';
 import {
-  mergeCollections,
   useCollectionEditorPlugin,
 } from '@firecms/collection_editor';
 import logo from '../public/logo.png';
 import { customViews } from './views';
-//import { testCollection } from './collections/test';
-import { pagesCollection } from './collections/Pages';
 import { factsCollection } from './collections/Facts';
 import { feedbackCollection } from './collections/Feedback';
 import { subscriptionsCollection } from './collections/Subscriptions';
@@ -172,28 +168,257 @@ export function App() {
         const pages = await dataSource.fetchCollection({
             path: "pages",
         });
-        const pagesCollections = pages.map(page => {
+       
+				const pagesCollections = pages.flatMap(page => {
+					const basePath = `pages/${page.id}`;
+					const groupName = page.id
 
-					return buildCollection({
-						name: `${page.id}`,
-						singularName: 'Pages',
-						id: `${page.id}`,
-						path: `pages/${page.id}/metadata`,
-						group: 'Pages',
-						description: 'metadata, dataUk, dataEn, dataHe',
-						icon: 'menu_book',
+					return [
+							buildCollection({
+							name: 'metadata',
+							singularName: 'Pages',
+							id: `${basePath}/metadata`,
+							path: `pages/${page.id}/metadata`,
+							group: groupName,
+							//description: 'metadata, dataUk, dataEn, dataHe',
+							icon: 'menu_book',
 							properties: {
-									title: {
-											name: "title",
-											dataType: "string"
+							title: {
+								name: 'title',
+								validation: { required: true },
+								dataType: 'string',
+							},
+							description: {
+								name: 'description',
+								validation: { required: true },
+								dataType: 'string',
+							},
+							createdAt: {
+								name: 'createdAt',
+								dataType: 'date',
+								autoValue: "on_create"
+							},
+							updatedAt: {
+								name: 'updatedAt',
+								dataType: 'date',
+								autoValue: "on_update"
+							},
+						},
+						}),
+						buildCollection({
+							name: 'dataUk',
+							singularName: 'Pages',
+							id: `${basePath}/dataUk`,
+							path: `pages/${page.id}/dataUk`,
+							group: groupName,
+							icon: 'menu_book',
+							properties: {
+								title: {
+									name: 'page title',
+									dataType: 'string',
+								},
+								text: {
+									name: 'page text',
+									dataType: 'string',
+									markdown: true
+								},
+								avatar: {
+									name: 'avatar',
+									dataType: 'string',
+									storage: {
+										storagePath: (context) => `avatars/aboutUs/`,
+										fileName: (context) => {
+												return context.file.name;
+										},
+										acceptedFiles: ["image/webp"],
+										metadata: {
+												cacheControl: "max-age=1000000"
+										},
+										storeUrl: true,
+										maxSize: 150 * 1024 // 🔺 Обмеження: 150 КБ
 									}
-							}
-						})
-					});
+								},
+								name: {
+									name: 'name',
+									dataType: 'string',
+								},
+								role: {
+									name: 'role',
+									dataType: 'string',
+								},
+								socialLink: {
+									name: 'socialLink',
+									dataType: 'string',
+										validation: {
+										matches: /^https?:\/\/.+$/i,
+										matchesMessage: "Link must start with http:// or https://",
+									}
+								},
+								orderProperty: {
+									name: 'orderProperty',
+									dataType: 'number',
+								},
+								id: {
+									name: 'id',
+									dataType: 'string',
+									readOnly: true
+								},	
+								createdAt: {
+									name: 'createdAt',
+									dataType: 'date',
+									autoValue: "on_create"
+								},
+								updatedAt: {
+									name: 'updatedAt',
+									dataType: 'date',
+									autoValue: "on_update"
+								},
+							},
+						}),
+						buildCollection({
+							name: 'dataEn',
+							singularName: 'Pages',
+							id: `${basePath}/dataEn`,
+							path: `pages/${page.id}/dataEn`,
+							group: groupName,
+							icon: 'menu_book',
+							properties: {
+								title: {
+									name: 'page title',
+									dataType: 'string',
+								},
+								text: {
+									name: 'page text',
+									dataType: 'string',
+									markdown: true
+								},
+								avatar: {
+									name: 'avatar',
+									dataType: 'string',
+									storage: {
+										storagePath: (context) => `avatars/aboutUs/`,
+										fileName: (context) => {
+												return context.file.name;
+										},
+										acceptedFiles: ["image/webp"],
+										metadata: {
+												cacheControl: "max-age=1000000"
+										},
+										storeUrl: true,
+										maxSize: 150 * 1024 // 🔺 Обмеження: 150 КБ
+									}
+								},
+								name: {
+									name: 'name',
+									dataType: 'string',
+								},
+								role: {
+									name: 'role',
+									dataType: 'string',
+								},
+								socialLink: {
+									name: 'socialLink',
+									dataType: 'string',
+										validation: {
+										matches: /^https?:\/\/.+$/i,
+										matchesMessage: "Link must start with http:// or https://",
+									}
+								},
+								orderProperty: {
+									name: 'orderProperty',
+									dataType: 'number',
+								},
+								id: {
+									name: 'id',
+									dataType: 'string',
+									readOnly: true
+								},	
+								createdAt: {
+									name: 'createdAt',
+									dataType: 'date',
+									autoValue: "on_create"
+								},
+								updatedAt: {
+									name: 'updatedAt',
+									dataType: 'date',
+									autoValue: "on_update"
+								},
+							},
+						}),
+						buildCollection({
+							name: 'dataHe',
+							singularName: 'Pages',
+							id: `${basePath}/dataHe`,
+							path: `pages/${page.id}/dataHe`,
+							group: groupName,
+							icon: 'menu_book',
+							properties: {
+								title: {
+									name: 'page title',
+									dataType: 'string',
+								},
+								text: {
+									name: 'page text',
+									dataType: 'string',
+									markdown: true
+								},
+								avatar: {
+									name: 'avatar',
+									dataType: 'string',
+									storage: {
+										storagePath: (context) => `avatars/aboutUs/`,
+										fileName: (context) => {
+												return context.file.name;
+										},
+										acceptedFiles: ["image/webp"],
+										metadata: {
+												cacheControl: "max-age=1000000"
+										},
+										storeUrl: true,
+										maxSize: 150 * 1024 // 🔺 Обмеження: 150 КБ
+									}
+								},
+								name: {
+									name: 'name',
+									dataType: 'string',
+								},
+								role: {
+									name: 'role',
+									dataType: 'string',
+								},
+								socialLink: {
+									name: 'socialLink',
+									dataType: 'string',
+										validation: {
+										matches: /^https?:\/\/.+$/i,
+										matchesMessage: "Link must start with http:// or https://",
+									}
+								},
+								orderProperty: {
+									name: 'orderProperty',
+									dataType: 'number',
+								},
+								id: {
+									name: 'id',
+									dataType: 'string',
+									readOnly: true
+								},	
+								createdAt: {
+									name: 'createdAt',
+									dataType: 'date',
+									autoValue: "on_create"
+								},
+								updatedAt: {
+									name: 'updatedAt',
+									dataType: 'date',
+									autoValue: "on_update"
+								},
+							},
+						}),
+					]
+				});
 
         return [
-						pagesCollection,
-            ...pagesCollections,
 						factsCollection,
 						feedbackCollection,
 						subscriptionsCollection,
@@ -201,7 +426,8 @@ export function App() {
 						paymentsCollection,
 						avatarsCollection,
 						adventuresCollection,
-						cardInfoCollection
+						cardInfoCollection,
+            ...pagesCollections,
         ]
     },
     collectionPermissions: userManagement.collectionPermissions,
