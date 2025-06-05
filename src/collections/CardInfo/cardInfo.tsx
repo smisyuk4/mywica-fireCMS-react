@@ -12,14 +12,12 @@ export const cardInfoCollection = buildCollection({
 	group: 'Main content',
 	customId: true,
 	description: 'Description for cards and testing (Q/A)',
-	textSearchEnabled: true,
-	// Here you can override the user permissions
-	// permissions: ({ authController }) => ({
-	//     read: true,
-	//     edit: true,
-	//     create: true,
-	//     delete: true
-	// }),
+	permissions: ({ authController }) => ({
+			read: true,
+			edit: true,
+			create: true,
+			delete: true
+	}),
 	subcollections: [dataUkSubCollection, dataEnSubCollection, dataHeSubCollection],
 	entityViews: [
 		//{

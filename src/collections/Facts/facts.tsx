@@ -12,7 +12,6 @@ export const factsCollection = buildCollection({
 	group: 'Secondary content',
 	icon:'fact_check',
   description: 'data: uk, en, he',
-  textSearchEnabled: true,
 	permissions: ({ authController }) => ({
 			read: true,
 			edit: false,

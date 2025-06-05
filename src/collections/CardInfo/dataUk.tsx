@@ -7,6 +7,7 @@ export const dataUkSubCollection = buildCollection({
 	name: 'dataUk',
 	singularName: 'dataUk',
 	customId: customCardInfoIds,
+	textSearchEnabled: true,
 	properties: {
 		question: {
 			name: 'question',

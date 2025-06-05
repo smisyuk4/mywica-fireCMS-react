@@ -9,6 +9,7 @@ export const enSubCollection = buildCollection({
 	initialSort: ['id', "desc"],
 	customId: true,
 	callbacks: factsCallbacks,
+	textSearchEnabled: true,
 	properties: {
 		title: {
 			name: 'title',

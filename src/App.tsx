@@ -4,9 +4,9 @@ import 'typeface-rubik';
 import '@fontsource/jetbrains-mono';
 import {
   AppBar,
-  buildCollection,
+  //buildCollection,
   CircularProgressCenter,
-  CMSView,
+  //CMSView,
   Drawer,
   FireCMS,
   ModeControllerProvider,
@@ -36,8 +36,8 @@ import {
   userManagementAdminViews,
   useUserManagementPlugin,
 } from '@firecms/user_management';
-import { useImportPlugin } from '@firecms/data_import';
-import { useExportPlugin } from '@firecms/data_export';
+//import { useImportPlugin } from '@firecms/data_import';
+//import { useExportPlugin } from '@firecms/data_export';
 import { useFirestoreCollectionsConfigController } from '@firecms/collection_editor_firebase';
 import {
   useCollectionEditorPlugin,
@@ -130,6 +130,7 @@ export function App() {
    */
   const firestoreDelegate = useFirestoreDelegate({
     firebaseApp,
+		localTextSearchEnabled: true
   });
 
   /**
@@ -222,7 +223,7 @@ export function App() {
    */
   const dataEnhancementPlugin = useDataEnhancementPlugin({
     getConfigForPath: ({ path }) => {
-      if (path === 'products') return true;
+      if (path === 'facts/data/uk' || path === 'facts/data/en' || path === 'facts/data/he') return true;
       return false;
     },
   });
@@ -235,8 +236,8 @@ export function App() {
   /**
    * Allow import and export data plugin
    */
-  const importPlugin = useImportPlugin();
-  const exportPlugin = useExportPlugin();
+  //const importPlugin = useImportPlugin();
+  //const exportPlugin = useExportPlugin();
 
   const collectionEditorPlugin = useCollectionEditorPlugin({
     collectionConfigController,
@@ -263,8 +264,8 @@ export function App() {
           plugins={
             [
               dataEnhancementPlugin,
-              importPlugin,
-              exportPlugin,
+              //importPlugin,
+              //exportPlugin,
               userManagementPlugin,
               collectionEditorPlugin,
             ]
@@ -289,7 +290,7 @@ export function App() {
                 component = (
                   <Scaffold logo={logo} autoOpenDrawer={false}>
                     <AppBar title={title} />
-                    <Drawer />
+                    {/*<Drawer />*/}
                     <NavigationRoutes />
                     <SideDialogs />
                   </Scaffold>
