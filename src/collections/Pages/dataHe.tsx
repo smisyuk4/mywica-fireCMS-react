@@ -1,60 +1,77 @@
 import { buildCollection } from '@firecms/core';
+import { reuseIdCallbacks } from '../../customCallbacks';
 
 export const dataHeSubCollection = buildCollection({
 	id: 'dataHe',
 	path: 'dataHe',
-	name: 'dataHe',
-	singularName: 'dataHe',
+	name: 'He',
+	singularName: 'He',
+	customId: true,
+	callbacks: reuseIdCallbacks,
+	permissions: ({ authController }) => ({
+		read: true,
+		edit: true,
+		create: true,
+		delete: true
+}),
 	properties: {
-		id: {
-			name: 'id',
-			validation: { required: true },
-			dataType: 'string',
-		},
 		title: {
-			name: 'title',
-			validation: { required: true },
+			name: 'page title',
 			dataType: 'string',
 		},
 		text: {
-			name: 'text',
-			validation: { required: true },
+			name: 'page text',
 			dataType: 'string',
+			markdown: true
+		},
+		avatar: {
+			name: 'avatar',
+			dataType: 'string',
+			storage: {
+				storagePath: (context) => `avatars/aboutUs/`,
+        fileName: (context) => {
+            return context.file.name;
+        },
+				acceptedFiles: ["image/webp"],
+				metadata: {
+						cacheControl: "max-age=1000000"
+				},
+				storeUrl: true,
+				maxSize: 150 * 1024 // 🔺 Обмеження: 150 КБ
+			}
 		},
 		name: {
 			name: 'name',
-			validation: { required: true },
 			dataType: 'string',
-		},
-		orderProperty: {
-			name: 'orderProperty',
-			validation: { required: true },
-			dataType: 'number',
 		},
 		role: {
 			name: 'role',
-			validation: { required: true },
 			dataType: 'string',
 		},
 		socialLink: {
 			name: 'socialLink',
-			validation: { required: true },
 			dataType: 'string',
+			  validation: {
+				matches: /^https?:\/\/.+$/i,
+				matchesMessage: "Link must start with http:// or https://",
+			}
 		},
-		avatar: {
-			name: 'avatar',
-			validation: { required: true },
+		orderProperty: {
+			name: 'orderProperty',
+			dataType: 'number',
+		},
+		id: {
+			name: 'id',
 			dataType: 'string',
-		},
+			readOnly: true
+		},	
 		createdAt: {
 			name: 'createdAt',
-			validation: { required: true },
 			dataType: 'date',
 			autoValue: "on_create"
 		},
 		updatedAt: {
 			name: 'updatedAt',
-			validation: { required: true },
 			dataType: 'date',
 			autoValue: "on_update"
 		},
