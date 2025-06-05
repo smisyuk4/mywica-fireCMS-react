@@ -2,14 +2,15 @@ import { buildCollection } from '@firecms/core';
 import { reuseIdCallbacks } from '../../customCallbacks';
 
 export const buildDataUkCollection = (basePath: string, groupName: string) => buildCollection({
-	name: 'dataUk',
+	name: 'data Uk',
 	singularName: 'Pages',
 	id: `${basePath}/dataUk`,
 	path: `${basePath}/dataUk`,
 	group: groupName,
-	icon: 'menu_book',
+	icon: 'format_underlined',
 	customId: true,
 	callbacks: reuseIdCallbacks,
+	textSearchEnabled: true,
 	permissions: ({ authController }) => ({
 		read: true,
 		edit: true,

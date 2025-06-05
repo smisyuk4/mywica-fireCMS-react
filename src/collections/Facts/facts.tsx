@@ -5,7 +5,7 @@ import { heSubCollection } from './he';
 
 
 export const factsCollection = buildCollection({
-  name: 'Facts',
+  name: 'Facts modal',
   singularName: 'Facts',
   id: 'facts',
   path: 'facts',

@@ -2,14 +2,15 @@ import { buildCollection } from '@firecms/core';
 import { reuseIdCallbacks } from '../../customCallbacks';
 
 export const buildDataEnCollection = (basePath: string, groupName: string) => buildCollection({
-	name: 'dataEn',
+	name: 'data En',
 	singularName: 'Pages',
 	id: `${basePath}/dataEn`,
 	path: `${basePath}/dataEn`,
 	group: groupName,
-	icon: 'menu_book',
+	icon: 'spellcheck',
 	customId: true,
 	callbacks: reuseIdCallbacks,
+	textSearchEnabled: true,
 	permissions: ({ authController }) => ({
 		read: true,
 		edit: true,

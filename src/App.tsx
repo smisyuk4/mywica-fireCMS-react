@@ -52,7 +52,7 @@ import { paymentsCollection } from './collections/Payments';
 import { avatarsCollection } from './collections/Avatars';
 import { adventuresCollection } from './collections/Adventures';
 import { cardInfoCollection } from './collections/CardInfo';
-import { buildDataEnCollection, buildDataHeCollection, buildDataUkCollection, buildMetadataCollection } from './collections/Pages';
+import { buildDataEnCollection, buildDataHeCollection, buildDataUkCollection, buildMetadataCollection, pagesCollection } from './collections/Pages';
 
 const PAGES_WITHOUT_DATA = [
 	'home',
@@ -179,17 +179,18 @@ export function App() {
         });
        
 				const pagesCollections = pages.flatMap(page => {
-					const basePath = `pages/${page.id}`;
-					const groupName = `${page.id} page`;
+					const pageId = page.id;
+					const basePath = `pages/${pageId}`;
+					const groupName = `${pageId} page`;
 
-					if (PAGES_WITHOUT_DATA.includes(page.id)) {
+					if (PAGES_WITHOUT_DATA.includes(pageId)) {
 						return [
-							buildMetadataCollection(basePath, groupName),
+							buildMetadataCollection(basePath, groupName, pageId),
 						];
 					}
 
 					return [
-						buildMetadataCollection(basePath, groupName),
+						buildMetadataCollection(basePath, groupName, pageId),
 						buildDataUkCollection(basePath, groupName),
 						buildDataEnCollection(basePath, groupName),
 						buildDataHeCollection(basePath, groupName),
@@ -205,6 +206,7 @@ export function App() {
 						avatarsCollection,
 						adventuresCollection,
 						cardInfoCollection,
+						pagesCollection,
             ...pagesCollections,
         ]
     },
