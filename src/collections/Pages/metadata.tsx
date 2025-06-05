@@ -5,6 +5,12 @@ export const metadataSubCollection = buildCollection({
 	path: 'metadata',
 	name: 'Metadata',
 	singularName: 'Metadata',
+	permissions: ({ authController }) => ({
+		read: true,
+		edit: true,
+		create: false,
+		delete: false
+	}),
 	properties: {
 		title: {
 			name: 'title',
@@ -18,13 +24,11 @@ export const metadataSubCollection = buildCollection({
 		},
 		createdAt: {
 			name: 'createdAt',
-			validation: { required: true },
 			dataType: 'date',
 			autoValue: "on_create"
 		},
 		updatedAt: {
 			name: 'updatedAt',
-			validation: { required: true },
 			dataType: 'date',
 			autoValue: "on_update"
 		},

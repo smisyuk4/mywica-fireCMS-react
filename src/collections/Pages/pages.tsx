@@ -11,21 +11,14 @@ export const pagesCollection = buildCollection({
   path: 'pages',
 	group: 'Pages',
   description: 'metadata, dataUk, dataEn, dataHe',
+	icon: 'menu_book',
   textSearchEnabled: true,
-  // Here you can override the user permissions
-  // permissions: ({ authController }) => ({
-  //     read: true,
-  //     edit: true,
-  //     create: true,
-  //     delete: true
-  // }),
+   permissions: ({ authController }) => ({
+       read: true,
+       edit: false,
+       create: false,
+       delete: false
+   }),
   subcollections: [metadataSubCollection, dataUkSubCollection, dataEnSubCollection, dataHeSubCollection],
-  entityViews: [
-    //{
-    //  key: 'preview',
-    //  name: 'Sample preview',
-    //  Builder: ProductDetailPreview,
-    //},
-  ],
   properties: {},
 });
