@@ -13,12 +13,21 @@ export const pagesCollection = buildCollection({
   description: 'metadata, dataUk, dataEn, dataHe',
 	icon: 'menu_book',
   textSearchEnabled: true,
+	customId: true,
+	callbacks: {
+			onSaveSuccess: ({ context }) => {
+					context.navigation.refreshNavigation();
+			},
+			onDelete: ({ context }) => {
+					context.navigation.refreshNavigation();
+			}
+	},
    permissions: ({ authController }) => ({
        read: true,
        edit: false,
        create: false,
        delete: false
    }),
-  subcollections: [metadataSubCollection, dataUkSubCollection, dataEnSubCollection, dataHeSubCollection],
+  //subcollections: [metadataSubCollection, dataUkSubCollection, dataEnSubCollection, dataHeSubCollection],
   properties: {},
 });

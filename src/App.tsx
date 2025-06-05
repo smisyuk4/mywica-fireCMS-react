@@ -4,6 +4,7 @@ import 'typeface-rubik';
 import '@fontsource/jetbrains-mono';
 import {
   AppBar,
+  buildCollection,
   CircularProgressCenter,
   CMSView,
   Drawer,
@@ -86,28 +87,28 @@ export function App() {
     firebaseApp,
   });
 
-  const collectionsBuilder = useCallback(() => {
-    // Here we define a sample collection in code.
-    const collections = [
-      //productsCollection,
-      //testCollection,
-			pagesCollection,
-			factsCollection,
-			feedbackCollection,
-			subscriptionsCollection,
-			promocodesCollection,
-			paymentsCollection,
-			avatarsCollection,
-			adventuresCollection,
-			cardInfoCollection
-      // Your collections here
-    ];
-    // You can merge collections defined in the collection editor (UI) with your own collections
-    return mergeCollections(
-      collections,
-      collectionConfigController.collections ?? []
-    );
-  }, [collectionConfigController.collections]);
+  //const collectionsBuilder = useCallback(() => {
+  //  // Here we define a sample collection in code.
+  //  const collections = [
+  //    //productsCollection,
+  //    //testCollection,
+	//		pagesCollection,
+	//		factsCollection,
+	//		feedbackCollection,
+	//		subscriptionsCollection,
+	//		promocodesCollection,
+	//		paymentsCollection,
+	//		avatarsCollection,
+	//		adventuresCollection,
+	//		cardInfoCollection
+  //    // Your collections here
+  //  ];
+  //  // You can merge collections defined in the collection editor (UI) with your own collections
+  //  return mergeCollections(
+  //    collections,
+  //    collectionConfigController.collections ?? []
+  //  );
+  //}, [collectionConfigController.collections]);
 
   // Here you define your custom top-level views
   const views: CMSView[] = useMemo(() => customViews, []);
@@ -167,7 +168,42 @@ export function App() {
     });
 
   const navigationController = useBuildNavigationController({
-    collections: collectionsBuilder,
+		collections: async ({ dataSource }) => {
+        const pages = await dataSource.fetchCollection({
+            path: "pages",
+        });
+        const pagesCollections = pages.map(page => {
+
+					return buildCollection({
+						name: `${page.id}`,
+						singularName: 'Pages',
+						id: `${page.id}`,
+						path: `pages/${page.id}/metadata`,
+						group: 'Pages',
+						description: 'metadata, dataUk, dataEn, dataHe',
+						icon: 'menu_book',
+							properties: {
+									title: {
+											name: "title",
+											dataType: "string"
+									}
+							}
+						})
+					});
+
+        return [
+						pagesCollection,
+            ...pagesCollections,
+						factsCollection,
+						feedbackCollection,
+						subscriptionsCollection,
+						promocodesCollection,
+						paymentsCollection,
+						avatarsCollection,
+						adventuresCollection,
+						cardInfoCollection
+        ]
+    },
     collectionPermissions: userManagement.collectionPermissions,
     views,
     adminViews: userManagementAdminViews,
