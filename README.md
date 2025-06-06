@@ -17,6 +17,7 @@
 - [npm data_enhancement](https://www.npmjs.com/package/@firecms/data_enhancement)
 - [conditional_fields](https://firecms.co/docs/properties/conditional_fields)
 - [url-text-field](https://firecms.co/docs/properties/fields/text_fields#url-text-field)
+- [collection-configuration](https://firecms.co/docs/collections#collection-configuration)
 
 
 

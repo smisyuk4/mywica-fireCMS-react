@@ -21,26 +21,32 @@ export const customCardInfoIds = buildEnumValues({
 	'paragraph':  {
 		id: 'paragraph',
 		label: 'paragraph',
+		color: 'redLight'
 	},
 	'01':  {
 		id: '01',
 		label: '01',
+		color: 'blueLight'
 	},
-	2:  {
-		id: 2,
+	'02':  {
+		id: '02',
 		label: '02',
+		color: 'yellowLight'
 	},
 	'03':  {
 		id: '03',
 		label: '03',
+		color: 'greenLight'
 	},
 	'04':  {
 		id: '04',
 		label: '04',
+		color: 'orangeLight'
 	},
 	'05':  {
 		id: '05',
 		label: '05',
+		color: 'purpleLight'	
 	},
 });
 

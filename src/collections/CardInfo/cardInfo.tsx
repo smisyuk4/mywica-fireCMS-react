@@ -2,6 +2,7 @@ import { buildCollection } from '@firecms/core';
 import { dataUkSubCollection } from './dataUk';
 import { dataEnSubCollection } from './dataEn';
 import { dataHeSubCollection } from './dataHe';
+import { reuseIdCallbacks } from '../../customCallbacks';
 
 
 export const cardInfoCollection = buildCollection({
@@ -10,30 +11,28 @@ export const cardInfoCollection = buildCollection({
 	id: 'cardInfo',
 	path: 'cardInfo',
 	group: 'Main content',
-	//collectionGroup: true,
+	pagination: true,
+	icon: 'info',
 	customId: true,
-	//initialSort: ['id', "desc"],
+	callbacks: reuseIdCallbacks,
 	description: 'Description for cards and testing (Q/A)',
-	//permissions: ({ authController }) => ({
-	//		read: true,
-	//		edit: true,
-	//		create: true,
-	//		delete: true
-	//}),
 	subcollections: [dataUkSubCollection, dataEnSubCollection, dataHeSubCollection],
-	entityViews: [
-		//{
-		//  key: 'preview',
-		//  name: 'Sample preview',
-		//  Builder: ProductDetailPreview,
-		//},
-	],
 	properties: {
-		//	checkRef: {
-		//	name: 'checkRef',
-		//	dataType: 'reference',
-		//	path: "cardInfo/8/dataUk",
-		//	//includeId: true
-		//},
-	},
+		id: {
+			name: 'id',
+			dataType: 'string',
+			readOnly: true,
+			validation:{ unique: true },
+		},
+		createdAt: {
+			name: 'createdAt',
+			dataType: 'date',
+			autoValue: "on_create"
+		},
+		updatedAt: {
+			name: 'updatedAt',
+			dataType: 'date',
+			autoValue: "on_update"
+		},
+	}
 });
