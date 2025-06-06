@@ -22,13 +22,25 @@ export const customCardInfoIds = buildEnumValues({
 		id: 'paragraph',
 		label: 'paragraph',
 	},
-	1:  {
-		id: 1,
+	'01':  {
+		id: '01',
 		label: '01',
 	},
 	2:  {
 		id: 2,
 		label: '02',
+	},
+	'03':  {
+		id: '03',
+		label: '03',
+	},
+	'04':  {
+		id: '04',
+		label: '04',
+	},
+	'05':  {
+		id: '05',
+		label: '05',
 	},
 });
 

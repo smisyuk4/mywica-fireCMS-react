@@ -36,8 +36,8 @@ import {
   userManagementAdminViews,
   useUserManagementPlugin,
 } from '@firecms/user_management';
-//import { useImportPlugin } from '@firecms/data_import';
-//import { useExportPlugin } from '@firecms/data_export';
+import { useImportPlugin } from '@firecms/data_import';
+import { useExportPlugin } from '@firecms/data_export';
 import { useFirestoreCollectionsConfigController } from '@firecms/collection_editor_firebase';
 import {
   useCollectionEditorPlugin,
@@ -194,8 +194,8 @@ export function App() {
   /**
    * Allow import and export data plugin
    */
-  //const importPlugin = useImportPlugin();
-  //const exportPlugin = useExportPlugin();
+  const importPlugin = useImportPlugin();
+  const exportPlugin = useExportPlugin();
 
   const collectionEditorPlugin = useCollectionEditorPlugin({
     collectionConfigController,
@@ -244,14 +244,14 @@ export function App() {
     adminViews: userManagementAdminViews,
     authController,
     dataSourceDelegate: firestoreDelegate,
-		plugins:
-					[
-						//importPlugin,
-						//exportPlugin,
-						userManagementPlugin,
-						collectionEditorPlugin,
-						//dataEnhancementPlugin,
-					]
+		//plugins:
+		//			[
+		//				//importPlugin,
+		//				//exportPlugin,
+		//				userManagementPlugin,
+		//				collectionEditorPlugin,
+		//				//dataEnhancementPlugin,
+		//			]
   });
 
   if (firebaseConfigLoading || !firebaseApp) {
@@ -266,12 +266,19 @@ export function App() {
     <SnackbarProvider>
       <ModeControllerProvider value={modeController}>
         <FireCMS
-          //apiKey={import.meta.env.VITE_FIRECMS_API_KEY}
+          apiKey={import.meta.env.VITE_FIRECMS_API_KEY}
           navigationController={navigationController}
           authController={authController}
           userConfigPersistence={userConfigPersistence}
           dataSourceDelegate={firestoreDelegate}
           storageSource={storageSource}
+					plugins={[
+						importPlugin,
+						exportPlugin,
+						userManagementPlugin,
+						collectionEditorPlugin,
+						dataEnhancementPlugin,
+					]}
         >
           {({ context, loading }) => {
             let component;
