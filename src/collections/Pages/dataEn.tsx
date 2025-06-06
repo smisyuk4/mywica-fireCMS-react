@@ -54,6 +54,7 @@ export const buildDataEnCollection = (basePath: string, groupName: string) => bu
 		socialLink: {
 			name: 'socialLink',
 			dataType: 'string',
+			url: true,
 			  validation: {
 				matches: /^https?:\/\/.+$/i,
 				matchesMessage: "Link must start with http:// or https://",

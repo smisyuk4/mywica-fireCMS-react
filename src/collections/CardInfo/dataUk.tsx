@@ -11,6 +11,10 @@ export const dataUkSubCollection = buildCollection({
 	callbacks: reuseIdCallbacks,
 	textSearchEnabled: true,
 	properties: {
+		text: {
+			name: 'text',
+			dataType: 'string',
+		},
 		question: {
 			name: 'question',
 			dataType: 'string',
@@ -71,28 +75,10 @@ export const dataUkSubCollection = buildCollection({
 				},
 			}
 		},
-		'a5': {
-			name: 'a5',
-			dataType: 'map',
-			properties: {
-				isCorrect: {
-					name: 'isCorrect',
-					dataType: 'boolean',
-				},
-				text: {
-					name: 'isCorrect',
-					dataType: 'string',
-				},
-			}
-		},
-
-		text: {
-			name: 'text',
-			dataType: 'string',
-		},
 		id: {
 			name: 'id',
 			dataType: 'string',
+			readOnly: true
 		},
 		createdAt: {
 			name: 'createdAt',

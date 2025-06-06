@@ -1,5 +1,6 @@
 import { buildCollection } from '@firecms/core';
 import { customCardInfoIds } from '../../customEnums';
+import { reuseIdCallbacks } from '../../customCallbacks';
 
 export const dataEnSubCollection = buildCollection({
 	id: 'dataEn',
@@ -7,8 +8,13 @@ export const dataEnSubCollection = buildCollection({
 	name: 'dataEn',
 	singularName: 'dataEn',
 	customId: customCardInfoIds,
+	callbacks: reuseIdCallbacks,
 	textSearchEnabled: true,
 	properties: {
+		text: {
+			name: 'text',
+			dataType: 'string',
+		},
 		question: {
 			name: 'question',
 			dataType: 'string',
@@ -22,8 +28,9 @@ export const dataEnSubCollection = buildCollection({
 					dataType: 'boolean',
 				},
 				text: {
-					name: 'isCorrect',
+					name: 'text',
 					dataType: 'string',
+					
 				},
 			}
 		},
@@ -36,7 +43,7 @@ export const dataEnSubCollection = buildCollection({
 					dataType: 'boolean',
 				},
 				text: {
-					name: 'isCorrect',
+					name: 'text',
 					dataType: 'string',
 				},
 			}
@@ -50,7 +57,7 @@ export const dataEnSubCollection = buildCollection({
 					dataType: 'boolean',
 				},
 				text: {
-					name: 'isCorrect',
+					name: 'text',
 					dataType: 'string',
 				},
 			}
@@ -64,34 +71,15 @@ export const dataEnSubCollection = buildCollection({
 					dataType: 'boolean',
 				},
 				text: {
-					name: 'isCorrect',
+					name: 'text',
 					dataType: 'string',
 				},
 			}
-		},
-		'a5': {
-			name: 'a5',
-			dataType: 'map',
-			properties: {
-				isCorrect: {
-					name: 'isCorrect',
-					dataType: 'boolean',
-				},
-				text: {
-					name: 'isCorrect',
-					dataType: 'string',
-				},
-			}
-		},
-
-		text: {
-			name: 'text',
-			dataType: 'string',
 		},
 		id: {
 			name: 'id',
-			validation: { required: true },
 			dataType: 'string',
+			readOnly: true
 		},
 		createdAt: {
 			name: 'createdAt',
