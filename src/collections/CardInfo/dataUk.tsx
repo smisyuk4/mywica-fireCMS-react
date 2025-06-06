@@ -14,6 +14,7 @@ export const dataUkSubCollection = buildCollection({
 		text: {
 			name: 'text',
 			dataType: 'string',
+			multiline: true,
 		},
 		question: {
 			name: 'question',
@@ -78,6 +79,8 @@ export const dataUkSubCollection = buildCollection({
 		id: {
 			name: 'id',
 			dataType: 'string',
+			validation:{ unique: true },
+			hideFromCollection: true,
 			readOnly: true
 		},
 		createdAt: {

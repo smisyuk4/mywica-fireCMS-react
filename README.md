@@ -15,6 +15,8 @@
 - [documents_as_subcollections](https://firecms.co/docs/recipes/documents_as_subcollections)
 - [entity_history](https://firecms.co/docs/pro/entity_history)
 - [npm data_enhancement](https://www.npmjs.com/package/@firecms/data_enhancement)
+- [conditional_fields](https://firecms.co/docs/properties/conditional_fields)
+- [url-text-field](https://firecms.co/docs/properties/fields/text_fields#url-text-field)
 
 
 

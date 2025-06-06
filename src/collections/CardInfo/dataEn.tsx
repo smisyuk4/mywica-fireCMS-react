@@ -14,6 +14,7 @@ export const dataEnSubCollection = buildCollection({
 		text: {
 			name: 'text',
 			dataType: 'string',
+			multiline: true,
 		},
 		question: {
 			name: 'question',
@@ -30,7 +31,7 @@ export const dataEnSubCollection = buildCollection({
 				text: {
 					name: 'text',
 					dataType: 'string',
-					
+					validation:{ trim: true },
 				},
 			}
 		},
@@ -45,6 +46,7 @@ export const dataEnSubCollection = buildCollection({
 				text: {
 					name: 'text',
 					dataType: 'string',
+					validation:{ trim: true },
 				},
 			}
 		},
@@ -59,6 +61,7 @@ export const dataEnSubCollection = buildCollection({
 				text: {
 					name: 'text',
 					dataType: 'string',
+					validation:{ trim: true },
 				},
 			}
 		},
@@ -73,13 +76,16 @@ export const dataEnSubCollection = buildCollection({
 				text: {
 					name: 'text',
 					dataType: 'string',
+					validation:{ trim: true },
 				},
 			}
 		},
 		id: {
 			name: 'id',
 			dataType: 'string',
-			readOnly: true
+			readOnly: true,
+			validation:{ unique: true },
+			hideFromCollection: true,
 		},
 		createdAt: {
 			name: 'createdAt',
