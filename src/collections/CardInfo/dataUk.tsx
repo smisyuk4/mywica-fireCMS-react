@@ -1,5 +1,6 @@
 import { buildCollection } from '@firecms/core';
 import { customCardInfoIds } from '../../customEnums';
+import { reuseIdCallbacks } from '../../customCallbacks';
 
 export const dataUkSubCollection = buildCollection({
 	id: 'dataUk',
@@ -7,6 +8,7 @@ export const dataUkSubCollection = buildCollection({
 	name: 'dataUk',
 	singularName: 'dataUk',
 	customId: customCardInfoIds,
+	callbacks: reuseIdCallbacks,
 	textSearchEnabled: true,
 	properties: {
 		question: {
@@ -22,7 +24,7 @@ export const dataUkSubCollection = buildCollection({
 					dataType: 'boolean',
 				},
 				text: {
-					name: 'isCorrect',
+					name: 'text',
 					dataType: 'string',
 				},
 			}
@@ -36,7 +38,7 @@ export const dataUkSubCollection = buildCollection({
 					dataType: 'boolean',
 				},
 				text: {
-					name: 'isCorrect',
+					name: 'text',
 					dataType: 'string',
 				},
 			}
@@ -50,7 +52,7 @@ export const dataUkSubCollection = buildCollection({
 					dataType: 'boolean',
 				},
 				text: {
-					name: 'isCorrect',
+					name: 'text',
 					dataType: 'string',
 				},
 			}
@@ -64,7 +66,7 @@ export const dataUkSubCollection = buildCollection({
 					dataType: 'boolean',
 				},
 				text: {
-					name: 'isCorrect',
+					name: 'text',
 					dataType: 'string',
 				},
 			}
@@ -90,7 +92,6 @@ export const dataUkSubCollection = buildCollection({
 		},
 		id: {
 			name: 'id',
-			validation: { required: true },
 			dataType: 'string',
 		},
 		createdAt: {

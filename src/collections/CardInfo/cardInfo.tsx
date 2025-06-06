@@ -10,14 +10,16 @@ export const cardInfoCollection = buildCollection({
 	id: 'cardInfo',
 	path: 'cardInfo',
 	group: 'Main content',
+	//collectionGroup: true,
 	customId: true,
+	//initialSort: ['id', "desc"],
 	description: 'Description for cards and testing (Q/A)',
-	permissions: ({ authController }) => ({
-			read: true,
-			edit: true,
-			create: true,
-			delete: true
-	}),
+	//permissions: ({ authController }) => ({
+	//		read: true,
+	//		edit: true,
+	//		create: true,
+	//		delete: true
+	//}),
 	subcollections: [dataUkSubCollection, dataEnSubCollection, dataHeSubCollection],
 	entityViews: [
 		//{
@@ -26,5 +28,12 @@ export const cardInfoCollection = buildCollection({
 		//  Builder: ProductDetailPreview,
 		//},
 	],
-	properties: {},
+	properties: {
+		//	checkRef: {
+		//	name: 'checkRef',
+		//	dataType: 'reference',
+		//	path: "cardInfo/8/dataUk",
+		//	//includeId: true
+		//},
+	},
 });

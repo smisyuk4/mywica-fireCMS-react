@@ -7,18 +7,29 @@ export const locales = buildEnumValues({
 });
 
 export const roles = buildEnumValues({
-	'adult': 'adult',
+	'adult': {
+		id: 'adult',
+		label: 'adult',
+		color: 'purpleLight',
+		disabled: true
+	},
 	'support': 'support',
 	'admin': 'admin',
 });
 
 export const customCardInfoIds = buildEnumValues({
-	'paragraph': 'paragraph',
-	'01': '01',
-	'02': '02',
-	'03': '03',
-	'04': '04',
-	'05': '05',
+	'paragraph':  {
+		id: 'paragraph',
+		label: 'paragraph',
+	},
+	1:  {
+		id: 1,
+		label: '01',
+	},
+	2:  {
+		id: 2,
+		label: '02',
+	},
 });
 
 export const subscriptionStatus = buildEnumValues({

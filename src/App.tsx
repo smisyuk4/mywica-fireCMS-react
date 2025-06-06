@@ -7,7 +7,7 @@ import {
   //buildCollection,
   CircularProgressCenter,
   //CMSView,
-  Drawer,
+  //Drawer,
   FireCMS,
   ModeControllerProvider,
   NavigationRoutes,
@@ -173,7 +173,35 @@ export function App() {
       storageSource,
     });
 
-  const navigationController = useBuildNavigationController({
+
+  /**
+   * Data enhancement plugin
+   */
+  const dataEnhancementPlugin = useDataEnhancementPlugin({
+		apiKey: import.meta.env.VITE_FIRECMS_API_KEY,
+    getConfigForPath: ({ path }) => {
+			if (process.env.NODE_ENV !== "production") return true;
+      if (path === 'facts/data/uk' || path === 'facts/data/en' || path === 'facts/data/he') return true;
+      return false;
+    },
+  });
+
+  /**
+   * User management plugin
+   */
+  const userManagementPlugin = useUserManagementPlugin({ userManagement });
+
+  /**
+   * Allow import and export data plugin
+   */
+  //const importPlugin = useImportPlugin();
+  //const exportPlugin = useExportPlugin();
+
+  const collectionEditorPlugin = useCollectionEditorPlugin({
+    collectionConfigController,
+  });
+
+	const navigationController = useBuildNavigationController({
 		collections: async ({ dataSource }) => {
         const pages = await dataSource.fetchCollection({
             path: "pages",
@@ -216,31 +244,14 @@ export function App() {
     adminViews: userManagementAdminViews,
     authController,
     dataSourceDelegate: firestoreDelegate,
-  });
-
-  /**
-   * Data enhancement plugin
-   */
-  const dataEnhancementPlugin = useDataEnhancementPlugin({
-    getConfigForPath: ({ path }) => {
-      if (path === 'facts/data/uk' || path === 'facts/data/en' || path === 'facts/data/he') return true;
-      return false;
-    },
-  });
-
-  /**
-   * User management plugin
-   */
-  const userManagementPlugin = useUserManagementPlugin({ userManagement });
-
-  /**
-   * Allow import and export data plugin
-   */
-  //const importPlugin = useImportPlugin();
-  //const exportPlugin = useExportPlugin();
-
-  const collectionEditorPlugin = useCollectionEditorPlugin({
-    collectionConfigController,
+		plugins:
+					[
+						//importPlugin,
+						//exportPlugin,
+						userManagementPlugin,
+						collectionEditorPlugin,
+						//dataEnhancementPlugin,
+					]
   });
 
   if (firebaseConfigLoading || !firebaseApp) {
@@ -255,21 +266,12 @@ export function App() {
     <SnackbarProvider>
       <ModeControllerProvider value={modeController}>
         <FireCMS
-          apiKey={import.meta.env.VITE_FIRECMS_API_KEY}
+          //apiKey={import.meta.env.VITE_FIRECMS_API_KEY}
           navigationController={navigationController}
           authController={authController}
           userConfigPersistence={userConfigPersistence}
           dataSourceDelegate={firestoreDelegate}
           storageSource={storageSource}
-          plugins={
-            [
-              dataEnhancementPlugin,
-              //importPlugin,
-              //exportPlugin,
-              userManagementPlugin,
-              collectionEditorPlugin,
-            ]
-          }
         >
           {({ context, loading }) => {
             let component;
