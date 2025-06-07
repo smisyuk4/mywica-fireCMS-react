@@ -16,12 +16,12 @@ export const avatarsCollection = buildCollection({
 	initialSort: ['avatarVariant', "asc"],
 	properties: {
 		collectionKey: {
-			name: 'collectionKey',
+			name: 'collection key',
 			validation: { required: true },
 			dataType: 'string',
 		},
 		link: {
-			name: "link",
+			name: "image",
 			validation: { required: true },
 			dataType: "string",
 			storage: {
@@ -43,7 +43,7 @@ export const avatarsCollection = buildCollection({
 			}
 		},
 		avatarVariant: {
-			name: 'avatarVariant',
+			name: 'variant',
 			dataType: 'string',
 			validation: { required: true },
 			enumValues: avatarVariants,
