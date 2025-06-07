@@ -1,5 +1,5 @@
 import { buildCollection } from '@firecms/core';
-import { reuseIdCallbacks } from '../../customCallbacks';
+import { reuseIdWithCleanCallbacks } from '../../customCallbacks';
 
 export const buildDataUkCollection = (basePath: string, groupName: string) => buildCollection({
 	name: 'data Uk',
@@ -8,7 +8,7 @@ export const buildDataUkCollection = (basePath: string, groupName: string) => bu
 	group: groupName,
 	icon: 'format_underlined',
 	customId: true,
-	callbacks: reuseIdCallbacks,
+	callbacks: reuseIdWithCleanCallbacks,
 	textSearchEnabled: true,
 	permissions: ({ authController }) => ({
 		read: true,
@@ -17,52 +17,74 @@ export const buildDataUkCollection = (basePath: string, groupName: string) => bu
 		delete: true
 }),
 	properties: {
-		title: {
-			name: 'page title',
-			dataType: 'string',
+		title: ({ entityId }) => {
+			console.log(entityId);
+			
+			return {
+				name: 'page title',
+				dataType: 'string',
+				readOnly: entityId === 'paragraph' ? false : true,
+			}
 		},
-		text: {
-			name: 'page text',
-			dataType: 'string',
-			markdown: true
-		},
-		avatar: {
-			name: 'avatar',
-			dataType: 'string',
-			storage: {
-				storagePath: (context) => `avatars/aboutUs/`,
-        fileName: (context) => {
-            return context.file.name;
-        },
-				acceptedFiles: ["image/webp"],
-				metadata: {
-						cacheControl: "max-age=1000000"
+		text: ({ entityId }) => {
+			return {
+				name: 'page text',
+				dataType: 'string',
+				readOnly: entityId === 'paragraph' ? false : true,
+			}
+		},	
+		avatar: ({ entityId }) => {
+			return {
+				name: 'avatar',
+				dataType: 'string',
+				storage: {
+					storagePath: (context) => `avatars/aboutUs/`,
+					fileName: (context) => {
+							return context.file.name;
+					},
+					acceptedFiles: ["image/webp"],
+					metadata: {
+							cacheControl: "max-age=1000000"
+					},
+					storeUrl: true,
+					maxSize: 150 * 1024 // 🔺 Обмеження: 150 КБ
 				},
-				storeUrl: true,
-				maxSize: 150 * 1024 // 🔺 Обмеження: 150 КБ
+				readOnly: entityId === 'paragraph' ? true : false,
 			}
 		},
-		name: {
-			name: 'name',
-			dataType: 'string',
-		},
-		role: {
-			name: 'role',
-			dataType: 'string',
-		},
-		socialLink: {
-			name: 'socialLink',
-			dataType: 'string',
-			url: true,
-			validation: {
-				matches: /^https?:\/\/.+$/i,
-				matchesMessage: "Link must start with http:// or https://",
+		name: ({ entityId }) => {
+			return {
+				name: 'name',
+				dataType: 'string',
+				readOnly: entityId === 'paragraph' ? true : false,
+			}
+		},	
+		role: ({ entityId }) => {
+			return {
+				name: 'role',
+				dataType: 'string',
+				readOnly: entityId === 'paragraph' ? true : false,
+			}
+		},	
+		socialLink: ({ entityId }) => {
+			return {
+				name: 'social link',
+				dataType: 'string',
+				url: true,
+				validation: {
+					matches: /^https?:\/\/.+$/i,
+					matchesMessage: "Link must start with http:// or https://",
+				},
+				readOnly: entityId === 'paragraph' ? true : false,
 			}
 		},
-		orderProperty: {
-			name: 'orderProperty',
-			dataType: 'number',
-		},
+		orderProperty: ({ entityId }) => {
+			return {
+				name: 'order',
+				dataType: 'number',
+				readOnly: entityId === 'paragraph' ? true : false,
+			}
+		},	
 		id: {
 			name: 'id',
 			dataType: 'string',

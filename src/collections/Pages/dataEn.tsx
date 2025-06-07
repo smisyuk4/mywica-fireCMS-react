@@ -24,7 +24,6 @@ export const buildDataEnCollection = (basePath: string, groupName: string) => bu
 		text: {
 			name: 'page text',
 			dataType: 'string',
-			markdown: true
 		},
 		avatar: {
 			name: 'avatar',
