@@ -11,14 +11,12 @@ export const adventuresCollection = buildCollection({
 	group: 'Main content',
 	customId: true,
 	description: 'Bg for adventures, basic cards, navigation, sets',
-	textSearchEnabled: true,
-	// Here you can override the user permissions
-	// permissions: ({ authController }) => ({
-	//     read: true,
-	//     edit: true,
-	//     create: true,
-	//     delete: true
-	// }),
+	 permissions: ({ authController }) => ({
+	     read: true,
+	     edit: true,
+	     create: true,
+	     delete: true
+	 }),
 	subcollections: [setsSubCollection, navigationSubCollection, cardsSubCollection],
 	entityViews: [
 		//{

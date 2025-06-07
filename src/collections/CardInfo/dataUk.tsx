@@ -1,5 +1,6 @@
 import { buildCollection } from '@firecms/core';
 import { customCardInfoIds } from '../../customEnums';
+import { reuseIdWithCleanCallbacks } from '../../customCallbacks';
 
 export const dataUkSubCollection = buildCollection({
 	id: 'dataUk',
@@ -7,102 +8,75 @@ export const dataUkSubCollection = buildCollection({
 	name: 'dataUk',
 	singularName: 'dataUk',
 	customId: customCardInfoIds,
+	callbacks: reuseIdWithCleanCallbacks,
+	textSearchEnabled: true,
 	properties: {
-		question: {
-			name: 'question',
-			dataType: 'string',
-		},
-		'a1': {
-			name: 'a1',
-			dataType: 'map',
-			properties: {
-				isCorrect: {
-					name: 'isCorrect',
-					dataType: 'boolean',
-				},
-				text: {
-					name: 'isCorrect',
-					dataType: 'string',
-				},
+		text: ({ entityId }) => {
+			return {
+				name: 'about card',
+				dataType: 'string',
+				multiline: true,
+				validation: { required: entityId === 'paragraph' ? true : false },
+				readOnly: entityId === 'paragraph' ? false : true,
 			}
 		},
-		'a2': {
-			name: 'a2',
-			dataType: 'map',
-			properties: {
-				isCorrect: {
-					name: 'isCorrect',
-					dataType: 'boolean',
-				},
-				text: {
-					name: 'isCorrect',
-					dataType: 'string',
-				},
+		question: ({ entityId }) => {
+			return {
+				name: 'question',
+				dataType: 'string',
+				validation: { required: entityId === 'paragraph' ? false : true },
+				readOnly: entityId === 'paragraph' ? true : false,
 			}
 		},
-		'a3': {
-			name: 'a3',
-			dataType: 'map',
-			properties: {
-				isCorrect: {
-					name: 'isCorrect',
-					dataType: 'boolean',
+		answers: ({ entityId }) => {
+			return {
+				name: 'answers',
+				dataType: 'array',
+				readOnly: entityId === 'paragraph' ? true : false,
+				validation: {
+					min: entityId === 'paragraph' ? 0 : 4, 
+					max: 4, 
+					required: entityId === 'paragraph' ? false : true 
 				},
-				text: {
-					name: 'isCorrect',
-					dataType: 'string',
-				},
+				of: {
+					name: 'answer',
+					dataType: 'map',
+					properties: {
+						isCorrect: {
+							name: 'isCorrect',
+							dataType: 'boolean',
+							validation: { required: entityId === 'paragraph' ? false : true },
+						},
+						text: {
+							name: 'answer',
+							dataType: 'string',
+							validation: { required: entityId === 'paragraph' ? false : true },
+						},
+					}
+				}
 			}
-		},
-		'a4': {
-			name: 'a4',
-			dataType: 'map',
-			properties: {
-				isCorrect: {
-					name: 'isCorrect',
-					dataType: 'boolean',
-				},
-				text: {
-					name: 'isCorrect',
-					dataType: 'string',
-				},
-			}
-		},
-		'a5': {
-			name: 'a5',
-			dataType: 'map',
-			properties: {
-				isCorrect: {
-					name: 'isCorrect',
-					dataType: 'boolean',
-				},
-				text: {
-					name: 'isCorrect',
-					dataType: 'string',
-				},
-			}
-		},
-
-		text: {
-			name: 'text',
-			dataType: 'string',
 		},
 		id: {
 			name: 'id',
-			validation: { required: true },
 			dataType: 'string',
+			validation:{ unique: true },
+			hideFromCollection: true,
+			readOnly: true
 		},
 		createdAt: {
 			name: 'createdAt',
-			validation: { required: true },
 			dataType: 'date',
 			autoValue: "on_create"
 		},
 		updatedAt: {
 			name: 'updatedAt',
-			validation: { required: true },
 			dataType: 'date',
 			autoValue: "on_update"
 		},
 	},
 });
+
+
+
+
+	

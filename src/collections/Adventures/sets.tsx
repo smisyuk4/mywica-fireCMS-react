@@ -6,8 +6,9 @@ export const setsSubCollection = buildCollection({
 	id: 'sets',
 	path: 'sets',
 	name: 'sets',
-	singularName: 'sets',
+	singularName: 'set',
 	customId: locales,
+	textSearchEnabled: true,
 	properties: {
 		banner: {
 			name: 'banner',

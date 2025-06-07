@@ -8,9 +8,17 @@
 - [selects](https://firecms.co/docs/properties/fields/selects)
 - [block](https://firecms.co/docs/properties/fields/block)
 - [filters](https://firecms.co/docs/collections#filters)
+- [styling_firecms](https://firecms.co/docs/self/styling_firecms)
 - [customising-the-colors](https://firecms.co/docs/properties/fields/selects#customising-the-colors)
+- [collections](https://firecms.co/docs/collections)
+- [text_search](https://firecms.co/docs/collections/text_search)
 - [documents_as_subcollections](https://firecms.co/docs/recipes/documents_as_subcollections)
-
+- [entity_history](https://firecms.co/docs/pro/entity_history)
+- [npm data_enhancement](https://www.npmjs.com/package/@firecms/data_enhancement)
+- [conditional_fields](https://firecms.co/docs/properties/conditional_fields)
+- [url-text-field](https://firecms.co/docs/properties/fields/text_fields#url-text-field)
+- [collection-configuration](https://firecms.co/docs/collections#collection-configuration)
+- [get color theme mode](https://github.com/firecmsco/firecms/discussions/455)
 
 
 

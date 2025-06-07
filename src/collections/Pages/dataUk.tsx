@@ -1,13 +1,16 @@
 import { buildCollection } from '@firecms/core';
 import { reuseIdCallbacks } from '../../customCallbacks';
 
-export const dataUkSubCollection = buildCollection({
-	id: 'dataUk',
-	path: 'dataUk',
-	name: 'Uk',
-	singularName: 'Uk',
+export const buildDataUkCollection = (basePath: string, groupName: string) => buildCollection({
+	name: 'data Uk',
+	singularName: 'Pages',
+	id: `${basePath}/dataUk`,
+	path: `${basePath}/dataUk`,
+	group: groupName,
+	icon: 'format_underlined',
 	customId: true,
 	callbacks: reuseIdCallbacks,
+	textSearchEnabled: true,
 	permissions: ({ authController }) => ({
 		read: true,
 		edit: true,
@@ -51,6 +54,7 @@ export const dataUkSubCollection = buildCollection({
 		socialLink: {
 			name: 'socialLink',
 			dataType: 'string',
+			url: true,
 			  validation: {
 				matches: /^https?:\/\/.+$/i,
 				matchesMessage: "Link must start with http:// or https://",

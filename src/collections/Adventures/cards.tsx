@@ -5,7 +5,8 @@ export const cardsSubCollection = buildCollection({
 	id: 'cards',
 	path: 'cards',
 	name: 'cards',
-	singularName: 'cards',
+	singularName: 'card',
+	textSearchEnabled: true,
 	properties: {
 		guild: {
 			name: 'guild',

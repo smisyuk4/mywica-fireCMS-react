@@ -2,6 +2,7 @@ import { buildCollection } from '@firecms/core';
 import { dataUkSubCollection } from './dataUk';
 import { dataEnSubCollection } from './dataEn';
 import { dataHeSubCollection } from './dataHe';
+import { reuseIdCallbacks } from '../../customCallbacks';
 
 
 export const cardInfoCollection = buildCollection({
@@ -10,23 +11,29 @@ export const cardInfoCollection = buildCollection({
 	id: 'cardInfo',
 	path: 'cardInfo',
 	group: 'Main content',
+	pagination: 20,
+	icon: 'info',
 	customId: true,
+	callbacks: reuseIdCallbacks,
+	propertiesOrder: ['id', 'subcollection:dataUk', 'subcollection:dataEn', 'subcollection:dataHe', 'createdAt', 'updatedAt'],
 	description: 'Description for cards and testing (Q/A)',
-	textSearchEnabled: true,
-	// Here you can override the user permissions
-	// permissions: ({ authController }) => ({
-	//     read: true,
-	//     edit: true,
-	//     create: true,
-	//     delete: true
-	// }),
 	subcollections: [dataUkSubCollection, dataEnSubCollection, dataHeSubCollection],
-	entityViews: [
-		//{
-		//  key: 'preview',
-		//  name: 'Sample preview',
-		//  Builder: ProductDetailPreview,
-		//},
-	],
-	properties: {},
+	properties: {
+		id: {
+			name: 'id',
+			dataType: 'string',
+			readOnly: true,
+			validation:{ unique: true },
+		},
+		createdAt: {
+			name: 'createdAt',
+			dataType: 'date',
+			autoValue: "on_create"
+		},
+		updatedAt: {
+			name: 'updatedAt',
+			dataType: 'date',
+			autoValue: "on_update"
+		},
+	}
 });

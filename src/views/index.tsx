@@ -1,5 +1,5 @@
 import { CMSView } from '@firecms/core';
-import { OrdersPage, StatisticsPage, FeedbackPage } from '../pages';
+import { OrdersPage, StatisticsPage, FeedbackPage } from '../customPages';
 
 export const customViews: CMSView[] = [
   {
