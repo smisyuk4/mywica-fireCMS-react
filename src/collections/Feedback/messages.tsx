@@ -6,7 +6,7 @@ export const messagesSubCollection = buildCollection({
 	id: 'messages',
 	path: 'messages',
 	name: 'messages',
-	singularName: 'messages',
+	singularName: 'message',
 	callbacks: feedbackCallbacks,
 	initialSort: ['updatedAt', "desc"],
 	properties: {
@@ -59,7 +59,7 @@ export const messagesSubCollection = buildCollection({
 			readOnly: true,
 		},
 		userId: {
-			name: 'userId',
+			name: 'user Id',
 			dataType: 'string',
 			readOnly: true,
 		},

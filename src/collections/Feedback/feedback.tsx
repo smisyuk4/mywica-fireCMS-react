@@ -4,12 +4,13 @@ import { locales } from '../../customEnums';
 
 export const feedbackCollection = buildCollection({
 	name: 'Feedback',
-	singularName: 'Pages',
+	singularName: 'Feedback',
 	id: 'feedback',
 	path: 'feedback',
 	group: 'Users',
 	icon: 'question_answer',
 	description: 'messages by adults and support',
+	propertiesOrder: ['isClosed', 'subject', 'lang', 'subcollection:messages', 'userId', 'createdAt', 'updatedAt'],
 	textSearchEnabled: true,
 	initialSort: ['updatedAt', "desc"],
 	 permissions: ({ authController }) => ({
@@ -21,7 +22,7 @@ export const feedbackCollection = buildCollection({
 	subcollections: [messagesSubCollection],
 	properties: {
 		isClosed: {
-			name: 'isClosed',
+			name: 'is Closed',
 			validation: { required: true },
 			dataType: 'boolean',
 		},
@@ -43,7 +44,7 @@ export const feedbackCollection = buildCollection({
 			readOnly: true,
 		},
 		userId: {
-			name: 'userId',
+			name: 'user id',
 			dataType: 'string',
 			readOnly: true,
 		},

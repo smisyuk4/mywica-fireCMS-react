@@ -5,7 +5,7 @@ import { description } from '../../customProperties';
 
 export const avatarsCollection = buildCollection({
 	name: 'Avatars',
-	singularName: 'Avatars',
+	singularName: 'Avatar',
 	id: 'avatars',
 	path: 'avatars',
 	group: 'Users',
