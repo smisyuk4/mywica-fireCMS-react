@@ -1,10 +1,10 @@
 import { buildCollection } from '@firecms/core';
 
 export const buildMetadataCollection = (basePath: string, groupName: string, pageId: string) => buildCollection({
-	name: pageId === 'video' ? 'Video modal' : 'metadata',
-	singularName: 'Pages',
+	name: pageId === 'video' ? 'Video' : 'metadata',
 	id: `${basePath}/metadata`,
 	path: `${basePath}/metadata`,
+	description: pageId === 'video' ? 'page metadata' : '',
 	group: pageId === 'video' ? 'Secondary content' : groupName,
 	icon: pageId === 'video' ? 'ondemand_video' : 'menu_book',
 	textSearchEnabled: true,
