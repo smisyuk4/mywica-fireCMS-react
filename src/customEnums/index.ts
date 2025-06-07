@@ -120,12 +120,12 @@ export const guilds = buildEnumValues({
 		},
 		'wizard':  {
 				id: "wizard",
-				label: "african",
+				label: "wizard",
 				color: 'greenLight'
 		},
 		'exile':  {
 				id: "exile",
-				label: "european",
+				label: "exile",
 				color: 'yellowLight'
 		},
 });

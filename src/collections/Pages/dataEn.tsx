@@ -25,11 +25,15 @@ export const buildDataEnCollection = (basePath: string, groupName: string) => bu
 				readOnly: entityId === 'paragraph' ? false : true,
 			}
 		},
-		text: ({ entityId }) => {
+		text: ({ entityId, path }) => {
+			const pathId = path.split('/')[1]
+			const isReadOnly = pathId === 'guild' ? 
+										true : entityId === 'paragraph' ?
+										false : true;
 			return {
 				name: 'page text',
 				dataType: 'string',
-				readOnly: entityId === 'paragraph' ? false : true,
+				readOnly: isReadOnly,
 			}
 		},
 		// guild
@@ -90,21 +94,36 @@ export const buildDataEnCollection = (basePath: string, groupName: string) => bu
 			}
 		},
 		// about us
-		name: ({ entityId }) => {
+		name: ({ entityId, path }) => {
+			const pathId = path.split('/')[1]
+			const isReadOnly = entityId === 'paragraph' ?
+											true :	pathId === 'guild' ? 
+											true : pathId === 'aboutUs' ? 
+											false : true;
 			return {
 				name: 'name',
 				dataType: 'string',
-				readOnly: entityId === 'paragraph' ? true : false,
+				readOnly: isReadOnly,
 			}
 		},	
-		role: ({ entityId }) => {
+		role: ({ entityId, path }) => {
+			const pathId = path.split('/')[1]
+			const isReadOnly = entityId === 'paragraph' ?
+											true :	pathId === 'guild' ? 
+											true : pathId === 'aboutUs' ? 
+											false : true;
 			return {
 				name: 'role',
 				dataType: 'string',
-				readOnly: entityId === 'paragraph' ? true : false,
+				readOnly: isReadOnly,
 			}
 		},	
-		socialLink: ({ entityId }) => {
+		socialLink: ({ entityId, path }) => {
+			const pathId = path.split('/')[1]
+			const isReadOnly = entityId === 'paragraph' ?
+											true :	pathId === 'guild' ? 
+											true : pathId === 'aboutUs' ? 
+											false : true;
 			return {
 				name: 'social link',
 				dataType: 'string',
@@ -113,14 +132,19 @@ export const buildDataEnCollection = (basePath: string, groupName: string) => bu
 					matches: /^https?:\/\/.+$/i,
 					matchesMessage: "Link must start with http:// or https://",
 				},
-				readOnly: entityId === 'paragraph' ? true : false,
+				readOnly: isReadOnly,
 			}
 		},
-		orderProperty: ({ entityId }) => {
+		orderProperty: ({ entityId, path }) => {
+			const pathId = path.split('/')[1]
+			const isReadOnly = entityId === 'paragraph' ?
+											true :	pathId === 'guild' ? 
+											true : pathId === 'aboutUs' ? 
+											false : true;
 			return {
 				name: 'order',
 				dataType: 'number',
-				readOnly: entityId === 'paragraph' ? true : false,
+				readOnly: isReadOnly,
 			}
 		},	
 		id: {
