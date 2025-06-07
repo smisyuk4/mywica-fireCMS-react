@@ -11,7 +11,7 @@ export const cardInfoCollection = buildCollection({
 	id: 'cardInfo',
 	path: 'cardInfo',
 	group: 'Main content',
-	 // pagination: 5,
+	pagination: 20,
 	icon: 'info',
 	customId: true,
 	callbacks: reuseIdCallbacks,

@@ -26,7 +26,7 @@ export const reuseIdCallbacks: EntityCallbacks<any> = {
   },
 };
 
-const cleanObject = (obj: any): any =>{
+const cleanObject =(obj: any): any=> {
   if (Array.isArray(obj)) {
     const cleanedArray = obj
       .map(cleanObject)
@@ -35,11 +35,6 @@ const cleanObject = (obj: any): any =>{
   }
 
   if (typeof obj === "object" && obj !== null) {
-    // ❗️ Якщо є поле text === null — виключаємо весь обʼєкт
-    if ("text" in obj && obj.text === null) {
-      return undefined;
-    }
-
     const cleaned: any = {};
     for (const key in obj) {
       const value = cleanObject(obj[key]);
@@ -54,7 +49,6 @@ const cleanObject = (obj: any): any =>{
         cleaned[key] = value;
       }
     }
-
     return Object.keys(cleaned).length > 0 ? cleaned : undefined;
   }
 

@@ -1,6 +1,6 @@
 import { buildCollection } from '@firecms/core';
 import { customCardInfoIds } from '../../customEnums';
-import { reuseIdCallbacks, reuseIdWithCleanCallbacks } from '../../customCallbacks';
+import { reuseIdWithCleanCallbacks } from '../../customCallbacks';
 
 export const dataEnSubCollection = buildCollection({
 	id: 'dataEn',
@@ -13,7 +13,7 @@ export const dataEnSubCollection = buildCollection({
 	properties: {
 		text: ({ entityId }) => {
 			return {
-				name: 'text',
+				name: 'about card',
 				dataType: 'string',
 				multiline: true,
 				validation: { required: entityId === 'paragraph' ? true : false },
@@ -32,28 +32,30 @@ export const dataEnSubCollection = buildCollection({
 			return {
 				name: 'answers',
 				dataType: 'array',
-				validation: { max: 4 },
+				readOnly: entityId === 'paragraph' ? true : false,
+				validation: {
+					min: entityId === 'paragraph' ? 0 : 4, 
+					max: 4, 
+					required: entityId === 'paragraph' ? false : true 
+				},
 				of: {
 					name: 'answer',
 					dataType: 'map',
-					
 					properties: {
 						isCorrect: {
 							name: 'isCorrect',
 							dataType: 'boolean',
+							validation: { required: entityId === 'paragraph' ? false : true },
 						},
 						text: {
-							name: 'text',
+							name: 'answer',
 							dataType: 'string',
-							//validation: { required: entityId === 'paragraph' ? false : true },
+							validation: { required: entityId === 'paragraph' ? false : true },
 						},
 					}
 				}
-				//validation: { required: entityId === 'paragraph' ? false : true },
-				//readOnly: entityId === 'paragraph' ? true : false,
 			}
 		},
-
 		id: {
 			name: 'id',
 			dataType: 'string',
