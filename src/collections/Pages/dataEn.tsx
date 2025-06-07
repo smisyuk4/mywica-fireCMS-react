@@ -1,4 +1,4 @@
-import { buildCollection, buildProperty } from '@firecms/core';
+import { buildCollection, buildProperty, buildProperties } from '@firecms/core';
 import { reuseIdWithCleanCallbacks } from '../../customCallbacks';
 import { guilds } from '../../customEnums';
 
@@ -168,14 +168,33 @@ export const buildDataEnCollection = (basePath: string, groupName: string) => bu
 	properties: basePath === 'pages/guild' ? guildProperties : aboutUsProperties
 });
 
-const guildProperties = {
-  guild: buildProperty({
-    name: 'guild',
-    dataType: 'string',
-    enumValues: guilds,
-  }),
-  // Add more properties here...
-};
+const guildProperties = buildProperties({
+		guild: ({ entityId, path }) => {
+			console.log(entityId, path);
+			
+				return {
+						name: 'guild',
+						dataType: 'string',
+						enumValues: guilds,
+				}
+		},
+    image: {
+				name: 'image',
+				dataType: 'string',
+				storage: {
+					storagePath: (context) => 'guilds/',
+					fileName: (context) => {
+							return context.file.name;
+					},
+					acceptedFiles: ["image/webp"],
+					metadata: {
+							cacheControl: "max-age=1000000"
+					},
+					storeUrl: true,
+					maxSize: 150 * 1024 // 🔺 Обмеження: 150 КБ
+				},
+    }
+});
 
 const aboutUsProperties = {
   aboutUs: buildProperty({
