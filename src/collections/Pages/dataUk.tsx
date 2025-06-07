@@ -17,8 +17,11 @@ export const buildDataUkCollection = (basePath: string, groupName: string) => bu
 		delete: true
 }),
 	properties: {
-		title: ({ entityId }) => {
-			console.log(entityId);
+		title: ({ entityId, path }) => {
+			console.log(path); // pages/publicOffer/dataUk
+			const pathId = path.split('/')[1];
+			console.log(pathId); // publicOffer
+			
 			
 			return {
 				name: 'page title',
