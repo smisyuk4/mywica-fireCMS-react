@@ -3,7 +3,6 @@ import { reuseIdCallbacks } from '../../customCallbacks';
 
 export const buildDataEnCollection = (basePath: string, groupName: string) => buildCollection({
 	name: 'data En',
-	singularName: 'Pages',
 	id: `${basePath}/dataEn`,
 	path: `${basePath}/dataEn`,
 	group: groupName,

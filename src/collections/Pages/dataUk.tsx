@@ -3,7 +3,6 @@ import { reuseIdCallbacks } from '../../customCallbacks';
 
 export const buildDataUkCollection = (basePath: string, groupName: string) => buildCollection({
 	name: 'data Uk',
-	singularName: 'Pages',
 	id: `${basePath}/dataUk`,
 	path: `${basePath}/dataUk`,
 	group: groupName,
@@ -55,7 +54,7 @@ export const buildDataUkCollection = (basePath: string, groupName: string) => bu
 			name: 'socialLink',
 			dataType: 'string',
 			url: true,
-			  validation: {
+			validation: {
 				matches: /^https?:\/\/.+$/i,
 				matchesMessage: "Link must start with http:// or https://",
 			}
