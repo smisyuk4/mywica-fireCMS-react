@@ -105,7 +105,7 @@ export const cardInfoParagraph = buildProperty({
 })
 
 export const cardInfoTest = buildProperties({
-		question: cardInfoTest0,
+		//question: cardInfoTest0,
 		a1: cardInfoTest1,
 		a2: cardInfoTest2,
 		a3: cardInfoTest3,

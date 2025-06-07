@@ -26,6 +26,34 @@ export const reuseIdCallbacks: EntityCallbacks<any> = {
   },
 };
 
+
+
+
+
+
+export const reuseIdWithCleanCallbacks: EntityCallbacks<any> = {
+  onPreSave: async ({ values, entityId }) => {
+    const cleaned: any = {};
+
+    for (const key in values) {
+      const value = values[key];
+
+      if (
+        value !== null &&
+        value !== undefined &&
+        !(typeof value === "string" && value.trim() === "")
+      ) {
+        cleaned[key] = value;
+      }
+    }
+
+    return {
+      ...cleaned,
+      id: entityId ?? cleaned.id,
+    };
+  },
+};
+
 export const factsCallbacks: EntityCallbacks<any> = {
   onPreSave: async ({ values, entityId }) => {			
     return {

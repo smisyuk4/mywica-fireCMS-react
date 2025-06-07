@@ -11,10 +11,11 @@ export const cardInfoCollection = buildCollection({
 	id: 'cardInfo',
 	path: 'cardInfo',
 	group: 'Main content',
-	pagination: true,
+	 // pagination: 5,
 	icon: 'info',
 	customId: true,
 	callbacks: reuseIdCallbacks,
+	propertiesOrder: ['id', 'subcollection:dataUk', 'subcollection:dataEn', 'subcollection:dataHe', 'createdAt', 'updatedAt'],
 	description: 'Description for cards and testing (Q/A)',
 	subcollections: [dataUkSubCollection, dataEnSubCollection, dataHeSubCollection],
 	properties: {
