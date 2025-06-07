@@ -108,10 +108,26 @@ export const sexVariants = buildEnumValues({
 });
 
 export const guilds = buildEnumValues({
-	'warrior': 'warrior',
-	'defender': 'defender',
-	'wizard': 'wizard',
-	'exile': 'exile',
+		'warrior':  {
+				id: "warrior",
+				label: "warrior",
+				color: 'purpleLight'
+		},
+		'defender':  {
+				id: "defender",
+				label: "defender",
+				color: 'orangeLight'
+		},
+		'wizard':  {
+				id: "wizard",
+				label: "wizard",
+				color: 'greenLight'
+		},
+		'exile':  {
+				id: "exile",
+				label: "exile",
+				color: 'yellowLight'
+		},
 });
 
 export const customBasicCardId = buildEnumValues({
