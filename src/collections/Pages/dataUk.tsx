@@ -1,5 +1,6 @@
 import { buildCollection } from '@firecms/core';
 import { reuseIdWithCleanCallbacks } from '../../customCallbacks';
+import { guilds } from '../../customEnums';
 
 export const buildDataUkCollection = (basePath: string, groupName: string) => buildCollection({
 	name: 'data Uk',
@@ -17,12 +18,7 @@ export const buildDataUkCollection = (basePath: string, groupName: string) => bu
 		delete: true
 }),
 	properties: {
-		title: ({ entityId, path }) => {
-			console.log(path); // pages/publicOffer/dataUk
-			const pathId = path.split('/')[1];
-			console.log(pathId); // publicOffer
-			
-			
+		title: ({ entityId }) => {
 			return {
 				name: 'page title',
 				dataType: 'string',
@@ -35,13 +31,51 @@ export const buildDataUkCollection = (basePath: string, groupName: string) => bu
 				dataType: 'string',
 				readOnly: entityId === 'paragraph' ? false : true,
 			}
-		},	
-		avatar: ({ entityId }) => {
+		},
+		// guild
+		description: ({ entityId, path }) => {
+			if (path.split('/')[1] !== 'guild') {
+				return {
+					name: 'description',
+					dataType: 'string',
+					readOnly: true,
+				}
+			}
+
 			return {
-				name: 'avatar',
+				name: 'description',
+				dataType: 'string',
+				readOnly: entityId === 'paragraph' ? true : false,
+			}
+		},	
+		guild: ({ entityId, path }) => {
+				const pathId = path.split('/')[1]
+				const isReadOnly = entityId === 'paragraph' ?
+											true :	pathId === 'guild' ? 
+											false : true;
+				return {
+					name: 'guild',
+					dataType: 'string',
+					enumValues: guilds,
+					readOnly: isReadOnly,
+				}
+		},
+		image: ({ entityId, path }) => {
+			const pathId = path.split('/')[1]
+			const storagePath = pathId === 'guild' ? 
+													'guilds/' : pathId === 'aboutUs' ? 
+													'avatars/aboutUs/' : 'unknown/';
+
+			const isReadOnly = entityId === 'paragraph' ?
+													true :	pathId === 'guild' ? 
+													false : pathId === 'aboutUs' ? 
+													false : true;
+			
+			return {
+				name: 'image',
 				dataType: 'string',
 				storage: {
-					storagePath: (context) => `avatars/aboutUs/`,
+					storagePath: (context) => storagePath,
 					fileName: (context) => {
 							return context.file.name;
 					},
@@ -52,9 +86,10 @@ export const buildDataUkCollection = (basePath: string, groupName: string) => bu
 					storeUrl: true,
 					maxSize: 150 * 1024 // 🔺 Обмеження: 150 КБ
 				},
-				readOnly: entityId === 'paragraph' ? true : false,
+				readOnly: isReadOnly,
 			}
 		},
+		// about us
 		name: ({ entityId }) => {
 			return {
 				name: 'name',
