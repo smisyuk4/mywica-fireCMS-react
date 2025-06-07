@@ -92,32 +92,6 @@ export function App() {
     firebaseApp,
   });
 
-  //const collectionsBuilder = useCallback(() => {
-  //  // Here we define a sample collection in code.
-  //  const collections = [
-  //    //productsCollection,
-  //    //testCollection,
-	//		pagesCollection,
-	//		factsCollection,
-	//		feedbackCollection,
-	//		subscriptionsCollection,
-	//		promocodesCollection,
-	//		paymentsCollection,
-	//		avatarsCollection,
-	//		adventuresCollection,
-	//		cardInfoCollection
-  //    // Your collections here
-  //  ];
-  //  // You can merge collections defined in the collection editor (UI) with your own collections
-  //  return mergeCollections(
-  //    collections,
-  //    collectionConfigController.collections ?? []
-  //  );
-  //}, [collectionConfigController.collections]);
-
-  // Here you define your custom top-level views
-  //const views: CMSView[] = useMemo(() => customViews, []);
-
   const signInOptions: FirebaseSignInProvider[] = ['google.com', 'password'];
 
   /**
@@ -244,14 +218,6 @@ export function App() {
     adminViews: userManagementAdminViews,
     authController,
     dataSourceDelegate: firestoreDelegate,
-		//plugins:
-		//			[
-		//				//importPlugin,
-		//				//exportPlugin,
-		//				userManagementPlugin,
-		//				collectionEditorPlugin,
-		//				//dataEnhancementPlugin,
-		//			]
   });
 
   if (firebaseConfigLoading || !firebaseApp) {
@@ -264,7 +230,7 @@ export function App() {
 
   return (
     <SnackbarProvider>
-      <ModeControllerProvider value={modeController}>
+      <ModeControllerProvider value={modeController} >
         <FireCMS
           apiKey={import.meta.env.VITE_FIRECMS_API_KEY}
           navigationController={navigationController}
@@ -279,6 +245,7 @@ export function App() {
 						collectionEditorPlugin,
 						dataEnhancementPlugin,
 					]}
+		
         >
           {({ context, loading }) => {
             let component;
@@ -288,6 +255,11 @@ export function App() {
               if (!canAccessMainView) {
                 component = (
                   <FirebaseLoginView
+										logo={logo}
+										additionalComponent={
+											<a href="https://mywica.com" aria-label='mywica' target="_blank" rel="noopener noreferrer">mywica.com</a>
+										}
+										children={<p>Welcome to MYWICA CMS</p>}
                     allowSkipLogin={false}
                     signInOptions={signInOptions}
                     firebaseApp={firebaseApp}
@@ -298,7 +270,7 @@ export function App() {
               } else {
                 component = (
                   <Scaffold logo={logo} autoOpenDrawer={false}>
-                    <AppBar title={title} />
+                    <AppBar title={title}/>
                     {/*<Drawer />*/}
                     <NavigationRoutes />
                     <SideDialogs />

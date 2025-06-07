@@ -26,26 +26,47 @@ export const reuseIdCallbacks: EntityCallbacks<any> = {
   },
 };
 
+const cleanObject = (obj: any): any =>{
+  if (Array.isArray(obj)) {
+    const cleanedArray = obj
+      .map(cleanObject)
+      .filter(item => item !== undefined && item !== null);
+    return cleanedArray.length > 0 ? cleanedArray : undefined;
+  }
 
+  if (typeof obj === "object" && obj !== null) {
+    // ❗️ Якщо є поле text === null — виключаємо весь обʼєкт
+    if ("text" in obj && obj.text === null) {
+      return undefined;
+    }
 
-
-
-
-export const reuseIdWithCleanCallbacks: EntityCallbacks<any> = {
-  onPreSave: async ({ values, entityId }) => {
     const cleaned: any = {};
+    for (const key in obj) {
+      const value = cleanObject(obj[key]);
 
-    for (const key in values) {
-      const value = values[key];
+      const isEmptyString = typeof value === "string" && value.trim() === "";
 
       if (
-        value !== null &&
         value !== undefined &&
-        !(typeof value === "string" && value.trim() === "")
+        value !== null &&
+        !isEmptyString
       ) {
         cleaned[key] = value;
       }
     }
+
+    return Object.keys(cleaned).length > 0 ? cleaned : undefined;
+  }
+
+  const isEmptyString = typeof obj === "string" && obj.trim() === "";
+  if (obj === null || obj === undefined || isEmptyString) return undefined;
+
+  return obj;
+}
+
+export const reuseIdWithCleanCallbacks: EntityCallbacks<any> = {
+    onPreSave: async ({ values, entityId }) => {
+    const cleaned = cleanObject(values) ?? {};
 
     return {
       ...cleaned,

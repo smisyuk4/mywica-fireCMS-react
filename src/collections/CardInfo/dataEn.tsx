@@ -28,82 +28,32 @@ export const dataEnSubCollection = buildCollection({
 				readOnly: entityId === 'paragraph' ? true : false,
 			}
 		},
-		'a1': ({ entityId }) => {
+		answers: ({ entityId }) => {
 			return {
-				name: 'a1',
-				dataType: 'map',
-				validation: { required: entityId === 'paragraph' ? false : true },
-				readOnly: entityId === 'paragraph' ? true : false,
-				properties: {
-					isCorrect: {
-						name: 'isCorrect',
-						dataType: 'boolean',
-					},
-					text: {
-						name: 'text',
-						dataType: 'string',
-						validation: { required: entityId === 'paragraph' ? false : true },
-					},
+				name: 'answers',
+				dataType: 'array',
+				validation: { max: 4 },
+				of: {
+					name: 'answer',
+					dataType: 'map',
+					
+					properties: {
+						isCorrect: {
+							name: 'isCorrect',
+							dataType: 'boolean',
+						},
+						text: {
+							name: 'text',
+							dataType: 'string',
+							//validation: { required: entityId === 'paragraph' ? false : true },
+						},
+					}
 				}
+				//validation: { required: entityId === 'paragraph' ? false : true },
+				//readOnly: entityId === 'paragraph' ? true : false,
 			}
 		},
-		'a2': ({ entityId }) => {
-			return {
-				name: 'a2',
-				dataType: 'map',
-				validation: { required: entityId === 'paragraph' ? false : true },
-				readOnly: entityId === 'paragraph' ? true : false,
-				properties: {
-					isCorrect: {
-						name: 'isCorrect',
-						dataType: 'boolean',
-					},
-					text: {
-						name: 'text',
-						dataType: 'string',
-						validation: { required: entityId === 'paragraph' ? false : true },
-					},
-				}
-			}
-		},
-		'a3': ({ entityId }) => {
-			return {
-				name: 'a3',
-				dataType: 'map',
-				validation: { required: entityId === 'paragraph' ? false : true },
-				readOnly: entityId === 'paragraph' ? true : false,
-				properties: {
-					isCorrect: {
-						name: 'isCorrect',
-						dataType: 'boolean',
-					},
-					text: {
-						name: 'text',
-						dataType: 'string',
-						validation: { required: entityId === 'paragraph' ? false : true },
-					},
-				}
-			}
-		},
-		'a4': ({ entityId }) => {
-			return {
-				name: 'a4',
-				dataType: 'map',
-				validation: { required: entityId === 'paragraph' ? false : true },
-				readOnly: entityId === 'paragraph' ? true : false,
-				properties: {
-					isCorrect: {
-						name: 'isCorrect',
-						dataType: 'boolean',
-					},
-					text: {
-						name: 'text',
-						dataType: 'string',
-						validation: { required: entityId === 'paragraph' ? false : true },
-					},
-				}
-			}
-		},
+
 		id: {
 			name: 'id',
 			dataType: 'string',
