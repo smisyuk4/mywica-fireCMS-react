@@ -7,6 +7,7 @@ export const guildProperties = buildProperties({
 				name: 'page title',
 				dataType: 'string',
 				readOnly: entityId === 'paragraph' ? false : true,
+				validation: { trim: true },
 			}
 		},
 		guild: ({ entityId }) => {
@@ -41,6 +42,7 @@ export const guildProperties = buildProperties({
 				name: 'description',
 				dataType: 'string',
 				readOnly: entityId === 'paragraph' ? true : false,
+				validation: { trim: true },
 			}
 		},
 		id: {

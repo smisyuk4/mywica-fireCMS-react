@@ -6,12 +6,14 @@ export const generalNewsProperties = buildProperties({
 				name: 'version',
 				dataType: 'string',
 				readOnly: entityId === 'paragraph' ? true : false,
+				validation: { trim: true },
 			}
 		},
 		title: () => {
 			return {
 				name: 'title',
 				dataType: 'string',
+				validation: { trim: true },
 			}
 		},
 		text: ({ entityId }) => {
@@ -19,6 +21,7 @@ export const generalNewsProperties = buildProperties({
 				name: 'text',
 				dataType: 'string',
 				readOnly: entityId === 'paragraph' ? true : false,
+				validation: { trim: true },
 			}
 		},
 		images: ({ entityId }) => {		
@@ -68,7 +71,8 @@ export const generalNewsProperties = buildProperties({
 		id: {
 			name: 'id',
 			dataType: 'string',
-			readOnly: true
+			readOnly: true,
+			hideFromCollection: true
 		},	
 		createdAt: {
 			name: 'createdAt',

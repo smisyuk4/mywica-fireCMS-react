@@ -6,6 +6,7 @@ export const aboutUsProperties = buildProperties({
 				name: 'page title',
 				dataType: 'string',
 				readOnly: entityId === 'paragraph' ? false : true,
+				validation: { trim: true },
 			}
 		},
 		text: ({ entityId }) => {
@@ -13,6 +14,7 @@ export const aboutUsProperties = buildProperties({
 				name: 'page description',
 				dataType: 'string',
 				readOnly: entityId === 'paragraph' ? false : true,
+				validation: { trim: true },
 			}
 		},
 		image: ({ entityId }) => {		
@@ -39,6 +41,7 @@ export const aboutUsProperties = buildProperties({
 				name: 'name',
 				dataType: 'string',
 				readOnly: entityId === 'paragraph' ? true : false,
+				validation: { trim: true },
 			}
 		},	
 		role: ({ entityId }) => {
@@ -46,6 +49,7 @@ export const aboutUsProperties = buildProperties({
 				name: 'role',
 				dataType: 'string',
 				readOnly: entityId === 'paragraph' ? true : false,
+				validation: { trim: true },
 			}
 		},	
 		socialLink: ({ entityId }) => {
@@ -56,6 +60,7 @@ export const aboutUsProperties = buildProperties({
 				validation: {
 					matches: /^https?:\/\/.+$/i,
 					matchesMessage: "Link must start with http:// or https://",
+					trim: true
 				},
 				readOnly: entityId === 'paragraph' ? true : false,
 			}

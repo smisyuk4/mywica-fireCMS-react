@@ -20,12 +20,12 @@ export const buildMetadataCollection = (basePath: string, groupName: string, pag
 	properties: {
 		title: {
 			name: 'title',
-			validation: { required: true },
+			validation: { required: true, trim: true },
 			dataType: 'string',
 		},
 		description: {
 			name: 'description',
-			validation: { required: true },
+			validation: { required: true, trim: true  },
 			dataType: 'string',
 		},
 		createdAt: {

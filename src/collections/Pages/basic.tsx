@@ -6,6 +6,7 @@ export const basicProperties = buildProperties({
 				name: 'page title',
 				dataType: 'string',
 				readOnly: entityId === 'paragraph' ? false : true,
+				validation: { trim: true },
 			}
 		},
 		text: ({ entityId }) => {
@@ -13,6 +14,7 @@ export const basicProperties = buildProperties({
 				name: 'page description',
 				dataType: 'string',
 				readOnly: entityId === 'paragraph' ? false : true,
+				validation: { trim: true },
 			}
 		},
 		id: {
