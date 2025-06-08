@@ -1,6 +1,6 @@
 import { buildCollection } from '@firecms/core';
 import { locales } from '../../customEnums';
-
+import { adventureSetsCallbacks } from '../../customCallbacks';
 
 export const setsSubCollection = buildCollection({
 	id: 'sets',
@@ -8,32 +8,50 @@ export const setsSubCollection = buildCollection({
 	name: 'sets',
 	singularName: 'set',
 	customId: locales,
-	textSearchEnabled: true,
+	callbacks: adventureSetsCallbacks,
 	properties: {
 		banner: {
-			name: 'banner',
-			validation: { required: true },
+			name: 'banner', 
+			validation: { required: true }, 
+			dataType: 'string',
+			storage: {
+				storagePath: ({ path }) => {
+					const id = path?.split('/')[1];
+					return id ? `adventures/${id}/` : 'adventures/unknown/';
+				},
+				fileName: ({ file }) => {
+						return file.name;
+				},
+				acceptedFiles: ["image/webp"],
+				metadata: {
+						cacheControl: "max-age=1000000"
+				},
+				storeUrl: true,
+				maxSize: 150 * 1024 // 🔺 Обмеження: 150 КБ
+			},
+		},
+		title: {
+			name: 'title',
+			validation: { required: true, trim: true },
 			dataType: 'string',
 		},
 		description: {
 			name: 'description',
-			validation: { required: true },
+			validation: { required: true, trim: true },
 			dataType: 'string',
 		},
-		title: {
-			name: 'title',
-			validation: { required: true },
-			dataType: 'string',
+		id: {
+			name: 'id',
+			dataType: 'number',
+			readOnly: true,
 		},
 		createdAt: {
 			name: 'createdAt',
-			validation: { required: true },
 			dataType: 'date',
 			autoValue: "on_create"
 		},
 		updatedAt: {
 			name: 'updatedAt',
-			validation: { required: true },
 			dataType: 'date',
 			autoValue: "on_update"
 		},

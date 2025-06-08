@@ -15,7 +15,7 @@ export const adventuresCollection = buildCollection({
 	callbacks: reuseIdCallbacks,
 	initialSort: ['createdAt', "desc"],
 	subcollections: [navigationSubCollection, cardsSubCollection, setsSubCollection],
-	propertiesOrder: ['id', 'mainImagesSet', 'subcollection:navigation', 'subcollection:cards', 'subcollection:sets', 'createdAt', 'updatedAt'],
+	propertiesOrder: ['mainImagesSet', 'subcollection:navigation', 'subcollection:cards', 'subcollection:sets', 'id', 'createdAt', 'updatedAt'],
 	permissions: ({ authController }) => ({
 			read: true,
 			edit: true,
@@ -39,6 +39,7 @@ export const adventuresCollection = buildCollection({
 		id: {
 			name: 'id',
 			dataType: 'string',
+			readOnly: true
 		},
 		createdAt: {
 			name: 'createdAt',

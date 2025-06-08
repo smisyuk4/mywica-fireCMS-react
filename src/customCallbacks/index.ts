@@ -77,3 +77,27 @@ export const factsCallbacks: EntityCallbacks<any> = {
     };
   },
 };
+
+export const adventureNavigationCallbacks: EntityCallbacks<any> = {
+  onPreSave: async ({ values, entityId }) => {	
+		const id = Number(entityId);
+		const newTitle = id < 10 ? `0${id}` : `${id}`
+		
+    return {
+      ...values,
+			title: newTitle,
+      id: Number(entityId),
+    };
+  },
+};
+
+export const adventureSetsCallbacks: EntityCallbacks<any> = {
+  onPreSave: async ({path, values }) => {	
+		const id = path.split('/')[1];
+		
+    return {
+      ...values,
+      id: Number(id),
+    };
+  },
+};
