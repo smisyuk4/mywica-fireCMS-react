@@ -7,14 +7,28 @@ export const locales = buildEnumValues({
 });
 
 export const roles = buildEnumValues({
-	'adult': {
+	'admin':  {
+		id: 'admin',
+		label: 'admin',
+		color: 'redLight'
+	},
+	'support':  {
+		id: 'support',
+		label: 'support',
+		color: 'blueLight'
+	},
+	'adult':  {
 		id: 'adult',
 		label: 'adult',
-		color: 'purpleLight',
+		color: 'yellowLight',
 		disabled: true
 	},
-	'support': 'support',
-	'admin': 'admin',
+	'child':  {
+		id: 'child',
+		label: 'child',
+		color: 'greenLight',
+		disabled: true
+	},
 });
 
 export const customCardInfoIds = buildEnumValues({
@@ -55,11 +69,6 @@ export const subscriptionStatus = buildEnumValues({
 		id: 'active',
 		label: 'active',
 		color: 'greenLight'
-	},
-	'inactive':  {
-		id: 'inactive',
-		label: 'inactive',
-		color: 'orangeLight'
 	},
 	'failed':  {
 		id: 'failed',
@@ -160,4 +169,27 @@ export const guilds = buildEnumValues({
 
 export const customBasicCardId = buildEnumValues({
 	'mywica': 'mywica',
+});
+
+export const themes = buildEnumValues({
+		'math':  {
+				id: "math",
+				label: "math",
+				color: 'purpleLight'
+		},
+		'reading':  {
+				id: "reading",
+				label: "reading",
+				color: 'orangeLight'
+		},
+		'typing':  {
+				id: "typing",
+				label: "typing",
+				color: 'greenLight'
+		},
+		'other':  {
+				id: "other",
+				label: "other",
+				color: 'yellowLight'
+		},
 });
