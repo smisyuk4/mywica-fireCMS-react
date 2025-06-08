@@ -1,7 +1,7 @@
-import { buildCollection, buildProperty, buildProperties } from '@firecms/core';
+import { buildCollection } from '@firecms/core';
 import { reuseIdWithCleanCallbacks } from '../../customCallbacks';
-import { guilds } from '../../customEnums';
 import { guildProperties } from './guild';
+import { aboutUsProperties } from './aboutUs';
 
 export const buildDataEnCollection = (basePath: string, groupName: string) => buildCollection({
 	name: 'data En',
@@ -166,15 +166,7 @@ export const buildDataEnCollection = (basePath: string, groupName: string) => bu
 	//},
 
 
-	properties: basePath === 'pages/guild' ? guildProperties : aboutUsProperties
+	properties: basePath === 'pages/guild' ?
+											guildProperties : basePath === 'pages/aboutUs' ? 
+											aboutUsProperties : {}
 });
-
-
-
-const aboutUsProperties = {
-  aboutUs: buildProperty({
-    name: 'role',
-    dataType: 'string',
-  }),
-  // Add more properties here...
-};
