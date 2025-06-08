@@ -2,6 +2,8 @@ import { buildCollection } from '@firecms/core';
 import { reuseIdWithCleanCallbacks } from '../../customCallbacks';
 import { guildProperties } from './guild';
 import { aboutUsProperties } from './aboutUs';
+import { basicProperties } from './basic';
+import { generalNewsProperties } from './generalNews';
 
 export const buildDataUkCollection = (basePath: string, groupName: string) => buildCollection({
 	name: 'data Uk',
@@ -9,7 +11,7 @@ export const buildDataUkCollection = (basePath: string, groupName: string) => bu
 	path: `${basePath}/dataUk`,
 	group: groupName,
 	icon: 'format_underlined',
-	customId: true,
+	customId: 'optional',
 	callbacks: reuseIdWithCleanCallbacks,
 	textSearchEnabled: true,
 	permissions: ({ authController }) => ({
@@ -166,5 +168,6 @@ export const buildDataUkCollection = (basePath: string, groupName: string) => bu
 	//},
 		properties: basePath === 'pages/guild' ?
 												guildProperties : basePath === 'pages/aboutUs' ? 
-												aboutUsProperties : {}
+												aboutUsProperties : basePath === 'pages/generalNews' ? 
+												generalNewsProperties : basicProperties
 });
