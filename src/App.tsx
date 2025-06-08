@@ -60,6 +60,7 @@ const PAGES_WITHOUT_DATA = [
 	'playerСhats',
 	'adventures',
 	'collection',
+	'feedback'
 ]
 
 export function App() {

@@ -51,19 +51,47 @@ export const customCardInfoIds = buildEnumValues({
 });
 
 export const subscriptionStatus = buildEnumValues({
-	'active': 'active',
-	'inactive': 'inactive',
-	'failed': 'failed',
+	'active':  {
+		id: 'active',
+		label: 'active',
+		color: 'greenLight'
+	},
+	'inactive':  {
+		id: 'inactive',
+		label: 'inactive',
+		color: 'orangeLight'
+	},
+	'failed':  {
+		id: 'failed',
+		label: 'failed',
+		color: 'purpleLight'	
+	},
 });
 
 export const paymentTypes = buildEnumValues({
-	'subscription': 'subscription',
-	'souvenir': 'souvenir',
+	'subscription':  {
+		id: 'subscription',
+		label: 'subscription',
+		color: 'greenLight'
+	},
+	'souvenir':  {
+		id: 'souvenir',
+		label: 'souvenir',
+		color: 'orangeLight'
+	},
 });
 
 export const deliveryСompanies = buildEnumValues({
-	'nova post': 'nova post',
-	'ukrposhta': 'ukrposhta',
+	'nova post':  {
+		id: 'nova post',
+		label: 'nova post',
+		color: 'greenLight'
+	},
+	'ukrposhta':  {
+		id: 'ukrposhta',
+		label: 'ukrposhta',
+		color: 'orangeLight'
+	},
 });
 
 export const avatarVariants = buildEnumValues({
