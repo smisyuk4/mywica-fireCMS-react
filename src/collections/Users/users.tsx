@@ -16,6 +16,13 @@ export const usersCollection = buildCollection({
 	//callbacks: reuseIdCallbacks,
 	initialSort: ['createdAt', "desc"],
 	subcollections: [cardsSubCollection, destinationAddressesSubCollection],
+	//propertiesOrder: ['userId', 'role', 'language', 'sex', 'guild', 'avatarLink', 'createdAt', 'updatedAt'],
+	permissions: ({ authController }) => ({
+			read: true,
+			edit: false,
+			create: false,
+			delete: false
+	}),
 	properties: {
 		//collectionKey: {
 		//	name: 'collection key',
@@ -58,7 +65,7 @@ export const usersCollection = buildCollection({
 		//},
 		//description,
 		userId: {
-			name: 'userId',
+			name: 'user Id',
 			dataType: 'string',
 		},
 		role: {
@@ -69,6 +76,7 @@ export const usersCollection = buildCollection({
 		cookieConsent: {
 			name: 'cookie Consent',
 			dataType: 'boolean',
+			hideFromCollection: true
 		},
 		language: {
 			name: 'lang',
@@ -80,7 +88,7 @@ export const usersCollection = buildCollection({
 			email: true
 		},
 		subscriptionPlan: {
-			name: 'subscription Plan',
+			name: 'subscription',
 			dataType: 'string',
 		},
 		expiredDate: {
@@ -102,7 +110,7 @@ export const usersCollection = buildCollection({
 		birthDate: {
 			name: 'birth Date',
 			//dataType: 'date',
-				dataType: 'string', // проблема з форматом дати
+			dataType: 'string', // проблема з форматом дати
 		},
 		avatarLink: {
 			name: 'avatar',
@@ -122,10 +130,12 @@ export const usersCollection = buildCollection({
 		isOnline: {
 			name: 'is online',
 			dataType: 'boolean',
+			hideFromCollection: true
 		},
 		secret: {
 			name: 'secret',
 			dataType: 'string',
+			hideFromCollection: true
 		},
 		friends: {
 			name: 'friends',
