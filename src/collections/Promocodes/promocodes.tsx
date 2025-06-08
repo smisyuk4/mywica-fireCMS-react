@@ -2,11 +2,11 @@ import { buildCollection } from '@firecms/core';
 
 export const promocodesCollection = buildCollection({
 	name: 'Promocodes',
-	singularName: 'Promocodes',
+	singularName: 'Promocode',
 	id: 'promocodes',
 	path: 'promocodes',
-	group: 'Shop',
-	//description: 'data: uk, en, he',
+	description: 'discounts for users by subscriptions and souvenirs',
+	group: 'Users',
 	textSearchEnabled: true,
 	// Here you can override the user permissions
 	// permissions: ({ authController }) => ({
@@ -15,14 +15,6 @@ export const promocodesCollection = buildCollection({
 	//     create: true,
 	//     delete: true
 	// }),
-	subcollections: [],
-	entityViews: [
-		//{
-		//  key: 'preview',
-		//  name: 'Sample preview',
-		//  Builder: ProductDetailPreview,
-		//},
-	],
 	properties: {
 		isActual: {
 			name: 'isActual',

@@ -3,11 +3,11 @@ import { subscriptionStatus } from '../../customEnums';
 
 export const subscriptionsCollection = buildCollection({
 	name: 'Subscriptions',
-	singularName: 'Subscriptions',
+	singularName: 'Subscription',
 	id: 'subscriptions',
 	path: 'subscriptions',
-	group: 'Shop',
-	//description: 'data: uk, en, he',
+	group: 'Users',
+	description: 'list users for CRON payment',
 	textSearchEnabled: true,
 	// Here you can override the user permissions
 	// permissions: ({ authController }) => ({
@@ -16,14 +16,7 @@ export const subscriptionsCollection = buildCollection({
 	//     create: true,
 	//     delete: true
 	// }),
-	subcollections: [],
-	entityViews: [
-		//{
-		//  key: 'preview',
-		//  name: 'Sample preview',
-		//  Builder: ProductDetailPreview,
-		//},
-	],
+
 	properties: {
 		status: {
 			name: 'status',
@@ -49,7 +42,7 @@ export const subscriptionsCollection = buildCollection({
 		userId: {
 			name: 'userId',
 			validation: { required: true },
-			dataType: 'string',
+			dataType: 'string', // спробувати написати референс щоб переходити на документ цього юзера
 		},
 		paymentDate: {
 			name: 'paymentDate',

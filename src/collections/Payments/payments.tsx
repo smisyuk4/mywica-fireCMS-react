@@ -5,11 +5,11 @@ import { paymentTypes } from '../../customEnums';
 
 export const paymentsCollection = buildCollection({
 	name: 'Payments',
-	singularName: 'Payments',
+	singularName: 'Payment',
 	id: 'payments',
 	path: 'payments',
-	group: 'Shop',
-	//description: 'data: uk, en, he',
+	group: 'Users',
+	description: 'all purchases by users',
 	textSearchEnabled: true,
 	// Here you can override the user permissions
 	// permissions: ({ authController }) => ({
@@ -19,13 +19,6 @@ export const paymentsCollection = buildCollection({
 	//     delete: true
 	// }),
 	subcollections: [reviewsSubCollection, ordersSubCollection],
-	entityViews: [
-		//{
-		//  key: 'preview',
-		//  name: 'Sample preview',
-		//  Builder: ProductDetailPreview,
-		//},
-	],
 	properties: {
 		type: {
 			name: 'type',
