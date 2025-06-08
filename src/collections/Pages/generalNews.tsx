@@ -1,11 +1,17 @@
 import { buildProperties } from "@firecms/core";
 
 export const generalNewsProperties = buildProperties({
-		title: ({ entityId }) => {
+		version: ({ entityId }) => {
+			return {
+				name: 'version',
+				dataType: 'string',
+				readOnly: entityId === 'paragraph' ? true : false,
+			}
+		},
+		title: () => {
 			return {
 				name: 'title',
 				dataType: 'string',
-				//readOnly: entityId === 'paragraph' ? false : true,
 			}
 		},
 		text: ({ entityId }) => {
@@ -26,9 +32,9 @@ export const generalNewsProperties = buildProperties({
 						readOnly: entityId === 'paragraph' ? true : false,
 						dataType: 'string',
 						storage: {
-							storagePath: (context) => `news/general/${context.entityId}/`,
-							fileName: (context) => {
-									return context.file.name;
+							storagePath: ({ values }) => `news/general/${values.version}/`,
+							fileName: ({ file }) => {
+									return file.name;
 							},
 							acceptedFiles: ["image/webp"],
 							metadata: {
@@ -43,9 +49,9 @@ export const generalNewsProperties = buildProperties({
 						readOnly: entityId === 'paragraph' ? true : false,
 						dataType: 'string',
 						storage: {
-							storagePath: (context) => `news/general/${context.entityId}/`,
-							fileName: (context) => {
-									return context.file.name;
+							storagePath: ({values}) => `news/general/${values.version}/`,
+							fileName: ({file}) => {
+									return file.name;
 							},
 							acceptedFiles: ["image/webp"],
 							metadata: {
