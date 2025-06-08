@@ -170,3 +170,26 @@ export const guilds = buildEnumValues({
 export const customBasicCardId = buildEnumValues({
 	'mywica': 'mywica',
 });
+
+export const themes = buildEnumValues({
+		'math':  {
+				id: "math",
+				label: "math",
+				color: 'purpleLight'
+		},
+		'reading':  {
+				id: "reading",
+				label: "reading",
+				color: 'orangeLight'
+		},
+		'typing':  {
+				id: "typing",
+				label: "typing",
+				color: 'greenLight'
+		},
+		'other':  {
+				id: "other",
+				label: "other",
+				color: 'yellowLight'
+		},
+});

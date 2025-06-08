@@ -11,7 +11,7 @@ export const usersCollection = buildCollection({
 	path: 'users',
 	group: 'Users',
 	icon: 'people',
-	description: 'Adults and children, team of project',
+	description: 'Adults and children (cards, addresses), team of project',
 	textSearchEnabled: true,
 	//callbacks: reuseIdCallbacks,
 	initialSort: ['createdAt', "desc"],
