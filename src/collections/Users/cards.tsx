@@ -27,18 +27,15 @@ export const cardsSubCollection = buildCollection({
 		},
 		name: {
 			name: 'name',  // зробити масив з мовами ???????
-			validation: { required: true },
 			dataType: 'string',
 		},
 		guild: {
 			name: 'guild',
-			validation: { required: true },
 			dataType: 'string',
 			enumValues: guilds
 		},
 		theme: {
 			name: 'theme',
-			validation: { required: true },
 			dataType: 'string',
 			enumValues: themes
 		},
