@@ -48,8 +48,6 @@ export const specialNewsProperties = buildProperties({
 					storeUrl: true,
 					maxSize: 150 * 1024 // 🔺 Обмеження: 150 КБ
 				},
-
-			
 			}
 		},	
 		id: {
