@@ -1,0 +1,1 @@
+export { usersCollection } from './users'

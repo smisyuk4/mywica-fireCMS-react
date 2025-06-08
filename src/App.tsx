@@ -53,6 +53,7 @@ import { avatarsCollection } from './collections/Avatars';
 import { adventuresCollection } from './collections/Adventures';
 import { cardInfoCollection } from './collections/CardInfo';
 import { buildDataEnCollection, buildDataHeCollection, buildDataUkCollection, buildMetadataCollection, pagesCollection } from './collections/Pages';
+import { usersCollection } from './collections/Users';
 
 const PAGES_WITHOUT_DATA = [
 	'home',
@@ -202,6 +203,7 @@ export function App() {
 				});
 
         return [
+						usersCollection,
 						factsCollection,
 						feedbackCollection,
 						subscriptionsCollection,
