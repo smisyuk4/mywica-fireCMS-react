@@ -19,6 +19,7 @@ export const generalNewsProperties = buildProperties({
 			return {
 				name: 'images',
 				dataType: 'map',
+				readOnly: entityId === 'paragraph' ? true : false,
 				properties: {
 					mobile: {
 						name: 'mobile',

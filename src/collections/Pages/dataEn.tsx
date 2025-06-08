@@ -14,6 +14,7 @@ export const buildDataEnCollection = (basePath: string, groupName: string) => bu
 	customId: 'optional',
 	callbacks: reuseIdWithCleanCallbacks,
 	textSearchEnabled: true,
+	initialSort: ['createdAt', "desc"],
 	permissions: ({ authController }) => ({
 		read: true,
 		edit: true,
