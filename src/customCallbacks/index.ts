@@ -1,4 +1,4 @@
-import type { EntityCallbacks } from "@firecms/core";
+import { type EntityCallbacks, EntityReference } from "@firecms/core";
 
 export const feedbackCallbacks: EntityCallbacks<any> = {
   onPreSave: async ({ values, entityId, context }) => {	
@@ -100,4 +100,19 @@ export const adventureSetsCallbacks: EntityCallbacks<any> = {
       id: Number(id),
     };
   },
+};
+
+export const userRefCallbacks: EntityCallbacks<any> = {
+  onFetch({ entity }) {
+		const values = { ...entity.values };
+		
+		if(values?.userId) {
+			values.userId = new EntityReference(values.userId as string, "users")
+		}
+	
+		return {
+			...entity,
+			values
+		};
+	}
 };
