@@ -30,7 +30,7 @@ import {
 } from '@firecms/firebase';
 
 import { firebaseConfig } from './firebase_config';
-import { useDataEnhancementPlugin } from '@firecms/data_enhancement';
+//import { useDataEnhancementPlugin } from '@firecms/data_enhancement';
 import {
   useBuildUserManagement,
   userManagementAdminViews,
@@ -152,15 +152,15 @@ export function App() {
 
   /**
    * Data enhancement plugin
-   */
-  const dataEnhancementPlugin = useDataEnhancementPlugin({
-		apiKey: import.meta.env.VITE_FIRECMS_API_KEY,
-    getConfigForPath: ({ path }) => {
-			if (process.env.NODE_ENV !== "production") return true;
-      if (path === 'facts/data/uk' || path === 'facts/data/en' || path === 'facts/data/he') return true;
-      return false;
-    },
-  });
+   */	
+  //const dataEnhancementPlugin = useDataEnhancementPlugin({
+	//	apiKey: import.meta.env.VITE_FIRECMS_API_KEY,
+  //  getConfigForPath: ({ path }) => {
+	//		if (process.env.NODE_ENV !== "production") return true;
+  //    if (path === 'facts/data/uk' || path === 'facts/data/en' || path === 'facts/data/he') return true;
+  //    return false;
+  //  },
+  //});
 
   /**
    * User management plugin
@@ -246,7 +246,7 @@ export function App() {
 						exportPlugin,
 						userManagementPlugin,
 						collectionEditorPlugin,
-						dataEnhancementPlugin,
+						//dataEnhancementPlugin,
 					]}
 		
         >
