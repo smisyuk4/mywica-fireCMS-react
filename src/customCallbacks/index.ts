@@ -161,3 +161,14 @@ export const adventureCardsCallbacks: EntityCallbacks<any> = {
     };
   },
 };
+
+export const reuseIdforCardInfoCallbacks: EntityCallbacks<any> = {
+  onPreSave: async ({ values, entityId }) => {	
+		const adventureId = entityId?.split('-')[0]
+    return {
+      ...values,
+			adventureId,
+      id: entityId ?? values.id,
+    };
+  },
+};
