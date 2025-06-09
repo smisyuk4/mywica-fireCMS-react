@@ -116,3 +116,18 @@ export const userRefCallbacks: EntityCallbacks<any> = {
 		};
 	}
 };
+
+export const parentRefCallbacks: EntityCallbacks<any> = {
+  onFetch({ entity }) {
+		const values = { ...entity.values };
+		
+		if(values?.parentId) {
+			values.parentId = new EntityReference(values.parentId as string, "users")
+		}
+	
+		return {
+			...entity,
+			values
+		};
+	}
+};

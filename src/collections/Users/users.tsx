@@ -2,7 +2,7 @@ import { buildCollection } from '@firecms/core';
 import { avatarVariants, guilds, roles, sexVariants } from '../../customEnums';
 import { cardsSubCollection } from './cards';
 import { destinationAddressesSubCollection } from './destinationAddresses';
-
+import { parentRefCallbacks } from '../../customCallbacks';
 
 export const usersCollection = buildCollection({
 	name: 'Users',
@@ -15,7 +15,8 @@ export const usersCollection = buildCollection({
 	textSearchEnabled: true,
 	//callbacks: reuseIdCallbacks,
 	initialSort: ['createdAt', "desc"],
-	subcollections: [cardsSubCollection, destinationAddressesSubCollection],
+	subcollections: [cardsSubCollection, destinationAddressesSubCollection],	
+	callbacks: parentRefCallbacks,
 	//propertiesOrder: ['userId', 'role', 'language', 'sex', 'guild', 'avatarLink', 'createdAt', 'updatedAt'],
 	permissions: ({ authController }) => ({
 			read: true,
@@ -97,7 +98,8 @@ export const usersCollection = buildCollection({
 		},
 		parentId: {
 			name: 'parent Id',
-			dataType: 'string', // спробувати написати референс щоб переходити на документ цього юзера
+			dataType: 'reference',
+			path: 'users'
 		},
 		name: {
 			name: 'name',

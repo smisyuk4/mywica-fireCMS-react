@@ -12,13 +12,13 @@ export const subscriptionsCollection = buildCollection({
 	textSearchEnabled: true,
 	initialSort: ['createdAt', "desc"],
 	propertiesOrder: ['status', 'amount', 'userId', 'invoiceId', 'monobankToken', 'paymentDate', 'expiresDate', 'createdAt', 'updatedAt'],
+	callbacks: userRefCallbacks,
 	permissions: ({ authController }) => ({
 			read: true,
 			edit: false,
 			create: false,
 			delete: false
 	}),
-	callbacks: userRefCallbacks,
 	properties: {
 		status: {
 			name: 'status',
@@ -39,7 +39,6 @@ export const subscriptionsCollection = buildCollection({
 		},
 		userId: {
 			name: 'user Id',
-			//dataType: 'string',
 			dataType: 'reference',
 			path: 'users',
 		},
