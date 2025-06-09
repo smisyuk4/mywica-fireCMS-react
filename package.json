@@ -16,7 +16,7 @@
     "@fontsource/jetbrains-mono": "^5.2.5",
     "firebase": "^11.9.0",
     "firecms": "^3.0.0-canary.245",
-    "react": "^19.1.0",
+		"react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router": "^6.30.1",
     "react-router-dom": "^6.30.1",
