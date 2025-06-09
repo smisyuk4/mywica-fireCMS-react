@@ -4,9 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* #e4b61d*/
+/*  #fef3d5 */
+/*  #feffef */
+/*  #0fa999 */
+/* #ffb7b7 */
+
 :root {
-    --fcms-primary: #008a7b;
-    --fcms-primary-bg: #8BFFE866;
+    --fcms-primary: #e4b61d;
+    --fcms-primary-bg: rgba(228, 182, 29, 0.05);
     --fcms-secondary: #5fc363;
 }
 
@@ -15,5 +21,13 @@ body {
 }
 
 a {
-    @apply text-primary dark:text-primary
+    @apply text-primary dark:text-primary;
 }
+
+/*.typography-h5:hover {
+    @apply text-black dark:text-black;
+}
+
+.typography-button {
+    @apply text-white dark:text-black;
+}*/
