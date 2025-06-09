@@ -13,6 +13,7 @@ export const subscriptionsCollection = buildCollection({
 	initialSort: ['createdAt', "desc"],
 	propertiesOrder: ['status', 'amount', 'userId', 'invoiceId', 'monobankToken', 'paymentDate', 'expiresDate', 'createdAt', 'updatedAt'],
 	callbacks: userRefCallbacks,
+	pagination: 10,
 	permissions: ({ authController }) => ({
 			read: true,
 			edit: false,

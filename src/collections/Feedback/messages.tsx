@@ -9,6 +9,7 @@ export const messagesSubCollection = buildCollection({
 	singularName: 'message',
 	callbacks: feedbackCallbacks,
 	initialSort: ['updatedAt', "desc"],
+	pagination: 10,
 	properties: {
 		message: {
 			name: 'message',

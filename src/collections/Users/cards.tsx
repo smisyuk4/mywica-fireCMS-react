@@ -9,6 +9,7 @@ export const cardsSubCollection = buildCollection({
 	description: 'child private cards',
 	textSearchEnabled: true,
 	initialSort: ['createdAt', "desc"],
+	pagination: 10,
 	permissions: ({ authController }) => ({
 			read: true,
 			edit: false,

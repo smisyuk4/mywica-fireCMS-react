@@ -14,6 +14,7 @@ export const feedbackCollection = buildCollection({
 	propertiesOrder: ['isClosed', 'subject', 'lang', 'subcollection:messages', 'userId', 'createdAt', 'updatedAt'],
 	textSearchEnabled: true,
 	initialSort: ['updatedAt', "desc"],
+	pagination: 10,
 	callbacks: userRefCallbacks,
 	 permissions: ({ authController }) => ({
 	     read: true,

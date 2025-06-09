@@ -131,3 +131,16 @@ export const parentRefCallbacks: EntityCallbacks<any> = {
 		};
 	}
 };
+
+export const adventureCardsCallbacks: EntityCallbacks<any> = {
+  onPreSave: async ({path, entityId, values }) => {	
+		const adventureId = path.split('/')[1];
+		
+    return {
+      ...values,
+			userId: 'mywica',
+			adventureId,
+			id: entityId ?? values.id,
+    };
+  },
+};

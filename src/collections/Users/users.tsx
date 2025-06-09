@@ -16,6 +16,7 @@ export const usersCollection = buildCollection({
 	textSearchEnabled: true,
 	//callbacks: reuseIdCallbacks,
 	initialSort: ['createdAt', "desc"],
+	pagination: 20,
 	subcollections: [cardsSubCollection, destinationAddressesSubCollection],	
 	callbacks: parentRefCallbacks,
 	//propertiesOrder: ['userId', 'role', 'language', 'sex', 'guild', 'avatarLink', 'createdAt', 'updatedAt'],

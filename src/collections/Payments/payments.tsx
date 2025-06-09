@@ -15,6 +15,7 @@ export const paymentsCollection = buildCollection({
 	initialSort: ['createdAt', "desc"],
 	propertiesOrder: ['type', 'sum', 'subcollection:reviews', 'subcollection:orders', 'userId', 'createdAt', 'updatedAt'],
 	callbacks: userRefCallbacks,
+	pagination: 10,
 	permissions: ({ authController }) => ({
 			read: true,
 			edit: false,
