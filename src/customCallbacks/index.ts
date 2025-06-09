@@ -1,4 +1,4 @@
-import type { EntityCallbacks } from "@firecms/core";
+import { type EntityCallbacks, EntityReference } from "@firecms/core";
 
 export const feedbackCallbacks: EntityCallbacks<any> = {
   onPreSave: async ({ values, entityId, context }) => {	
@@ -74,6 +74,90 @@ export const factsCallbacks: EntityCallbacks<any> = {
     return {
       ...values,
       id: entityId ? Number(entityId) : values.id,
+    };
+  },
+};
+
+export const adventureNavigationCallbacks: EntityCallbacks<any> = {
+  onPreSave: async ({ values, entityId }) => {	
+		const id = Number(entityId);
+		const newTitle = id < 10 ? `0${id}` : `${id}`
+		
+    return {
+      ...values,
+			title: newTitle,
+      id: Number(entityId),
+    };
+  },
+};
+
+export const adventureSetsCallbacks: EntityCallbacks<any> = {
+  onPreSave: async ({path, values }) => {	
+		const id = path.split('/')[1];
+		
+    return {
+      ...values,
+      id: Number(id),
+    };
+  },
+};
+
+export const userRefCallbacks: EntityCallbacks<any> = {
+  onFetch({ entity }) {
+		const values = { ...entity.values };
+		
+		if(values?.userId) {
+			values.userId = new EntityReference(values.userId as string, "users")
+		}
+	
+		return {
+			...entity,
+			values
+		};
+	}
+};
+
+export const parentRefCallbacks: EntityCallbacks<any> = {
+  onFetch({ entity }) {
+		const values = { ...entity.values };
+		
+		if(values?.parentId) {
+			values.parentId = new EntityReference(values.parentId as string, "users")
+		}
+	
+		return {
+			...entity,
+			values
+		};
+	}
+};
+
+export const basicCardRefCallbacks: EntityCallbacks<any> = {
+  onFetch({ entity }) {
+		const values = { ...entity.values };
+		
+		if(values?.basicCardId) {
+			const adventureId = '2'
+			const cardId = '8'
+			values.basicCardId = new EntityReference(cardId, `adventures/${adventureId}/cards`)
+		}
+	
+		return {
+			...entity,
+			values
+		};
+	}
+};
+
+export const adventureCardsCallbacks: EntityCallbacks<any> = {
+  onPreSave: async ({path, entityId, values }) => {	
+		const adventureId = path.split('/')[1];
+		
+    return {
+      ...values,
+			userId: 'mywica',
+			adventureId,
+			id: entityId ?? values.id,
     };
   },
 };

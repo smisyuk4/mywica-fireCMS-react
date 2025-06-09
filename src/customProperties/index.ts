@@ -22,3 +22,26 @@ export const description = buildProperty({
 				},
 		}
 });
+
+export const name = buildProperty({
+		name: 'name',
+		validation: { required: true },
+			dataType: 'map',
+			properties: {
+				uk: {
+					name: 'uk',
+					validation: { required: true },
+					dataType: 'string',
+				},
+				en: {
+					name: 'en',
+					validation: { required: true },
+					dataType: 'string',
+				},
+				he: {
+					name: 'he',
+					validation: { required: true },
+					dataType: 'string',
+				},
+		}
+});

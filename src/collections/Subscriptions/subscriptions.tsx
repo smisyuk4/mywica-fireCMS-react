@@ -1,5 +1,6 @@
-import { buildCollection, EntityOnFetchProps } from '@firecms/core';
+import { buildCollection } from '@firecms/core';
 import { subscriptionStatus } from '../../customEnums';
+import { userRefCallbacks } from '../../customCallbacks';
 
 export const subscriptionsCollection = buildCollection({
 	name: 'Subscriptions',
@@ -11,27 +12,14 @@ export const subscriptionsCollection = buildCollection({
 	textSearchEnabled: true,
 	initialSort: ['createdAt', "desc"],
 	propertiesOrder: ['status', 'amount', 'userId', 'invoiceId', 'monobankToken', 'paymentDate', 'expiresDate', 'createdAt', 'updatedAt'],
-	// permissions: ({ authController }) => ({
-	//     read: true,
-	//     edit: false,
-	//     create: false,
-	//     delete: false
-	// }),
-	//callbacks: {
-	//	onFetch({ entity }) {
-	//		const values = { ...entity.values };
-	//		values.userId = `users/${values.userId}`;
-
-	//		const modified = {
-	//			...entity,
-	//			values
-	//		}
-
-	//		console.log('modified', modified);
-		
-	//		return modified;
-	//	}
-	//},
+	callbacks: userRefCallbacks,
+	pagination: 10,
+	permissions: ({ authController }) => ({
+			read: true,
+			edit: false,
+			create: false,
+			delete: false
+	}),
 	properties: {
 		status: {
 			name: 'status',
@@ -52,9 +40,8 @@ export const subscriptionsCollection = buildCollection({
 		},
 		userId: {
 			name: 'user Id',
-			dataType: 'string',
-			//dataType: 'reference',
-			//path: 'users',
+			dataType: 'reference',
+			path: 'users',
 		},
 		paymentDate: {
 			name: 'paymentDate',

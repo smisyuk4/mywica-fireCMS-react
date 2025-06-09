@@ -2,91 +2,52 @@ import { buildCollection } from '@firecms/core';
 import { setsSubCollection } from './sets';
 import { navigationSubCollection } from './navigation';
 import { cardsSubCollection } from './cards';
-
+import { reuseIdCallbacks } from '../../customCallbacks';
+import { imageProperty } from './image';
 export const adventuresCollection = buildCollection({
 	name: 'Adventures',
-	singularName: 'Adventures',
+	singularName: 'Adventure',
 	id: 'adventures',
 	path: 'adventures',
 	group: 'Main content',
 	customId: true,
 	description: 'Bg for adventures, basic cards, navigation, sets',
-	 permissions: ({ authController }) => ({
-	     read: true,
-	     edit: true,
-	     create: true,
-	     delete: true
-	 }),
-	subcollections: [setsSubCollection, navigationSubCollection, cardsSubCollection],
-	entityViews: [
-		//{
-		//  key: 'preview',
-		//  name: 'Sample preview',
-		//  Builder: ProductDetailPreview,
-		//},
-	],
+	callbacks: reuseIdCallbacks,
+	initialSort: ['createdAt', "desc"],
+	subcollections: [navigationSubCollection, cardsSubCollection, setsSubCollection],
+	propertiesOrder: ['mainImagesSet', 'subcollection:navigation', 'subcollection:cards', 'subcollection:sets', 'id', 'createdAt', 'updatedAt'],
+	permissions: ({ authController }) => ({
+			read: true,
+			edit: true,
+			create: true,
+			delete: true
+	}),
 	properties: {
-		title: {
-			name: 'title',
-			validation: { required: true },
-			dataType: 'string',
-		},
-		navigation: {
-			name: 'navigation',
-			validation: { required: true },
-			dataType: 'string',
-		},
 		mainImagesSet: {
-			name: 'mainImagesSet',
+			name: 'Images Set',
 			validation: { required: true },
 			dataType: 'map',
 			properties: {
-				mobile: {
-					name: 'mobile',
-					validation: { required: true },
-					dataType: 'string',
-				},
-				sm: {
-					name: 'sm',
-					validation: { required: true },
-					dataType: 'string',
-				},
-				lg: {
-					name: 'lg',
-					validation: { required: true },
-					dataType: 'string',
-				},
-				'lg-h': {
-					name: 'lg-h',
-					validation: { required: true },
-					dataType: 'string',
-				},
-				'xl-h': {
-					name: 'xl-h',
-					validation: { required: true },
-					dataType: 'string',
-				},
-				'2xl': {
-					name: '2xl',
-					validation: { required: true },
-					dataType: 'string',
-				},
+				...imageProperty('mobile'),
+				...imageProperty('sm'),
+				...imageProperty('lg'),
+				...imageProperty('lg-h'),
+				...imageProperty('xl-h'),
+				...imageProperty('2xl'),
 			}
 		},
 		id: {
 			name: 'id',
-			validation: { required: true },
 			dataType: 'string',
+			readOnly: true
 		},
 		createdAt: {
 			name: 'createdAt',
-			validation: { required: true },
 			dataType: 'date',
 			autoValue: "on_create"
 		},
 		updatedAt: {
 			name: 'updatedAt',
-			validation: { required: true },
 			dataType: 'date',
 			autoValue: "on_update"
 		},

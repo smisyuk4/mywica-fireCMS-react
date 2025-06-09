@@ -1,12 +1,18 @@
 import { buildCollection } from '@firecms/core';
 import { customBasicCardId, guilds } from '../../customEnums';
+import { adventureCardsCallbacks } from '../../customCallbacks';
+import { name } from '../../customProperties'
 
 export const cardsSubCollection = buildCollection({
 	id: 'cards',
 	path: 'cards',
 	name: 'cards',
 	singularName: 'card',
+	customId: true,
 	textSearchEnabled: true,
+	callbacks: adventureCardsCallbacks,
+	initialSort: ['createdAt', "desc"],
+	pagination: 10,
 	properties: {
 		guild: {
 			name: 'guild',
@@ -14,41 +20,52 @@ export const cardsSubCollection = buildCollection({
 			dataType: 'string',
 			enumValues: guilds
 		},
-		name: {
-			name: 'name',  // зробити масив з мовами ???????
-			validation: { required: true },
-			dataType: 'string',
-		},
+		name,
 		imageLink: {
-			name: 'imageLink',
+			name: 'image',
 			validation: { required: true },
 			dataType: 'string',
+			storage: {
+			storagePath: ({ path }) => {
+					const id = path?.split('/')[1];
+					return id ? `adventures/${id}/cards` : 'adventures/unknown/';
+				},
+				fileName: ({ file }) => {
+						return file.name;
+				},
+				acceptedFiles: ["image/webp"],
+				metadata: {
+						cacheControl: "max-age=1000000"
+				},
+				storeUrl: true,
+				maxSize: 150 * 1024 // 🔺 Обмеження: 150 КБ
+			},
 		},
 		userId: {
 			name: 'userId',
-			validation: { required: true },
 			dataType: 'string',
-			enumValues: customBasicCardId
+			enumValues: customBasicCardId,
+			hideFromCollection: true,
+			readOnly: true
 		},
 		adventureId: {
 			name: 'adventureId',
-			validation: { required: true },
 			dataType: 'string',
+			hideFromCollection: true,
+			readOnly: true
 		},
 		id: {
 			name: 'id',
-			validation: { required: true },
 			dataType: 'string',
+			readOnly: true
 		},
 		createdAt: {
 			name: 'createdAt',
-			validation: { required: true },
 			dataType: 'date',
 			autoValue: "on_create"
 		},
 		updatedAt: {
 			name: 'updatedAt',
-			validation: { required: true },
 			dataType: 'date',
 			autoValue: "on_update"
 		},

@@ -1,35 +1,33 @@
 import { buildCollection } from '@firecms/core';
+import { imageProperty } from './image';
+import { adventureNavigationCallbacks } from '../../customCallbacks';
 
 export const navigationSubCollection = buildCollection({
 	id: 'navigation',
 	path: 'navigation',
 	name: 'navigation',
 	singularName: 'navigation',
+	customId: true,
+	callbacks: adventureNavigationCallbacks,
 	properties: {
-		id: {
-			name: 'id',
-			validation: { required: true },
-			dataType: 'number',
-		},
-		image: {
-			name: 'image',
-			validation: { required: true },
-			dataType: 'string',
-		},
+		...imageProperty('image'),
 		title: {
 			name: 'title',
-			validation: { required: true },
 			dataType: 'string',
+			readOnly: true
+		},
+		id: {
+			name: 'id',
+			dataType: 'number',
+			readOnly: true,
 		},
 		createdAt: {
 			name: 'createdAt',
-			validation: { required: true },
 			dataType: 'date',
 			autoValue: "on_create"
 		},
 		updatedAt: {
 			name: 'updatedAt',
-			validation: { required: true },
 			dataType: 'date',
 			autoValue: "on_update"
 		},

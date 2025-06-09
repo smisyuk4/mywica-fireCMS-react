@@ -14,6 +14,7 @@ export const avatarsCollection = buildCollection({
 	textSearchEnabled: true,
 	callbacks: reuseIdCallbacks,
 	initialSort: ['avatarVariant', "asc"],
+	pagination: 10,
 	properties: {
 		collectionKey: {
 			name: 'collection key',

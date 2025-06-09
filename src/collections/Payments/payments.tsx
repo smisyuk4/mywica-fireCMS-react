@@ -2,6 +2,7 @@ import { buildCollection } from '@firecms/core';
 import { reviewsSubCollection } from './reviews';
 import { ordersSubCollection } from './orders';
 import { paymentTypes } from '../../customEnums';
+import { userRefCallbacks } from '../../customCallbacks';
 
 export const paymentsCollection = buildCollection({
 	name: 'Payments',
@@ -13,6 +14,8 @@ export const paymentsCollection = buildCollection({
 	textSearchEnabled: true,
 	initialSort: ['createdAt', "desc"],
 	propertiesOrder: ['type', 'sum', 'subcollection:reviews', 'subcollection:orders', 'userId', 'createdAt', 'updatedAt'],
+	callbacks: userRefCallbacks,
+	pagination: 10,
 	permissions: ({ authController }) => ({
 			read: true,
 			edit: false,
@@ -32,7 +35,8 @@ export const paymentsCollection = buildCollection({
 		},
 		userId: {
 			name: 'userId',
-			dataType: 'string',
+			dataType: 'reference',
+			path: 'users'
 		},
 		id: {
 			name: 'id',
