@@ -1,6 +1,7 @@
 import { buildCollection } from '@firecms/core';
 import { customBasicCardId, guilds } from '../../customEnums';
 import { adventureCardsCallbacks } from '../../customCallbacks';
+import { name } from '../../customProperties'
 
 export const cardsSubCollection = buildCollection({
 	id: 'cards',
@@ -19,11 +20,7 @@ export const cardsSubCollection = buildCollection({
 			dataType: 'string',
 			enumValues: guilds
 		},
-		name: {
-			name: 'name',  // зробити масив з мовами ???????
-			validation: { required: true },
-			dataType: 'string',
-		},
+		name,
 		imageLink: {
 			name: 'image',
 			validation: { required: true },

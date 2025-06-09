@@ -132,6 +132,23 @@ export const parentRefCallbacks: EntityCallbacks<any> = {
 	}
 };
 
+export const basicCardRefCallbacks: EntityCallbacks<any> = {
+  onFetch({ entity }) {
+		const values = { ...entity.values };
+		
+		if(values?.basicCardId) {
+			const adventureId = '2'
+			const cardId = '8'
+			values.basicCardId = new EntityReference(cardId, `adventures/${adventureId}/cards`)
+		}
+	
+		return {
+			...entity,
+			values
+		};
+	}
+};
+
 export const adventureCardsCallbacks: EntityCallbacks<any> = {
   onPreSave: async ({path, entityId, values }) => {	
 		const adventureId = path.split('/')[1];

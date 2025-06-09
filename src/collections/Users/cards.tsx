@@ -1,5 +1,7 @@
 import { buildCollection } from '@firecms/core';
 import { guilds, themes } from '../../customEnums';
+//import { basicCardRefCallbacks } from '../../customCallbacks';
+import { name } from '../../customProperties'
 
 export const cardsSubCollection = buildCollection({
 	name: 'Cards',
@@ -10,6 +12,7 @@ export const cardsSubCollection = buildCollection({
 	textSearchEnabled: true,
 	initialSort: ['createdAt', "desc"],
 	pagination: 10,
+	//callbacks: basicCardRefCallbacks,
 	permissions: ({ authController }) => ({
 			read: true,
 			edit: false,
@@ -26,10 +29,7 @@ export const cardsSubCollection = buildCollection({
 			dataType: 'string',
 			url: 'image'
 		},
-		name: {
-			name: 'name',  // зробити масив з мовами ???????
-			dataType: 'string',
-		},
+		name,
 		guild: {
 			name: 'guild',
 			dataType: 'string',
@@ -40,11 +40,24 @@ export const cardsSubCollection = buildCollection({
 			dataType: 'string',
 			enumValues: themes
 		},
-
-		basicCardId: {
+			basicCardId: {
 			name: 'basic Card Id',
 			dataType: 'string',
 		},
+		//basicCardId: {
+		//	name: 'basic Card Id',
+		//	dataType: 'reference',
+		//	path: 'adventures/2/cards'
+		//},
+		//basicCardId: ({ values }) => { // спробувати написати референс на бейзік карту
+		//	console.log('values', values);
+			
+		//	return {
+		//		name: 'basic Card Id',
+		//		dataType: 'reference',
+		//		path: 'adventures/2/cards'
+		//	}
+		//},
 		userId: {
 			name: 'user Id',
 			dataType: 'string',
