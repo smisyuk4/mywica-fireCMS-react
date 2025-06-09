@@ -3,6 +3,7 @@ import { avatarVariants, guilds, roles, sexVariants } from '../../customEnums';
 import { cardsSubCollection } from './cards';
 import { destinationAddressesSubCollection } from './destinationAddresses';
 import { parentRefCallbacks } from '../../customCallbacks';
+import { locales } from '../../customEnums';
 
 export const usersCollection = buildCollection({
 	name: 'Users',
@@ -82,6 +83,7 @@ export const usersCollection = buildCollection({
 		language: {
 			name: 'lang',
 			dataType: 'string',
+			enumValues: locales,
 		},
 		email: {
 			name: 'email',

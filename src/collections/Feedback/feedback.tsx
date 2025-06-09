@@ -1,6 +1,7 @@
 import { buildCollection } from '@firecms/core';
 import { messagesSubCollection } from './messages';
 import { locales } from '../../customEnums';
+import { userRefCallbacks } from '../../customCallbacks';
 
 export const feedbackCollection = buildCollection({
 	name: 'Feedback',
@@ -13,6 +14,7 @@ export const feedbackCollection = buildCollection({
 	propertiesOrder: ['isClosed', 'subject', 'lang', 'subcollection:messages', 'userId', 'createdAt', 'updatedAt'],
 	textSearchEnabled: true,
 	initialSort: ['updatedAt', "desc"],
+	callbacks: userRefCallbacks,
 	 permissions: ({ authController }) => ({
 	     read: true,
 	     edit: true,
@@ -45,7 +47,8 @@ export const feedbackCollection = buildCollection({
 		},
 		userId: {
 			name: 'user id',
-			dataType: 'string',
+			dataType: 'reference',
+			path: 'users',
 			readOnly: true,
 		},
 		createdAt: {
