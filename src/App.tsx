@@ -1,13 +1,9 @@
-import React, { useMemo } from 'react';
-
 import 'typeface-rubik';
 import '@fontsource/jetbrains-mono';
 import {
   AppBar,
-  //buildCollection,
   CircularProgressCenter,
   //CMSView,
-  //Drawer,
   FireCMS,
   ModeControllerProvider,
   NavigationRoutes,
@@ -269,9 +265,8 @@ export function App() {
                 );
               } else {
                 component = (
-                  <Scaffold logo={logo} autoOpenDrawer={false}>
+                  <Scaffold logo={logo}>
                     <AppBar title={title}/>
-                    {/*<Drawer />*/}
                     <NavigationRoutes />
                     <SideDialogs />
                   </Scaffold>
