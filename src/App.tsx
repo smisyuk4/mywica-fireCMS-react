@@ -61,7 +61,8 @@ const PAGES_WITHOUT_DATA = [
 	'playerСhats',
 	'adventures',
 	'collection',
-	'feedback'
+	'feedback',
+	'children' // прибрати коли треба показати dataUk, dataEn, dataHe
 ]
 
 export function App() {
