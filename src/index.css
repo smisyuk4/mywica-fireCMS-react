@@ -23,18 +23,22 @@ body {
 	@apply  absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] p-2 rounded-xl;
 }
 
-.login-view button{
-	@apply  bg-surface-900 hover:bg-surface-800;
+.login-view button {
+	@apply bg-primary hover:bg-[#B79115] focus:bg-[#B79115] hover:border-[#B79115] focus:border-[#B79115] text-text-primary hover:text-text-primary shadow-button;
 }
 
 .login-view img{
 	@apply  hidden;
 }
 
-/*.typography-button {
-		@apply text-black hover:text-black;
-}*/
+.login-view .typography-subtitle2 {
+	@apply bg-surface-accent-200/50 p-2 rounded-md;
+}
 
-/*.typography-button[type="submit"] {
-		@apply text-black hover:text-black;
-}*/
+.login-view input, .login-view input::placeholder {
+	@apply text-text-primary font-medium;
+}
+
+.typography-button {
+		@apply h-10 rounded-[40px] hover:bg-[#B79115] focus:bg-[#B79115];
+}
