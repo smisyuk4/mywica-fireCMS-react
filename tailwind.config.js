@@ -9,6 +9,29 @@ export default {
   ],
   theme: {
     extend: {
+				screens: {
+						xs: "360px", // => @media (min-width: 360px)
+						"2xs": "480px", // => @media (min-width: 480px)
+						sm: "640px", // => @media (min-width: 640px)
+						md: "768px", // => @media (min-width: 768px)
+						lg: "1024px", // => @media (min-width: 1024px)
+						"lg-h": {
+							raw: "(min-width: 1024px) and (min-height: 769px)"
+						},
+						xl: "1280px", // => @media (min-width: 1280px)
+						"xl-h": {
+							raw: "(min-width: 1280px) and (min-height: 720px)"
+						},
+						"2xl": "1440px" // => @media (min-width: 1440px)
+				},
+				backgroundImage: {
+				home: "url('/images/home/home-360-800.webp')",
+				"sm-home": "url('/images/home/home-768-1024.webp')",
+				"lg-home": "url('/images/home/home-1024-768.webp')",
+				"lg-h-home": "url('/images/home/home-800-1280.webp')",
+				"xl-h-home": "url('/images/home/home-1440-900.webp')",
+				"2xl-home": "url('/images/home/home-1440-1024.webp')"
+				},
       colors: {
         primary: "var(--fcms-primary)",
         "primary-bg": "var(--fcms-primary-bg)",

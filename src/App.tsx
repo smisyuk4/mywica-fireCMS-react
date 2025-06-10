@@ -259,12 +259,8 @@ export function App() {
               if (!canAccessMainView) {
                 component = (
                   <FirebaseLoginView
+										className='login-view'
 										logo={logo}
-										additionalComponent={
-											<a href="https://mywica.com" aria-label='mywica' target="_blank" rel="noopener noreferrer">mywica.com</a>
-										}
-										children={<p>Welcome to MYWICA CMS</p>}
-                    allowSkipLogin={false}
                     signInOptions={signInOptions}
                     firebaseApp={firebaseApp}
                     authController={authController}
