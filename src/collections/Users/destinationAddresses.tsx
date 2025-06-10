@@ -1,7 +1,7 @@
 import { buildCollection } from '@firecms/core';
 
 export const destinationAddressesSubCollection = buildCollection({
-	name: 'Destination Addresses',
+	name: 'Addresses',
 	id: 'destinationAddresses',
 	path: 'destinationAddresses',
 	//description: 'child private cards',
