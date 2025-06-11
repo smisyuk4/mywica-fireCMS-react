@@ -157,6 +157,7 @@ export const adventureCardsCallbacks: EntityCallbacks<any> = {
       ...values,
 			userId: 'mywica',
 			adventureId,
+			gidx: String(values.gidx),
 			id: entityId ?? values.id,
     };
   },
