@@ -221,9 +221,9 @@ if (guild === "defender") {
 		indexesList = {
 			...indexesList,
 			[i]:  {
-					id: i,
-					label: i,
-					color: 'orangeLight'
+				id: i,
+				label: i,
+				color: 'orangeLight'
 			},
 		}
 	}
@@ -247,9 +247,9 @@ if (guild === "exile") {
 		indexesList = {
 			...indexesList,
 			[i]:  {
-					id: i,
-					label: i,
-					color: 'yellowLight'
+				id: i,
+				label: i,
+				color: 'yellowLight'
 			},
 		}
 	}
