@@ -16,7 +16,7 @@ export const imageProperty = (propName : string)=>{
 								cacheControl: "max-age=1000000"
 						},
 						storeUrl: true,
-						maxSize: 150 * 1024 // 🔺 Обмеження: 150 КБ
+						maxSize: 250 * 1024 // 🔺 Обмеження: 250 КБ
 					},
 				},
 	})
