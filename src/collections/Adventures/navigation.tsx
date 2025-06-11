@@ -10,7 +10,7 @@ export const navigationSubCollection = buildCollection({
 	customId: true,
 	callbacks: adventureNavigationCallbacks,
 	properties: {
-		...imageProperty('image (300 x 300)'),
+		...imageProperty('navigation image (300 x 300)'),
 		title: {
 			name: 'title',
 			dataType: 'string',

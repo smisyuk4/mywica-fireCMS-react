@@ -11,7 +11,7 @@ export const setsSubCollection = buildCollection({
 	callbacks: adventureSetsCallbacks,
 	properties: {
 		banner: {
-			name: 'image (1280 x 120)', 
+			name: 'banner image (1280 x 120)', 
 			validation: { required: true }, 
 			dataType: 'string',
 			storage: {
