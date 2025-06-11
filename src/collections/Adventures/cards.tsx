@@ -20,6 +20,13 @@ export const cardsSubCollection = buildCollection({
 			dataType: 'string',
 			enumValues: guilds
 		},
+		gidx: {
+			name: 'gidx',
+			dataType: 'string',
+			//enumValues: customBasicCardId,
+			//hideFromCollection: true,
+			//readOnly: true
+		},
 		name,
 		imageLink: {
 			name: 'image (500 x 780)',
