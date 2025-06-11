@@ -22,7 +22,7 @@ export const cardsSubCollection = buildCollection({
 		},
 		name,
 		imageLink: {
-			name: 'image',
+			name: 'image (500 x 780)',
 			validation: { required: true },
 			dataType: 'string',
 			storage: {
