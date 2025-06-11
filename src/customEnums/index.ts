@@ -193,3 +193,67 @@ export const themes = buildEnumValues({
 				color: 'yellowLight'
 		},
 });
+
+
+export const customGIDX = (guild: string)=>{
+	const indexesWarrior = [1, 15]
+	const indexesDefender = [16, 30]
+	const indexesWizard = [31, 45]
+	const indexesExile = [46, 60]
+
+	let indexesList = {}
+
+if (guild === "warrior") {
+	for (let i = indexesWarrior[0]; i <= indexesWarrior[1]; i++) {
+		indexesList = {
+			...indexesList,
+			[i]:  {
+				id: i,
+				label: i,
+				color: 'purpleLight'
+			},
+		}
+	}
+}
+
+if (guild === "defender") {
+	for (let i = indexesDefender[0]; i <= indexesDefender[1]; i++) {
+		indexesList = {
+			...indexesList,
+			[i]:  {
+					id: i,
+					label: i,
+					color: 'orangeLight'
+			},
+		}
+	}
+}
+
+if (guild === "wizard") {
+	for (let i = indexesWizard[0]; i <= indexesWizard[1]; i++) {
+		indexesList = {
+			...indexesList,
+			[i]:  {
+				id: i,
+				label: i,
+				color: 'greenLight'
+			},
+		}
+	}
+}
+
+if (guild === "exile") {
+	for (let i = indexesExile[0]; i <= indexesExile[1]; i++) {
+		indexesList = {
+			...indexesList,
+			[i]:  {
+					id: i,
+					label: i,
+					color: 'yellowLight'
+			},
+		}
+	}
+}
+
+return buildEnumValues(indexesList);
+}
