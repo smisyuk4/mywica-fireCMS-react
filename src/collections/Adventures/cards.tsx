@@ -1,5 +1,5 @@
 import { buildCollection } from '@firecms/core';
-import { customBasicCardId, guilds } from '../../customEnums';
+import { customBasicCardId, guilds, customGIDX } from '../../customEnums';
 import { adventureCardsCallbacks } from '../../customCallbacks';
 import { name } from '../../customProperties'
 
@@ -20,6 +20,11 @@ export const cardsSubCollection = buildCollection({
 			dataType: 'string',
 			enumValues: guilds
 		},
+		gidx: ({ values }) => ({
+			name: 'gidx',
+			dataType: 'string',
+			enumValues: customGIDX(values.guild),
+		}),
 		name,
 		imageLink: {
 			name: 'image (500 x 780)',
