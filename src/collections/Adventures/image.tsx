@@ -1,9 +1,9 @@
 import { buildProperties } from "@firecms/core";
 
-export const imageProperty = (propName : string)=>{
+export const imageProperty = (propName : string, label: string)=>{
 	return buildProperties({
 				[propName]: {
-					name: propName, 
+					name: label, 
 					validation: { required: true }, 
 					dataType: 'string',
 					storage: {

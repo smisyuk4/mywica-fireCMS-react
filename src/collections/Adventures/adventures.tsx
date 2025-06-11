@@ -28,12 +28,12 @@ export const adventuresCollection = buildCollection({
 			validation: { required: true },
 			dataType: 'map',
 			properties: {
-				...imageProperty('mobile (380 x 800)'),
-				...imageProperty('sm (768 x 1024)'),
-				...imageProperty('lg (1024 x 768)'),
-				...imageProperty('lg-h (800 x 1280)'),
-				...imageProperty('xl-h (1440 x 900)'),
-				...imageProperty('2xl (1440 x 1024)'),
+				...imageProperty('mobile', 'mobile (380 x 800)'),
+				...imageProperty('sm', 'sm (768 x 1024)'),
+				...imageProperty('lg', 'lg (1024 x 768)'),
+				...imageProperty('lg-h', 'lg-h (800 x 1280)'),
+				...imageProperty('xl-h', 'xl-h (1440 x 900)'),
+				...imageProperty('2xl', '2xl (1440 x 1024)'),
 			}
 		},
 		id: {
