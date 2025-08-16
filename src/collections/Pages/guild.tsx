@@ -42,7 +42,7 @@ export const guildProperties = buildProperties({
 				name: 'description',
 				dataType: 'string',
 				readOnly: entityId === 'paragraph' ? true : false,
-				validation: { trim: true },
+				validation: { trim: true, max: 300 },
 			}
 		},
 		id: {
