@@ -173,3 +173,28 @@ export const reuseIdforCardInfoCallbacks: EntityCallbacks<any> = {
     };
   },
 };
+
+export const pagesCallbacks: EntityCallbacks<any> = {
+	 onFetch({ entity }) {
+		const values = { ...entity.values };
+
+		const videoId = values.link?.split('embed/')[1];
+		
+		if(videoId) {
+			values.link = videoId
+		}
+		return {
+			...entity,
+			values
+		};
+	},
+  onPreSave: async ({entityId, values }) => {	
+		if (entityId === 'video') {
+			values.link = `https://www.youtube.com/embed/${values.link}`
+		}
+		
+    return {
+      ...values,
+    };
+  },
+};
