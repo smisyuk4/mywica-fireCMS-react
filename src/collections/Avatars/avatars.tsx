@@ -22,7 +22,7 @@ export const avatarsCollection = buildCollection({
 			dataType: 'string',
 		},
 		link: {
-			name: "image",
+			name: "image (400 x 400)",
 			validation: { required: true },
 			dataType: "string",
 			storage: {
