@@ -18,13 +18,13 @@ export const avatarsCollection = buildCollection({
 	properties: {
 		collectionKey: {
 			name: 'collection key',
-			validation: { required: true },
 			dataType: 'string',
+			validation: { required: true },
 		},
 		link: {
-			name: "image",
-			validation: { required: true },
+			name: "image (400 x 400)",
 			dataType: "string",
+			validation: { required: true },
 			storage: {
 				storagePath: (context) => {
 						if (context.values.collectionKey)
@@ -51,8 +51,8 @@ export const avatarsCollection = buildCollection({
 		},
 		sex: {
 			name: 'sex',
-			validation: { required: true },
 			dataType: 'string',
+			validation: { required: true },
 			enumValues: sexVariants,
 		},
 		description,

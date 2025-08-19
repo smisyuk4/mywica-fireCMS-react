@@ -3,76 +3,77 @@ import { roles } from '../../customEnums';
 import { feedbackCallbacks } from '../../customCallbacks';
 
 export const messagesSubCollection = buildCollection({
-	id: 'messages',
-	path: 'messages',
-	name: 'messages',
-	singularName: 'message',
-	callbacks: feedbackCallbacks,
-	initialSort: ['updatedAt', "desc"],
-	pagination: 10,
-	properties: {
-		message: {
-			name: 'message',
-			validation: { required: true },
-			dataType: 'string',
-		},
-		photos: {
-			name: 'photos',
-			dataType: 'array',
-			  validation: {
-				max: 3 // 🔺 максимум 3 файли
-			},
-			of: {
-				dataType: "string",
-				storage: {
-				storagePath: (context) => {
-						if (context.path){
-							const dataBasePath = context.path.split('/');
-							const ticketId = dataBasePath[1];
-							const messageId = context.entityId;
-							return `feedback/${ticketId}/${messageId}/`;
-						}
+  id: 'messages',
+  path: 'messages',
+  name: 'messages',
+  singularName: 'message',
+  callbacks: feedbackCallbacks,
+  initialSort: ['updatedAt', 'desc'],
+  pagination: 10,
+  properties: {
+    message: {
+      name: 'message',
+      dataType: 'string',
+      validation: { required: true },
+      multiline: true,
+    },
+    photos: {
+      name: 'photos',
+      dataType: 'array',
+      validation: {
+        max: 3, // 🔺 максимум 3 файли
+      },
+      of: {
+        dataType: 'string',
+        storage: {
+          storagePath: (context) => {
+            if (context.path) {
+              const dataBasePath = context.path.split('/');
+              const ticketId = dataBasePath[1];
+              const messageId = context.entityId;
+              return `feedback/${ticketId}/${messageId}/`;
+            }
 
-						return "feedback/";
-        },
-        fileName: (context) => {
+            return 'feedback/';
+          },
+          fileName: (context) => {
             return context.file.name;
+          },
+          acceptedFiles: ['image/webp'],
+          metadata: {
+            cacheControl: 'max-age=1000000',
+          },
+          storeUrl: true,
+          maxSize: 250 * 1024, // 🔺 Обмеження: 250 КБ
         },
-				acceptedFiles: ["image/webp"],
-				metadata: {
-						cacheControl: "max-age=1000000"
-				},
-				storeUrl: true,
-				maxSize: 250 * 1024 // 🔺 Обмеження: 250 КБ
-			}
-			},
-		},
-		role: {
-			name: 'role',
-			dataType: 'string', 
-			enumValues: roles,
-			readOnly: true,
-		},
-		id: {
-			name: 'id',
-			dataType: 'string',
-			hideFromCollection: true,
-			readOnly: true,
-		},
-		userId: {
-			name: 'user Id',
-			dataType: 'string',
-			readOnly: true,
-		},
-		createdAt: {
-			name: 'createdAt',
-			dataType: 'date',
-			autoValue: "on_create"
-		},
-		updatedAt: {
-			name: 'updatedAt',
-			dataType: 'date',
-			autoValue: "on_update"
-		},
-	},
+      },
+    },
+    role: {
+      name: 'role',
+      dataType: 'string',
+      enumValues: roles,
+      readOnly: true,
+    },
+    id: {
+      name: 'id',
+      dataType: 'string',
+      hideFromCollection: true,
+      readOnly: true,
+    },
+    userId: {
+      name: 'user Id',
+      dataType: 'string',
+      readOnly: true,
+    },
+    createdAt: {
+      name: 'createdAt',
+      dataType: 'date',
+      autoValue: 'on_create',
+    },
+    updatedAt: {
+      name: 'updatedAt',
+      dataType: 'date',
+      autoValue: 'on_update',
+    },
+  },
 });
