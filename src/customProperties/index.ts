@@ -30,17 +30,17 @@ export const name = buildProperty({
 			properties: {
 				uk: {
 					name: 'uk',
-					validation: { required: true },
+					validation: { required: true, trim: true, max: 12 },
 					dataType: 'string',
 				},
 				en: {
 					name: 'en',
-					validation: { required: true },
+					validation: { required: true, trim: true, max: 12 },
 					dataType: 'string',
 				},
 				he: {
 					name: 'he',
-					validation: { required: true },
+					validation: { required: true, trim: true, max: 12 },
 					dataType: 'string',
 				},
 		}
