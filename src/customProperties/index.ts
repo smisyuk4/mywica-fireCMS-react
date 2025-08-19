@@ -7,18 +7,21 @@ export const description = buildProperty({
 			properties: {
 				uk: {
 					name: 'uk',
-					validation: { required: true },
 					dataType: 'string',
+					validation: { required: true },
+					multiline: true,
 				},
 				en: {
 					name: 'en',
-					validation: { required: true },
 					dataType: 'string',
+					validation: { required: true },
+					multiline: true,
 				},
 				he: {
 					name: 'he',
-					validation: { required: true },
 					dataType: 'string',
+					validation: { required: true },
+					multiline: true,
 				},
 		}
 });
