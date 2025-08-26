@@ -257,3 +257,39 @@ if (guild === "exile") {
 
 return buildEnumValues(indexesList);
 }
+
+export const plansVariants = buildEnumValues({
+	'individual':  {
+				id: "individual",
+				label: "individual",
+				color: 'yellowLight'
+		},
+	'family':  {
+				id: "family",
+				label: "family",
+				color: 'purpleLight'
+		}
+});
+
+export const subscriptionPeriods = buildEnumValues({
+		1: {
+				id: 1,
+				label: "one",
+				color: 'blueLight'
+		},
+		3: {
+				id: 3,
+				label: "three",
+				color: 'pinkLight'
+		},
+		6: {
+				id: 6,
+				label: "six",
+				color: 'orangeLight'
+		},
+		12: {
+				id: 12,
+				label: "twelve",
+				color: 'greenLight'
+		}
+});

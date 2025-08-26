@@ -1,5 +1,6 @@
 import { buildCollection } from '@firecms/core';
 import { reuseIdCallbacks } from '../../customCallbacks';
+import { plansVariants, subscriptionPeriods } from '../../customEnums';
 
 export const buildPlansCollection = (
   basePath: string,
@@ -27,42 +28,50 @@ export const buildPlansCollection = (
     path: `${basePath}/plans`,
     description: 'subscriptions plans',
     group: groupName,
-    //icon: pageId === 'video' ? 'ondemand_video' : 'menu_book',
-    customId: true,
+    icon: 'paid',
     callbacks: reuseIdCallbacks,
-    textSearchEnabled: true,
+    initialSort: ['cycleInMonths', 'asc'],
     permissions: ({ authController }) => ({
       read: true,
       edit: true,
-      create: true,
-      delete: true,
+      create: false,
+      delete: false,
     }),
     properties: {
-      name: {
-        name: 'name',
+      variant: {
+        name: 'Variant',
         dataType: 'string',
+        validation: { required: true },
+        enumValues: plansVariants,
+        readOnly: true,
+      },
+      cycleInMonths: {
+        name: 'cycleInMonths',
+        dataType: 'number',
+        validation: { required: true, min: 0 },
+        enumValues: subscriptionPeriods,
+        readOnly: true,
       },
       oldPrice: {
-        name: 'old price',
+        name: 'Old price',
         dataType: 'number',
+        validation: { required: true, min: 0 },
       },
       price: {
         name: 'Price',
         dataType: 'number',
+        validation: { required: true, min: 0 },
       },
       recommended: {
-        name: 'recommended',
+        name: 'Recommended',
         dataType: 'boolean',
         defaultValue: false,
-      },
-      value: {
-        name: 'value',
-        dataType: 'number',
       },
       id: {
         name: 'id',
         dataType: 'string',
         readOnly: true,
+        hideFromCollection: true,
       },
       createdAt: {
         name: 'createdAt',
