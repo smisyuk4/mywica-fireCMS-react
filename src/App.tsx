@@ -51,6 +51,7 @@ import {
   buildDataHeCollection,
   buildDataUkCollection,
   buildMetadataCollection,
+  buildPlansCollection,
   pagesCollection,
 } from './collections/Pages';
 import { usersCollection } from './collections/Users';
@@ -197,6 +198,7 @@ export function App() {
           buildDataUkCollection(basePath, groupName),
           buildDataEnCollection(basePath, groupName),
           buildDataHeCollection(basePath, groupName),
+          buildPlansCollection(basePath, groupName, pageId),
         ];
       });
 

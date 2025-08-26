@@ -20,7 +20,7 @@ export const specialNewsProperties = buildProperties({
     return {
       name: 'title',
       dataType: 'string',
-      validation: { trim: true },
+      validation: { trim: true, max: 50 },
     };
   },
   text: ({ entityId }) => {
@@ -28,7 +28,7 @@ export const specialNewsProperties = buildProperties({
       name: 'text (HTML)',
       dataType: 'string',
       readOnly: entityId === 'paragraph' ? true : false,
-      validation: { trim: true },
+      validation: { trim: true, max: 800 },
       multiline: true,
     };
   },
@@ -37,7 +37,7 @@ export const specialNewsProperties = buildProperties({
       name: 'label',
       dataType: 'string',
       readOnly: entityId === 'paragraph' ? true : false,
-      validation: { trim: true },
+      validation: { trim: true, max: 15 },
     };
   },
   image: ({ entityId }) => {
