@@ -11,7 +11,7 @@ export const aboutUsProperties = buildProperties({
   },
   text: ({ entityId }) => {
     return {
-      name: 'page description',
+      name: 'page description (HTML)',
       dataType: 'string',
       readOnly: entityId === 'paragraph' ? false : true,
       validation: { trim: true },

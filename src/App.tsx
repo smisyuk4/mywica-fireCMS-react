@@ -35,9 +35,7 @@ import {
 import { useImportPlugin } from '@firecms/data_import';
 import { useExportPlugin } from '@firecms/data_export';
 import { useFirestoreCollectionsConfigController } from '@firecms/collection_editor_firebase';
-import {
-  useCollectionEditorPlugin,
-} from '@firecms/collection_editor';
+import { useCollectionEditorPlugin } from '@firecms/collection_editor';
 import logo from '../public/logo.png';
 //import { customViews } from './views';
 import { factsCollection } from './collections/Facts';
@@ -48,18 +46,25 @@ import { paymentsCollection } from './collections/Payments';
 import { avatarsCollection } from './collections/Avatars';
 import { adventuresCollection } from './collections/Adventures';
 import { cardInfoCollection } from './collections/CardInfo';
-import { buildDataEnCollection, buildDataHeCollection, buildDataUkCollection, buildMetadataCollection, pagesCollection } from './collections/Pages';
+import {
+  buildDataEnCollection,
+  buildDataHeCollection,
+  buildDataUkCollection,
+  buildMetadataCollection,
+  buildPlansCollection,
+  pagesCollection,
+} from './collections/Pages';
 import { usersCollection } from './collections/Users';
 
 const PAGES_WITHOUT_DATA = [
-	'home',
-	'video',
-	'playerСhats',
-	'adventures',
-	'collection',
-	'feedback',
-	'children' // прибрати коли треба показати dataUk, dataEn, dataHe
-]
+  'home',
+  'video',
+  'playerСhats',
+  'adventures',
+  'collection',
+  'feedback',
+  'children', // прибрати коли треба показати dataUk, dataEn, dataHe
+];
 
 export function App() {
   const title = 'Mywica CMS';
@@ -103,7 +108,7 @@ export function App() {
    */
   const firestoreDelegate = useFirestoreDelegate({
     firebaseApp,
-		localTextSearchEnabled: true
+    localTextSearchEnabled: true,
   });
 
   /**
@@ -146,14 +151,13 @@ export function App() {
       storageSource,
     });
 
-
   /**
    * Data enhancement plugin
-   */	
+   */
   //const dataEnhancementPlugin = useDataEnhancementPlugin({
-	//	apiKey: import.meta.env.VITE_FIRECMS_API_KEY,
+  //	apiKey: import.meta.env.VITE_FIRECMS_API_KEY,
   //  getConfigForPath: ({ path }) => {
-	//		if (process.env.NODE_ENV !== "production") return true;
+  //		if (process.env.NODE_ENV !== "production") return true;
   //    if (path === 'facts/data/uk' || path === 'facts/data/en' || path === 'facts/data/he') return true;
   //    return false;
   //  },
@@ -174,50 +178,55 @@ export function App() {
     collectionConfigController,
   });
 
-	const navigationController = useBuildNavigationController({
-		collections: async ({ dataSource }) => {
-        const pages = await dataSource.fetchCollection({
-            path: "pages",
-        });
-       
-				const pagesCollections = pages.flatMap(page => {
-					const pageId = page.id;
-					const basePath = `pages/${pageId}`;
-					const groupName = `${pageId} page`;
+  const navigationController = useBuildNavigationController({
+    collections: async ({ dataSource }) => {
+      const pages = await dataSource.fetchCollection({
+        path: 'pages',
+      });
 
-					if (PAGES_WITHOUT_DATA.includes(pageId)) {
-						return [
-							buildMetadataCollection(basePath, groupName, pageId),
-						];
-					}
+      const pagesCollections = pages.flatMap((page) => {
+        const pageId = page.id;
+        const basePath = `pages/${pageId}`;
+        const groupName = `${pageId} page`;
 
-					return [
-						buildMetadataCollection(basePath, groupName, pageId),
-						buildDataUkCollection(basePath, groupName),
-						buildDataEnCollection(basePath, groupName),
-						buildDataHeCollection(basePath, groupName),
-					]
-				});
+        if (PAGES_WITHOUT_DATA.includes(pageId)) {
+          return [buildMetadataCollection(basePath, groupName, pageId)];
+        }
 
         return [
-						usersCollection,
-						factsCollection,
-						feedbackCollection,
-						subscriptionsCollection,
-						promocodesCollection,
-						paymentsCollection,
-						avatarsCollection,
-						adventuresCollection,
-						cardInfoCollection,
-						pagesCollection,
-            ...pagesCollections,
-        ]
+          buildMetadataCollection(basePath, groupName, pageId),
+          buildDataUkCollection(basePath, groupName),
+          buildDataEnCollection(basePath, groupName),
+          buildDataHeCollection(basePath, groupName),
+          buildPlansCollection(basePath, groupName, pageId),
+        ];
+      });
+
+      return [
+        usersCollection,
+        factsCollection,
+        feedbackCollection,
+        subscriptionsCollection,
+        promocodesCollection,
+        paymentsCollection,
+        avatarsCollection,
+        adventuresCollection,
+        cardInfoCollection,
+        pagesCollection,
+        ...pagesCollections,
+      ];
     },
     collectionPermissions: userManagement.collectionPermissions,
     //views,
     adminViews: userManagementAdminViews,
     authController,
     dataSourceDelegate: firestoreDelegate,
+    plugins: [
+      importPlugin,
+      exportPlugin,
+      userManagementPlugin,
+      collectionEditorPlugin,
+    ],
   });
 
   if (firebaseConfigLoading || !firebaseApp) {
@@ -230,7 +239,7 @@ export function App() {
 
   return (
     <SnackbarProvider>
-      <ModeControllerProvider value={modeController} >
+      <ModeControllerProvider value={modeController}>
         <FireCMS
           apiKey={import.meta.env.VITE_FIRECMS_API_KEY}
           navigationController={navigationController}
@@ -238,14 +247,13 @@ export function App() {
           userConfigPersistence={userConfigPersistence}
           dataSourceDelegate={firestoreDelegate}
           storageSource={storageSource}
-					plugins={[
-						importPlugin,
-						exportPlugin,
-						userManagementPlugin,
-						collectionEditorPlugin,
-						//dataEnhancementPlugin,
-					]}
-		
+          //</ModeControllerProvider>plugins={[
+          //  importPlugin,
+          //  exportPlugin,
+          //  userManagementPlugin,
+          //collectionEditorPlugin,
+          //dataEnhancementPlugin,
+          //]}
         >
           {({ context, loading }) => {
             let component;
@@ -255,8 +263,8 @@ export function App() {
               if (!canAccessMainView) {
                 component = (
                   <FirebaseLoginView
-										className='login-view'
-										logo={logo}
+                    className='login-view'
+                    logo={logo}
                     signInOptions={signInOptions}
                     firebaseApp={firebaseApp}
                     authController={authController}
@@ -266,7 +274,7 @@ export function App() {
               } else {
                 component = (
                   <Scaffold logo={logo}>
-                    <AppBar title={title}/>
+                    <AppBar title={title} />
                     <NavigationRoutes />
                     <SideDialogs />
                   </Scaffold>

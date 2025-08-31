@@ -1,6 +1,14 @@
 import { buildProperties } from '@firecms/core';
 
 export const specialNewsProperties = buildProperties({
+  isPublished: ({ entityId }) => {
+    return {
+      name: 'Published',
+      dataType: 'boolean',
+      defaultValue: entityId === 'paragraph' ? true : false,
+      readOnly: entityId === 'paragraph' ? true : false,
+    };
+  },
   key: ({ entityId }) => {
     return {
       name: 'key',
@@ -12,15 +20,15 @@ export const specialNewsProperties = buildProperties({
     return {
       name: 'title',
       dataType: 'string',
-      validation: { trim: true },
+      validation: { trim: true, max: 50 },
     };
   },
   text: ({ entityId }) => {
     return {
-      name: 'text',
+      name: 'text (HTML)',
       dataType: 'string',
       readOnly: entityId === 'paragraph' ? true : false,
-      validation: { trim: true },
+      validation: { trim: true, max: 800 },
       multiline: true,
     };
   },
@@ -29,12 +37,12 @@ export const specialNewsProperties = buildProperties({
       name: 'label',
       dataType: 'string',
       readOnly: entityId === 'paragraph' ? true : false,
-      validation: { trim: true },
+      validation: { trim: true, max: 15 },
     };
   },
   image: ({ entityId }) => {
     return {
-      name: 'image',
+      name: 'image (340 x 340)',
       readOnly: entityId === 'paragraph' ? true : false,
       dataType: 'string',
       storage: {
