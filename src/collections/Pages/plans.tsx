@@ -46,7 +46,7 @@ export const buildPlansCollection = (
         readOnly: true,
       },
       cycleInMonths: {
-        name: 'cycleInMonths',
+        name: 'cycle In Months',
         dataType: 'number',
         validation: { required: true, min: 0 },
         enumValues: subscriptionPeriods,

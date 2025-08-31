@@ -267,7 +267,7 @@ export const plansVariants = buildEnumValues({
 	'family':  {
 				id: "family",
 				label: "family",
-				color: 'purpleLight'
+				color: 'greenLight'
 		}
 });
 
@@ -293,3 +293,4 @@ export const subscriptionPeriods = buildEnumValues({
 				color: 'greenLight'
 		}
 });
+
