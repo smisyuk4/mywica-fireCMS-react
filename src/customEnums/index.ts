@@ -65,6 +65,8 @@ export const customCardInfoIds = buildEnumValues({
 });
 
 export const subscriptionStatus = buildEnumValues({
+	//status: 'success' перша оплата | 'active' повторна оплата
+	
 	'active':  {
 		id: 'active',
 		label: 'active',

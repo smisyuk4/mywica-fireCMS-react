@@ -13,12 +13,11 @@ export const subscriptionsCollection = buildCollection({
   initialSort: ['createdAt', 'desc'],
   propertiesOrder: [
     'status',
+    'variant',
     'amount',
     'userId',
     'invoiceId',
-    'monobankToken',
-    'paymentDate',
-    'expiresDate',
+    'expiredDate',
     'createdAt',
     'updatedAt',
   ],
@@ -60,6 +59,7 @@ export const subscriptionsCollection = buildCollection({
     monobankToken: {
       name: 'monobankToken',
       dataType: 'string',
+      hideFromCollection: true,
     },
     taskId: {
       name: 'taskId',
@@ -70,12 +70,8 @@ export const subscriptionsCollection = buildCollection({
       dataType: 'reference',
       path: 'users',
     },
-    paymentDate: {
-      name: 'paymentDate',
-      dataType: 'date',
-    },
-    expiresDate: {
-      name: 'expiresDate',
+    expiredDate: {
+      name: 'expiredDate',
       dataType: 'date',
     },
     createdAt: {
